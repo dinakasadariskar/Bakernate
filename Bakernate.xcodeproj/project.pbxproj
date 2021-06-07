@@ -9,25 +9,31 @@
 /* Begin PBXBuildFile section */
 		B51A670F266E61D1008E42E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A670E266E61D1008E42E0 /* AppDelegate.swift */; };
 		B51A6711266E61D1008E42E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A6710266E61D1008E42E0 /* SceneDelegate.swift */; };
-		B51A6713266E61D1008E42E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A6712266E61D1008E42E0 /* ViewController.swift */; };
 		B51A6716266E61D1008E42E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51A6714266E61D1008E42E0 /* Main.storyboard */; };
 		B51A6719266E61D1008E42E0 /* Bakernate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B51A6717266E61D1008E42E0 /* Bakernate.xcdatamodeld */; };
 		B51A671B266E61D1008E42E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B51A671A266E61D1008E42E0 /* Assets.xcassets */; };
 		B51A671E266E61D1008E42E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51A671C266E61D1008E42E0 /* LaunchScreen.storyboard */; };
 		B51A6726266E6397008E42E0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B51A6725266E6397008E42E0 /* .gitignore */; };
+		B51A6731266E6B52008E42E0 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A6730266E6B52008E42E0 /* FavoritesViewController.swift */; };
+		B51A6733266E6B6F008E42E0 /* SubstitutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A6732266E6B6F008E42E0 /* SubstitutionViewController.swift */; };
+		B51A6735266E6B99008E42E0 /* Substitution.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51A6734266E6B99008E42E0 /* Substitution.storyboard */; };
+		B51A6737266E6BA6008E42E0 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51A6736266E6BA6008E42E0 /* Favorites.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B51A670B266E61D1008E42E0 /* Bakernate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bakernate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B51A670E266E61D1008E42E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B51A6710266E61D1008E42E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B51A6712266E61D1008E42E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B51A6715266E61D1008E42E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B51A6718266E61D1008E42E0 /* Bakernate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bakernate.xcdatamodel; sourceTree = "<group>"; };
 		B51A671A266E61D1008E42E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B51A671D266E61D1008E42E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B51A671F266E61D1008E42E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B51A6725266E6397008E42E0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		B51A6730266E6B52008E42E0 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		B51A6732266E6B6F008E42E0 /* SubstitutionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstitutionViewController.swift; sourceTree = "<group>"; };
+		B51A6734266E6B99008E42E0 /* Substitution.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Substitution.storyboard; sourceTree = "<group>"; };
+		B51A6736266E6BA6008E42E0 /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +66,92 @@
 		B51A670D266E61D1008E42E0 /* Bakernate */ = {
 			isa = PBXGroup;
 			children = (
+				B51A6729266E69E8008E42E0 /* Model */,
+				B51A6728266E69C3008E42E0 /* Pages */,
+				B51A6727266E694F008E42E0 /* Themes */,
 				B51A670E266E61D1008E42E0 /* AppDelegate.swift */,
 				B51A6710266E61D1008E42E0 /* SceneDelegate.swift */,
-				B51A6712266E61D1008E42E0 /* ViewController.swift */,
 				B51A6714266E61D1008E42E0 /* Main.storyboard */,
 				B51A671A266E61D1008E42E0 /* Assets.xcassets */,
 				B51A671C266E61D1008E42E0 /* LaunchScreen.storyboard */,
 				B51A671F266E61D1008E42E0 /* Info.plist */,
-				B51A6717266E61D1008E42E0 /* Bakernate.xcdatamodeld */,
 				B51A6725266E6397008E42E0 /* .gitignore */,
 			);
 			path = Bakernate;
+			sourceTree = "<group>";
+		};
+		B51A6727266E694F008E42E0 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		B51A6728266E69C3008E42E0 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				B51A672B266E6A44008E42E0 /* Favorites */,
+				B51A672A266E6A3C008E42E0 /* Substitution */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		B51A6729266E69E8008E42E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B51A6717266E61D1008E42E0 /* Bakernate.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B51A672A266E6A3C008E42E0 /* Substitution */ = {
+			isa = PBXGroup;
+			children = (
+				B51A672D266E6B02008E42E0 /* Controller */,
+				B51A672C266E6ADE008E42E0 /* View */,
+			);
+			path = Substitution;
+			sourceTree = "<group>";
+		};
+		B51A672B266E6A44008E42E0 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				B51A672F266E6B26008E42E0 /* View */,
+				B51A672E266E6B1F008E42E0 /* Controller */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		B51A672C266E6ADE008E42E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B51A6734266E6B99008E42E0 /* Substitution.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B51A672D266E6B02008E42E0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51A6732266E6B6F008E42E0 /* SubstitutionViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51A672E266E6B1F008E42E0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51A6730266E6B52008E42E0 /* FavoritesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51A672F266E6B26008E42E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B51A6736266E6BA6008E42E0 /* Favorites.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +212,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B51A6726266E6397008E42E0 /* .gitignore in Resources */,
+				B51A6735266E6B99008E42E0 /* Substitution.storyboard in Resources */,
+				B51A6737266E6BA6008E42E0 /* Favorites.storyboard in Resources */,
 				B51A671E266E61D1008E42E0 /* LaunchScreen.storyboard in Resources */,
 				B51A671B266E61D1008E42E0 /* Assets.xcassets in Resources */,
 				B51A6716266E61D1008E42E0 /* Main.storyboard in Resources */,
@@ -144,9 +227,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B51A6713266E61D1008E42E0 /* ViewController.swift in Sources */,
+				B51A6733266E6B6F008E42E0 /* SubstitutionViewController.swift in Sources */,
 				B51A670F266E61D1008E42E0 /* AppDelegate.swift in Sources */,
 				B51A6711266E61D1008E42E0 /* SceneDelegate.swift in Sources */,
+				B51A6731266E6B52008E42E0 /* FavoritesViewController.swift in Sources */,
 				B51A6719266E61D1008E42E0 /* Bakernate.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
