@@ -14,6 +14,7 @@
 		B51A6719266E61D1008E42E0 /* Bakernate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B51A6717266E61D1008E42E0 /* Bakernate.xcdatamodeld */; };
 		B51A671B266E61D1008E42E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B51A671A266E61D1008E42E0 /* Assets.xcassets */; };
 		B51A671E266E61D1008E42E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51A671C266E61D1008E42E0 /* LaunchScreen.storyboard */; };
+		B51A6726266E6397008E42E0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B51A6725266E6397008E42E0 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B51A671A266E61D1008E42E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B51A671D266E61D1008E42E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B51A671F266E61D1008E42E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B51A6725266E6397008E42E0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				B51A671C266E61D1008E42E0 /* LaunchScreen.storyboard */,
 				B51A671F266E61D1008E42E0 /* Info.plist */,
 				B51A6717266E61D1008E42E0 /* Bakernate.xcdatamodeld */,
+				B51A6725266E6397008E42E0 /* .gitignore */,
 			);
 			path = Bakernate;
 			sourceTree = "<group>";
@@ -127,6 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B51A6726266E6397008E42E0 /* .gitignore in Resources */,
 				B51A671E266E61D1008E42E0 /* LaunchScreen.storyboard in Resources */,
 				B51A671B266E61D1008E42E0 /* Assets.xcassets in Resources */,
 				B51A6716266E61D1008E42E0 /* Main.storyboard in Resources */,
