@@ -2,16 +2,17 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
         <attribute name="descriptions" optional="YES" attributeType="String"/>
-        <attribute name="halal" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isDairy" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isEggs" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="keto" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="kosher" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isGluten" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isPeanut" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSoy" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isTreeNuts" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isVegan" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="paleo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="vegan" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="vegetarian" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Ingredient" positionX="-63" positionY="-18" width="128" height="164"/>
+        <element name="Ingredient" positionX="-63" positionY="-18" width="128" height="179"/>
     </elements>
 </model>
