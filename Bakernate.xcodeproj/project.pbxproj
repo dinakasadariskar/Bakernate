@@ -116,8 +116,8 @@
 		B51A672B266E6A44008E42E0 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				B51A672F266E6B26008E42E0 /* View */,
 				B51A672E266E6B1F008E42E0 /* Controller */,
+				B51A672F266E6B26008E42E0 /* View */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";

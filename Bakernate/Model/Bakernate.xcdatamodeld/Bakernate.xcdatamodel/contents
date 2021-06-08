@@ -3,6 +3,7 @@
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
         <attribute name="descriptions" optional="YES" attributeType="String"/>
         <attribute name="halal" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isFavorited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="keto" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="kosher" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -11,6 +12,6 @@
         <attribute name="vegetarian" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Ingredient" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="Ingredient" positionX="-63" positionY="-18" width="128" height="164"/>
     </elements>
 </model>
