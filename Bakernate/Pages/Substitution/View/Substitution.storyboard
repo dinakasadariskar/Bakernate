@@ -74,11 +74,13 @@
             </objects>
             <point key="canvasLocation" x="1047.6923076923076" y="125.82938388625591"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Substitution-->
         <scene sceneID="sNi-AD-Doa">
             <objects>
                 <navigationController storyboardIdentifier="Substitution" automaticallyAdjustsScrollViewInsets="NO" id="ZSA-G2-HnQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Substitution" image="arrow.triangle.2.circlepath" catalog="system" id="qAi-SJ-akb"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="0p0-b8-7Xa">
                         <rect key="frame" x="0.0" y="44" width="390" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -94,6 +96,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="101"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">

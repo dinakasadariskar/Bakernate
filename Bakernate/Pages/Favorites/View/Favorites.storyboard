@@ -24,11 +24,13 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="125.89285714285714"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Favorites-->
         <scene sceneID="Cjv-ma-02x">
             <objects>
                 <navigationController storyboardIdentifier="Favorites" automaticallyAdjustsScrollViewInsets="NO" id="mWH-Nm-Fgk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorites" image="heart" catalog="system" id="O1t-rf-Bu6"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="bF2-58-yFb">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -44,6 +46,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
