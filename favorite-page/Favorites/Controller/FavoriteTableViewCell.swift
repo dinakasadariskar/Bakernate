@@ -13,22 +13,20 @@ class FavoriteTableViewCell: UITableViewCell {
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var favoriteCellView: UIView!
     
+    var isselected = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         self.favoriteCellView.layer.cornerRadius = 10
-
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+//        self.favoriteCellView.layer.masksToBounds = true
         
-        if selected {
-            favoriteCellView.backgroundColor = .green
-        } else {
-            favoriteCellView.backgroundColor = .white
-        }
-        // Configure the view for the selected state
+        self.favoriteCellView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.favoriteCellView.layer.shadowColor = UIColor.black.cgColor
+        self.favoriteCellView.layer.shadowOpacity = 0.3
+        self.favoriteCellView.layer.shadowRadius = 2
+        
+
     }
     
     func commonInit(_ ingredientName:String, _ amount:String) {
