@@ -32,21 +32,18 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func ingredientPicker() {
-        
         ingredientPickerView.delegate = self
         ingredientPickerView.delegate?.pickerView?(ingredientPickerView, didSelectRow: 0, inComponent: 0)
         ingredientTextField.inputView = ingredientPickerView
     }
     
     func unitPicker() {
-        
         unitPickerView.delegate = self
         unitPickerView.delegate?.pickerView?(unitPickerView, didSelectRow: 0, inComponent: 0)
         unitTextField.inputView = unitPickerView
     }
     
     func createToolbar() {
-        
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(SubstitutionViewController.closePickerView))
@@ -57,7 +54,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func createToolbarUnit() {
-        
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(SubstitutionViewController.closePickerView))
@@ -68,17 +64,14 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     @objc func closePickerView() {
-        
         view.endEditing(true)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        
             return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
         if pickerView == ingredientPickerView {
             return ingredientArray.count
         } else {
@@ -88,7 +81,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         if pickerView == ingredientPickerView {
             return ingredientArray[row]
         } else {
@@ -98,7 +90,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         if pickerView == ingredientPickerView {
             ingredientTextField.text =  ingredientArray[row]
         } else {
@@ -107,18 +98,32 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         
     }
 
+    @objc func showInformation() {
+        let slideVC = InformationView()
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        self.present(slideVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func clickInfoButton(_ sender: Any) {
+        showInformation()
+    }
 }
 
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
     @objc func dismissKeyboard() {
-        
         view.endEditing(true)
+    }
+}
+
+extension SubstitutionViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        PresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

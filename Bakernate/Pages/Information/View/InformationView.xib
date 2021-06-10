@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InformationView" customModule="Bakernate" customModuleProvider="target">
+            <connections>
+                <outlet property="slideIdicator" destination="h5u-lC-Vtp" id="dp4-sa-hOB"/>
+                <outlet property="view" destination="iN0-l3-epB" id="opn-YC-DFv"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="397"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5u-lC-Vtp">
+                    <rect key="frame" x="165" y="16" width="60" height="4"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="4" id="5pI-cZ-4Df"/>
+                        <constraint firstAttribute="width" constant="60" id="Muk-rJ-goN"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bakernate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWq-DA-Iqr">
+                    <rect key="frame" x="20" y="44" width="350" height="24"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9EI-gf-dZz">
+                    <rect key="frame" x="20" y="76" width="350" height="74"/>
+                    <string key="text">Bakernate is an iOS application to help beginner bakers understand the right ingredients substitutions for baking by generating ingredient substitutions based on user’s input on initial ingredient and amount.</string>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initial Ingredient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDu-jd-ZUH">
+                    <rect key="frame" x="20" y="174" width="350" height="24"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can pick one of the ingredients that you want to search here." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WK4-Vj-frU">
+                    <rect key="frame" x="20" y="206" width="350" height="36"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initial Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTr-a6-aF3">
+                    <rect key="frame" x="20" y="266" width="350" height="24"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can input amount of ingredient that you want to search here. You can also change the unit of the ingrdient’s amount." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlR-P5-QGA">
+                    <rect key="frame" x="20" y="298" width="350" height="55"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WK4-Vj-frU" secondAttribute="trailing" constant="20" id="0Ro-tp-cEK"/>
+                <constraint firstAttribute="trailing" secondItem="9EI-gf-dZz" secondAttribute="trailing" constant="20" id="4LR-HD-bTx"/>
+                <constraint firstItem="VDu-jd-ZUH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="4RV-HQ-Fom"/>
+                <constraint firstItem="WK4-Vj-frU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="7ne-BA-ow9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gTr-a6-aF3" secondAttribute="trailing" constant="20" id="9JH-Uv-VWw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gWq-DA-Iqr" secondAttribute="trailing" constant="20" id="EDn-Ik-UWE"/>
+                <constraint firstItem="DlR-P5-QGA" firstAttribute="top" secondItem="gTr-a6-aF3" secondAttribute="bottom" constant="8" id="FOc-m6-2om"/>
+                <constraint firstItem="h5u-lC-Vtp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="H57-f0-spf"/>
+                <constraint firstItem="9EI-gf-dZz" firstAttribute="top" secondItem="gWq-DA-Iqr" secondAttribute="bottom" constant="8" id="OfJ-8F-FMP"/>
+                <constraint firstItem="VDu-jd-ZUH" firstAttribute="top" secondItem="9EI-gf-dZz" secondAttribute="bottom" constant="24" id="R6f-n0-ENp"/>
+                <constraint firstItem="gTr-a6-aF3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="S2W-lN-PXy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VDu-jd-ZUH" secondAttribute="trailing" constant="20" id="S3z-bt-yiO"/>
+                <constraint firstItem="gTr-a6-aF3" firstAttribute="top" secondItem="WK4-Vj-frU" secondAttribute="bottom" constant="24" id="Tow-uT-qK9"/>
+                <constraint firstItem="9EI-gf-dZz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Y4S-vb-qJd"/>
+                <constraint firstItem="gWq-DA-Iqr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="bAK-cq-NHg"/>
+                <constraint firstAttribute="trailing" secondItem="DlR-P5-QGA" secondAttribute="trailing" constant="20" id="ctU-lb-2ER"/>
+                <constraint firstItem="WK4-Vj-frU" firstAttribute="top" secondItem="VDu-jd-ZUH" secondAttribute="bottom" constant="8" id="d3M-Cc-Hf7"/>
+                <constraint firstItem="h5u-lC-Vtp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="eco-IF-l5M"/>
+                <constraint firstItem="DlR-P5-QGA" firstAttribute="top" secondItem="gTr-a6-aF3" secondAttribute="bottom" constant="8" id="ifY-FI-AQM"/>
+                <constraint firstItem="DlR-P5-QGA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="k6G-9V-whU"/>
+                <constraint firstItem="DlR-P5-QGA" firstAttribute="top" secondItem="gTr-a6-aF3" secondAttribute="bottom" constant="8" id="oTK-1B-nmK"/>
+                <constraint firstItem="gWq-DA-Iqr" firstAttribute="top" secondItem="h5u-lC-Vtp" secondAttribute="bottom" constant="24" id="r3S-Yk-flp"/>
+                <constraint firstItem="WK4-Vj-frU" firstAttribute="top" secondItem="VDu-jd-ZUH" secondAttribute="bottom" constant="8" id="wq4-aO-GUq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="130.76923076923077" y="303.90995260663504"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
