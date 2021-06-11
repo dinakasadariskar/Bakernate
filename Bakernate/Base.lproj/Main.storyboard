@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OS3-eS-Wx3">
-                                <rect key="frame" x="0.0" y="44" width="390" height="643.66666666666663"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="633.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="uQW-JD-cCt">
                                     <size key="itemSize" width="390" height="651"/>
@@ -48,7 +48,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="OnI-Ph-1M4" customClass="onBoardingCollectionViewCell" customModule="Bakernate" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-3.6666666666666665" width="390" height="651"/>
+                                        <rect key="frame" x="0.0" y="-8.6666666666666661" width="390" height="651"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Yct-PR-qCe">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="651"/>
@@ -98,16 +98,16 @@
                                 </cells>
                             </collectionView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="g46-Ls-one">
-                                <rect key="frame" x="135" y="687.66666666666663" width="120.33333333333331" height="26.333333333333371"/>
+                                <rect key="frame" x="135" y="677.66666666666663" width="120.33333333333331" height="26.333333333333371"/>
                                 <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
                                 <color key="currentPageIndicatorTintColor" red="0.23626565930000001" green="0.34497568010000002" blue="0.3490221798" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </pageControl>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3Z-z1-SP9">
-                                <rect key="frame" x="20" y="730" width="350" height="40"/>
+                                <rect key="frame" x="20" y="720" width="350" height="50"/>
                                 <color key="backgroundColor" red="0.23626565930000001" green="0.34497568010000002" blue="0.3490221798" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="fcV-GS-4Ed"/>
-                                    <constraint firstAttribute="height" constant="40" id="zPT-Sp-Dl5"/>
+                                    <constraint firstAttribute="height" constant="50" id="zPT-Sp-Dl5"/>
                                 </constraints>
                                 <state key="normal" title="Get Started">
                                     <color key="titleColor" red="0.9882485271" green="0.98821145300000002" blue="0.98823660609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
