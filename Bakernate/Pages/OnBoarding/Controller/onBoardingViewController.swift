@@ -33,7 +33,7 @@ class onBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        slide = [onBoardingSlide(title: "Substitute", desc: "Find an alternative ingredients that suits your pantry", image: #imageLiteral(resourceName: "icon substitution")), onBoardingSlide(title: "Measure", desc: "Get the right measurement for your substitute ingredient", image: #imageLiteral(resourceName: "icon substitution 3")), onBoardingSlide(title: "Learn", desc: "In this app, you can discover and learn about the ingredients that you want to use", image: #imageLiteral(resourceName: "icon substitution 4"))]
+        slide = [onBoardingSlide(title: "Substitute", desc: "Find an alternative ingredients that suits your pantry", image: #imageLiteral(resourceName: "icon substitution-3")), onBoardingSlide(title: "Measure", desc: "Get the right measurement for your substitute ingredient", image: #imageLiteral(resourceName: "icon substitution-4")), onBoardingSlide(title: "Learn", desc: "In this app, you can discover and learn about the ingredients that you want to use", image: #imageLiteral(resourceName: "icon substitution-5"))]
         
         designInterface()
         onBoardingCV.delegate = self
@@ -42,8 +42,8 @@ class onBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func designInterface() {
-        view.backgroundColor = #colorLiteral(red: 0.8600993752, green: 0.875028193, blue: 0.8746348023, alpha: 1)
-        onBoardingCV.backgroundColor = #colorLiteral(red: 0.8600993752, green: 0.875028193, blue: 0.8746348023, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.9642314315, green: 0.9890750051, blue: 0.9884980321, alpha: 1)
+        onBoardingCV.backgroundColor = #colorLiteral(red: 0.9642314315, green: 0.9890750051, blue: 0.9884980321, alpha: 1)
         getStarted.layer.cornerRadius = 10
         getStarted.clipsToBounds = true
     }
