@@ -8,6 +8,7 @@
 import UIKit
 
 class onBoardingCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var imageCV: UIImageView!
     @IBOutlet weak var titleCV: UILabel!
     @IBOutlet weak var descCV: UILabel!

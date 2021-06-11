@@ -1,30 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Ingredient Details View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="IngredientDetailsViewController" customModule="Bakernate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZYU-V5-5Gl">
+                                <rect key="frame" x="0.0" y="44" width="390" height="230"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="230" id="bko-bc-sSB"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bDf-gR-VZ4">
+                                    <size key="itemSize" width="414" height="230"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="CMW-uh-EFJ" customClass="IngredientDetailsCollectionViewCell" customModule="Bakernate" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ML4-vv-l7g">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="maple_syrup_2" translatesAutoresizingMaskIntoConstraints="NO" id="2Q8-5i-Qoc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="230"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="390" id="P43-Eo-kuE"/>
+                                                        <constraint firstAttribute="height" constant="230" id="jBH-UV-bL3"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="2Q8-5i-Qoc" secondAttribute="bottom" id="0Ue-Uo-yNs"/>
+                                                <constraint firstItem="2Q8-5i-Qoc" firstAttribute="leading" secondItem="ML4-vv-l7g" secondAttribute="leading" id="CeP-ce-hGl"/>
+                                                <constraint firstAttribute="trailing" secondItem="2Q8-5i-Qoc" secondAttribute="trailing" id="kAa-GS-AYX"/>
+                                                <constraint firstItem="2Q8-5i-Qoc" firstAttribute="top" secondItem="ML4-vv-l7g" secondAttribute="top" id="sJU-EY-YKI"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="414" height="230"/>
+                                        <connections>
+                                            <outlet property="ingredientImage" destination="2Q8-5i-Qoc" id="pT3-jL-ieb"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="IYv-sf-hM3">
+                                <rect key="frame" x="20" y="242.66666666666666" width="350" height="26.333333333333343"/>
+                                <color key="pageIndicatorTintColor" systemColor="systemRedColor"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="systemTealColor"/>
+                            </pageControl>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IYv-sf-hM3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Q1X-3i-rQH"/>
+                            <constraint firstItem="ZYU-V5-5Gl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="W7L-xh-cIm"/>
+                            <constraint firstItem="IYv-sf-hM3" firstAttribute="bottom" secondItem="ZYU-V5-5Gl" secondAttribute="bottom" constant="-5" id="eHt-T1-M2y"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="IYv-sf-hM3" secondAttribute="trailing" constant="20" id="eJa-wu-k49"/>
+                            <constraint firstItem="ZYU-V5-5Gl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="n0V-e8-auV"/>
+                            <constraint firstItem="ZYU-V5-5Gl" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="oIt-Wm-nlr"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imagesCollectionView" destination="ZYU-V5-5Gl" id="qRx-ek-Qo5"/>
+                        <outlet property="imagesPageControl" destination="IYv-sf-hM3" id="f1a-jR-B26"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="66.153846153846146" y="101.65876777251184"/>
         </scene>
     </scenes>
     <resources>
+        <image name="maple_syrup_2" width="690" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

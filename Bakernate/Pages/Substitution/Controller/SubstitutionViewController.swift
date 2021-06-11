@@ -131,6 +131,10 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBAction func clickInfoButton(_ sender: Any) {
         showInformation()
     }
+    
+    @IBAction func testDetailsPage(_ sender: Any) {
+        performSegue(withIdentifier: "testDetails", sender: sender)
+    }
 }
 
 extension UIViewController {
