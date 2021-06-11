@@ -12,6 +12,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var unitTextField: UITextField!
+    @IBOutlet weak var substituteButton: UIButton!
     
     let ingredientPickerView = UIPickerView()
     var ingredientArray = ["Buttermilk", "Corn Syrup", "Egg", "Honey", "Maple Syrup", "Molasses"]
@@ -25,10 +26,36 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         self.hideKeyboardWhenTappedAround()
         amountTextField.keyboardType = .decimalPad
         
+        checkAmout()
         ingredientPicker()
         unitPicker()
         createToolbar()
         createToolbarUnit()
+        
+    }
+    
+    func checkAmout() {
+        substituteButton.layer.cornerRadius = 10
+        substituteButton.backgroundColor = #colorLiteral(red: 0.6, green: 0.6784313725, blue: 0.6745098039, alpha: 1)
+        substituteButton.tintColor = .black
+        substituteButton.isEnabled = false
+        [amountTextField].forEach({ $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged) })
+    }
+    
+    @objc func editingChanged(_ textField: UITextField) {
+
+        guard
+            let amount = amountTextField.text, !amount.isEmpty
+        
+        else {
+            substituteButton.backgroundColor = #colorLiteral(red: 0.6, green: 0.6784313725, blue: 0.6745098039, alpha: 1)
+            substituteButton.isEnabled = false
+            
+            return
+        }
+        substituteButton.backgroundColor = #colorLiteral(red: 0.2039215686, green: 0.3568627451, blue: 0.3529411765, alpha: 1)
+        substituteButton.tintColor = .white
+        substituteButton.isEnabled = true
     }
     
     func ingredientPicker() {
