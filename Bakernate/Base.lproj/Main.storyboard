@@ -102,19 +102,18 @@
                                 <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
                                 <color key="currentPageIndicatorTintColor" red="0.23626565930000001" green="0.34497568010000002" blue="0.3490221798" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </pageControl>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3Z-z1-SP9">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3Z-z1-SP9">
                                 <rect key="frame" x="20" y="720" width="350" height="50"/>
                                 <color key="backgroundColor" red="0.23626565930000001" green="0.34497568010000002" blue="0.3490221798" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="fcV-GS-4Ed"/>
                                     <constraint firstAttribute="height" constant="50" id="zPT-Sp-Dl5"/>
                                 </constraints>
-                                <state key="normal" title="Get Started">
+                                <state key="normal" title="Skip">
                                     <color key="titleColor" red="0.9882485271" green="0.98821145300000002" blue="0.98823660609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <action selector="getStartedBtn:" destination="HYg-3a-Gx9" eventType="touchUpInside" id="Sxx-xR-Dh9"/>
-                                    <segue destination="jdD-Ya-YIv" kind="show" id="lIL-OD-Tvu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -135,6 +134,7 @@
                         <outlet property="getStarted" destination="z3Z-z1-SP9" id="Oxc-3j-pwD"/>
                         <outlet property="onBoardingCV" destination="OS3-eS-Wx3" id="5Ks-cv-X4w"/>
                         <outlet property="pageControl" destination="g46-Ls-one" id="h6l-V2-q7L"/>
+                        <segue destination="jdD-Ya-YIv" kind="show" identifier="substitution" id="az6-UL-rfo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5jP-Qm-JJ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

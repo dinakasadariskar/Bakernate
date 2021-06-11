@@ -21,9 +21,13 @@ class onBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var currentPage = 0 {
         didSet{
+            pageControl.currentPage = currentPage
             if currentPage == slide.count - 1 {
-                getStarted.isHidden = false
-                //getStarted.setTitle("Get Started", for: .normal)
+                //getStarted.isHidden = false
+                getStarted.setTitle("Get Started", for: .normal)
+            }
+            else{
+                getStarted.setTitle("Skip", for: .normal)
             }
         }
     }
@@ -49,6 +53,17 @@ class onBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     @IBAction func getStartedBtn(_ sender: Any) {
+        if currentPage == slide.count - 1 {
+            performSegue(withIdentifier: "substitution", sender: self)
+        } else if (currentPage == slide.count - 3){
+            currentPage += 2
+            let indexPath = IndexPath(item: currentPage, section: 0)
+            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        } else{
+            currentPage += 1
+            let indexPath = IndexPath(item: currentPage, section: 0)
+            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -70,6 +85,5 @@ class onBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
         currentPage = Int(scrollView.contentOffset.x / width)
-        pageControl.currentPage = currentPage
     }
 }
