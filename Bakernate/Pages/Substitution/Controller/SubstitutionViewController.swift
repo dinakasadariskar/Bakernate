@@ -26,71 +26,67 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         self.hideKeyboardWhenTappedAround()
         amountTextField.keyboardType = .decimalPad
         
-        checkAmout()
-        ingredientPicker()
-        unitPicker()
+        picker()
         createToolbar()
-        createToolbarUnit()
-        
+        checkAmout()
     }
     
     func checkAmout() {
+        
         substituteButton.layer.cornerRadius = 10
         substituteButton.backgroundColor = #colorLiteral(red: 0.6, green: 0.6784313725, blue: 0.6745098039, alpha: 1)
-        substituteButton.tintColor = .black
+        substituteButton.tintColor = #colorLiteral(red: 0.4156862745, green: 0.4549019608, blue: 0.4705882353, alpha: 1)
         substituteButton.isEnabled = false
         [amountTextField].forEach({ $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged) })
     }
     
     @objc func editingChanged(_ textField: UITextField) {
 
-        guard
-            let amount = amountTextField.text, !amount.isEmpty
+        guard let amount = amountTextField.text, !amount.isEmpty
         
         else {
+            
             substituteButton.backgroundColor = #colorLiteral(red: 0.6, green: 0.6784313725, blue: 0.6745098039, alpha: 1)
             substituteButton.isEnabled = false
             
             return
         }
+        
         substituteButton.backgroundColor = #colorLiteral(red: 0.2039215686, green: 0.3568627451, blue: 0.3529411765, alpha: 1)
         substituteButton.tintColor = .white
         substituteButton.isEnabled = true
     }
     
-    func ingredientPicker() {
+    func picker() {
+        
         ingredientPickerView.delegate = self
         ingredientPickerView.delegate?.pickerView?(ingredientPickerView, didSelectRow: 0, inComponent: 0)
+        ingredientPickerView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
         ingredientTextField.inputView = ingredientPickerView
-    }
-    
-    func unitPicker() {
+        
         unitPickerView.delegate = self
         unitPickerView.delegate?.pickerView?(unitPickerView, didSelectRow: 0, inComponent: 0)
+        unitPickerView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
         unitTextField.inputView = unitPickerView
+        
     }
     
     func createToolbar() {
+        
         let toolbar = UIToolbar()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(SubstitutionViewController.closePickerView))
-        toolbar.setItems([doneButton], animated: false)
+        toolbar.setItems([flexibleSpace, doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
+        toolbar.backgroundColor = #colorLiteral(red: 0.8745098039, green: 0.9254901961, blue: 0.9254901961, alpha: 1)
         
         ingredientTextField.inputAccessoryView = toolbar
-    }
-    
-    func createToolbarUnit() {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(SubstitutionViewController.closePickerView))
-        toolbar.setItems([doneButton], animated: false)
-        toolbar.isUserInteractionEnabled = true
-        
         unitTextField.inputAccessoryView = toolbar
     }
     
-    @objc func closePickerView() {
+    @objc func donePressed() {
         view.endEditing(true)
     }
     
