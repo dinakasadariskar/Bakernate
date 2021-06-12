@@ -62,7 +62,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="tZW-f3-e0O">
-                                                    <rect key="frame" x="16" y="424" width="358" height="90.333333333333371"/>
+                                                    <rect key="frame" x="16" y="424" width="358" height="110.66666666666663"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Substitute" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vf0-9g-IPk">
                                                             <rect key="frame" x="110.66666666666669" y="0.0" width="137" height="33.666666666666664"/>
@@ -70,8 +70,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dsjbsdbf jdsfjbdsj jsbdfkjdjs nsdjfbjds jdsbfjkbds jdbfjksd jdsbfkjdsf" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oa0-Fm-b1b">
-                                                            <rect key="frame" x="34" y="49.666666666666686" width="290.33333333333331" height="40.666666666666657"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oa0-Fm-b1b">
+                                                            <rect key="frame" x="17.333333333333343" y="49.666666666666686" width="323.33333333333326" height="61"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -104,13 +104,13 @@
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3Z-z1-SP9">
                                 <rect key="frame" x="20" y="720" width="350" height="50"/>
-                                <color key="backgroundColor" red="0.23626565930000001" green="0.34497568010000002" blue="0.3490221798" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="fcV-GS-4Ed"/>
                                     <constraint firstAttribute="height" constant="50" id="zPT-Sp-Dl5"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Skip">
-                                    <color key="titleColor" red="0.9882485271" green="0.98821145300000002" blue="0.98823660609999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" red="0.20392156859999999" green="0.35686274509999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="getStartedBtn:" destination="HYg-3a-Gx9" eventType="touchUpInside" id="Sxx-xR-Dh9"/>
