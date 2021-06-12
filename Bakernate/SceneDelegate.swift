@@ -16,7 +16,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        if UserDefaults.standard.bool(forKey: "isOnboardingDone") == true {
+            // Skip onboarding
+            // Unwrap scene, so that usable to generate window
+            guard let windowScene = scene as? UIWindowScene else { return }
+            // Instantiate window with scene
+            let window = UIWindow(windowScene: windowScene)
+            // Instantiate view controller from story board and provide our apps root view controller
+            window.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "viewController")
+            // assign attribute window in the scene delegate
+            self.window = window
+            // Show window in the front
+            window.makeKeyAndVisible()
+        } else {
+            // Show onboarding screens
+            // Unwrap scene, so that usable to generate window
+            guard let windowScene = scene as? UIWindowScene else { return }
+            // Instantiate window with scene
+            let window = UIWindow(windowScene: windowScene)
+            // Instantiate view controller from story board and provide our apps root view controller
+            window.rootViewController = UIStoryboard(name: "OnBoarding", bundle: nil).instantiateViewController(withIdentifier: "onBoardingViewController")
+            // assign attribute window in the scene delegate
+            self.window = window
+            // Show window in the front
+            window.makeKeyAndVisible()
+            
+            UserDefaults.standard.set(true, forKey: "isOnboardingDone")
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
