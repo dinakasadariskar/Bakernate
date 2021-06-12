@@ -1,5 +1,5 @@
 //
-//  onBoardingCollectionViewCell.swift
+//  OnBoardingCollectionViewCell.swift
 //  Bakernate
 //
 //  Created by Natalia fellyana Laurensia on 10/06/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class onBoardingCollectionViewCell: UICollectionViewCell {
+class OnBoardingCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageCV: UIImageView!
     @IBOutlet weak var titleCV: UILabel!

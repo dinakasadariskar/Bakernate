@@ -84,22 +84,11 @@
                         <outlet property="ingredientTextField" destination="BRm-no-t3x" id="T9k-TT-9xy"/>
                         <outlet property="substituteButton" destination="bOu-aI-zKZ" id="DTk-EO-CeG"/>
                         <outlet property="unitTextField" destination="LGO-hF-DcL" id="GuQ-F9-yaF"/>
-                        <segue destination="NTr-8x-pGu" kind="show" identifier="testDetails" id="662-zw-xD6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.6923076923076" y="125.82938388625591"/>
-        </scene>
-        <!--IngredientDetails-->
-        <scene sceneID="9IR-GS-uo2">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Jy-H7-Uro" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardName="IngredientDetails" id="NTr-8x-pGu" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="Uwt-a6-0Kg"/>
-                </viewControllerPlaceholder>
-            </objects>
-            <point key="canvasLocation" x="1727" y="126"/>
         </scene>
         <!--Substitution-->
         <scene sceneID="sNi-AD-Doa">

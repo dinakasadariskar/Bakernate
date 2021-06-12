@@ -1,5 +1,5 @@
 //
-//  onBoardingViewController.swift
+//  OnBoardingViewController.swift
 //  Bakernate
 //
 //  Created by Natalia fellyana Laurensia on 10/06/21.
@@ -13,7 +13,7 @@ struct onBoardingSlide {
     var image : UIImage?
 }
 
-class onBoardingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var onBoardingCV: UICollectionView!
     @IBOutlet weak var getStarted: UIButton!
@@ -77,7 +77,7 @@ class onBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = onBoardingCV.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! onBoardingCollectionViewCell
+        let cell = onBoardingCV.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! OnBoardingCollectionViewCell
         
         cell.set(slide[indexPath.row])
         
