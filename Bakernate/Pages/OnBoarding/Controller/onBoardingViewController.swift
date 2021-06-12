@@ -25,9 +25,15 @@ class onBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
             if currentPage == slide.count - 1 {
                 //getStarted.isHidden = false
                 getStarted.setTitle("Get Started", for: .normal)
-            }
-            else{
+                getStarted.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
+                getStarted.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+                getStarted.backgroundColor = #colorLiteral(red: 0.2592023611, green: 0.4294797182, blue: 0.4283112288, alpha: 1)
+                
+            } else {
                 getStarted.setTitle("Skip", for: .normal)
+                getStarted.setTitleColor(#colorLiteral(red: 0.2592023611, green: 0.4294797182, blue: 0.4283112288, alpha: 1), for: .normal)
+                getStarted.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+                getStarted.backgroundColor = UIColor.clear
             }
         }
     }
@@ -46,7 +52,7 @@ class onBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func designInterface() {
-        view.backgroundColor = #colorLiteral(red: 0.9642314315, green: 0.9890750051, blue: 0.9884980321, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.9647058824, green: 0.9882352941, blue: 0.9882352941, alpha: 1)
         onBoardingCV.backgroundColor = #colorLiteral(red: 0.9642314315, green: 0.9890750051, blue: 0.9884980321, alpha: 1)
         getStarted.layer.cornerRadius = 10
         getStarted.clipsToBounds = true

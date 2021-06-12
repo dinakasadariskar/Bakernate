@@ -63,10 +63,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.20392156859999999" green="0.35686274509999999" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="Substitute"/>
-                                <connections>
-                                    <action selector="testDetailsPage:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="HFV-Oq-Ta4"/>
-                                </connections>
+                                <state key="normal" title="Substitute">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -95,10 +94,10 @@
         <!--IngredientDetails-->
         <scene sceneID="9IR-GS-uo2">
             <objects>
-                <viewControllerPlaceholder storyboardName="IngredientDetails" id="NTr-8x-pGu" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Uwt-a6-0Kg"/>
-                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jy-H7-Uro" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="IngredientDetails" id="NTr-8x-pGu" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="Uwt-a6-0Kg"/>
+                </viewControllerPlaceholder>
             </objects>
             <point key="canvasLocation" x="1727" y="126"/>
         </scene>

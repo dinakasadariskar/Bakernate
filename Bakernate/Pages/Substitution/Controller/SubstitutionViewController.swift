@@ -32,7 +32,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func checkAmout() {
-        
         substituteButton.layer.cornerRadius = 10
         substituteButton.backgroundColor = #colorLiteral(red: 0.6, green: 0.6784313725, blue: 0.6745098039, alpha: 1)
         substituteButton.tintColor = #colorLiteral(red: 0.4156862745, green: 0.4549019608, blue: 0.4705882353, alpha: 1)
@@ -130,10 +129,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     @IBAction func clickInfoButton(_ sender: Any) {
         showInformation()
-    }
-    
-    @IBAction func testDetailsPage(_ sender: Any) {
-        performSegue(withIdentifier: "testDetails", sender: sender)
     }
 }
 
