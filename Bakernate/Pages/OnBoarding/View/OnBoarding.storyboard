@@ -61,11 +61,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dCX-uk-Drk" firstAttribute="top" secondItem="3pX-Rm-gPb" secondAttribute="top" constant="150" id="2ST-wi-ezf"/>
+                                                <constraint firstItem="dCX-uk-Drk" firstAttribute="centerX" secondItem="3pX-Rm-gPb" secondAttribute="centerX" id="3Ug-kW-O3s"/>
                                                 <constraint firstAttribute="trailing" secondItem="dCX-uk-Drk" secondAttribute="trailing" id="5w5-Tq-lPI"/>
                                                 <constraint firstItem="dCX-uk-Drk" firstAttribute="leading" secondItem="3pX-Rm-gPb" secondAttribute="leading" id="82d-Fs-SBE"/>
                                                 <constraint firstAttribute="trailing" secondItem="fhW-wP-GsK" secondAttribute="trailing" constant="16" id="fiG-FZ-Tt2"/>
                                                 <constraint firstItem="fhW-wP-GsK" firstAttribute="leading" secondItem="3pX-Rm-gPb" secondAttribute="leading" constant="16" id="geX-EP-OGO"/>
                                                 <constraint firstItem="fhW-wP-GsK" firstAttribute="top" secondItem="dCX-uk-Drk" secondAttribute="bottom" constant="24" id="m41-XH-BLG"/>
+                                                <constraint firstItem="fhW-wP-GsK" firstAttribute="centerX" secondItem="3pX-Rm-gPb" secondAttribute="centerX" id="so1-62-kVt"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="390" height="651"/>
@@ -86,7 +88,6 @@
                                 <rect key="frame" x="20" y="720" width="350" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="JGE-fT-cdc"/>
-                                    <constraint firstAttribute="width" constant="350" id="Nf0-E5-IcN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Skip">
@@ -98,14 +99,17 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HMn-iu-Szl"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.96470588235294119" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Daj-lG-qXn" firstAttribute="top" secondItem="HMn-iu-Szl" secondAttribute="top" id="0s6-Qa-iAM"/>
                             <constraint firstItem="ig6-t1-ems" firstAttribute="centerX" secondItem="jiG-tH-t2A" secondAttribute="centerX" id="666-Ee-Ba1"/>
                             <constraint firstItem="Daj-lG-qXn" firstAttribute="trailing" secondItem="HMn-iu-Szl" secondAttribute="trailing" id="8Pi-l7-gRV"/>
                             <constraint firstItem="HMn-iu-Szl" firstAttribute="bottom" secondItem="ig6-t1-ems" secondAttribute="bottom" constant="40" id="Cyv-HF-Bl8"/>
                             <constraint firstItem="Daj-lG-qXn" firstAttribute="leading" secondItem="HMn-iu-Szl" secondAttribute="leading" id="FI2-F9-Qe1"/>
+                            <constraint firstItem="ig6-t1-ems" firstAttribute="leading" secondItem="HMn-iu-Szl" secondAttribute="leading" constant="20" id="Hyw-0F-Ge8"/>
                             <constraint firstItem="ZBn-vr-ZJh" firstAttribute="centerX" secondItem="jiG-tH-t2A" secondAttribute="centerX" id="PWB-c5-cAf"/>
+                            <constraint firstItem="Daj-lG-qXn" firstAttribute="centerX" secondItem="jiG-tH-t2A" secondAttribute="centerX" id="YrV-CG-Ybh"/>
+                            <constraint firstItem="HMn-iu-Szl" firstAttribute="trailing" secondItem="ig6-t1-ems" secondAttribute="trailing" constant="20" id="d8U-DP-wwO"/>
                             <constraint firstItem="ZBn-vr-ZJh" firstAttribute="top" secondItem="Daj-lG-qXn" secondAttribute="bottom" id="y2c-bz-Krc"/>
                             <constraint firstItem="ig6-t1-ems" firstAttribute="top" secondItem="ZBn-vr-ZJh" secondAttribute="bottom" constant="16" id="ysY-vf-tBg"/>
                         </constraints>

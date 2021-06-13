@@ -40,14 +40,9 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     @objc func editingChanged(_ textField: UITextField) {
-
-        guard let amount = amountTextField.text, !amount.isEmpty
-        
-        else {
-            
+        guard let amount = amountTextField.text, !amount.isEmpty else {
             substituteButton.backgroundColor = #colorLiteral(red: 0.6, green: 0.6784313725, blue: 0.6745098039, alpha: 1)
             substituteButton.isEnabled = false
-            
             return
         }
         
@@ -57,7 +52,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func picker() {
-        
         ingredientPickerView.delegate = self
         ingredientPickerView.delegate?.pickerView?(ingredientPickerView, didSelectRow: 0, inComponent: 0)
         ingredientPickerView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
@@ -67,11 +61,9 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         unitPickerView.delegate?.pickerView?(unitPickerView, didSelectRow: 0, inComponent: 0)
         unitPickerView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
         unitTextField.inputView = unitPickerView
-        
     }
     
     func createToolbar() {
-        
         let toolbar = UIToolbar()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -130,6 +122,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBAction func clickInfoButton(_ sender: Any) {
         showInformation()
     }
+    
 }
 
 extension UIViewController {
