@@ -42,7 +42,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fhW-wP-GsK">
-                                                    <rect key="frame" x="16" y="424" width="358" height="110.66666666666663"/>
+                                                    <rect key="frame" x="16" y="424" width="358" height="131"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Substitute" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMd-VK-7gk">
                                                             <rect key="frame" x="110.66666666666669" y="0.0" width="137" height="33.666666666666664"/>
@@ -51,12 +51,18 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBD-z3-GUG">
-                                                            <rect key="frame" x="17.333333333333343" y="49.666666666666686" width="323.33333333333326" height="61"/>
+                                                            <rect key="frame" x="40" y="49.666666666666679" width="278" height="81.333333333333314"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="OBD-z3-GUG" firstAttribute="top" secondItem="bMd-VK-7gk" secondAttribute="bottom" constant="16" id="FfG-Qg-lev"/>
+                                                        <constraint firstAttribute="trailing" secondItem="OBD-z3-GUG" secondAttribute="trailing" constant="40" id="cga-Jr-aE3"/>
+                                                        <constraint firstItem="bMd-VK-7gk" firstAttribute="top" secondItem="fhW-wP-GsK" secondAttribute="top" id="dtP-IV-Ldw"/>
+                                                        <constraint firstItem="OBD-z3-GUG" firstAttribute="leading" secondItem="fhW-wP-GsK" secondAttribute="leading" constant="40" id="mD2-SN-N7P"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
