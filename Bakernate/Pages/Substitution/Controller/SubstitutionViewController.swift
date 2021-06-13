@@ -8,6 +8,11 @@
 import UIKit
 import CoreData
 
+
+protocol SubstitutionViewControllerDelegate: class { // this blueprint needed as our bridge between this view controller to other view controller who subscribed it
+    func substituteIngredientData(amount: String, ingredientName: String)
+}
+
 class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK:- IBOutlet
@@ -17,6 +22,12 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var substituteButton: UIButton!
     
     // MARK:- let & var
+    weak var delegate: SubstitutionViewControllerDelegate?
+    var amount = ""
+    var substituteIngredientName = ""
+    var activityIndicator = UIActivityIndicatorView()
+    var strLabel = UILabel()
+    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     let ingredientPickerView = UIPickerView()
     let unitPickerView = UIPickerView()
     var ingredientArr = [Any]()
@@ -37,14 +48,15 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         picker()
         createToolbar()
         checkAmout()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     }
     
     func setupInitialDataToCoreData() {
         
         if ingredientCollection.count == 0 {
+            
             createData()
         }
+        
         retrieveData()
         ingredientName()
     }
@@ -110,6 +122,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
         return 1
     }
     
@@ -137,9 +150,11 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         if pickerView == ingredientPickerView {
             
-            ingredientTextField.text =  ("\(ingredientArr[row])")
+            substituteIngredientName = ("\(ingredientArr[row])")
+            ingredientTextField.text = substituteIngredientName
         } else {
             
             unitTextField.text =  unitArray[row]
@@ -184,7 +199,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             for data in result as! [NSManagedObject] {
                 
                 ingredientCollection.append(Ingredients(ingredientName: data.value(forKey: "name") as! String, ingredientDesc: data.value(forKey: "descriptions") as! String, ingredientImage: data.value(forKey: "image") as! String
-//                    , isDairy: data.value(forKey: "isDairy") as! Bool, isEgg: data.value(forKey: "isEgg") as! Bool, isGluten: data.value(forKey: "isGluten") as! Bool, isPeanut: data.value(forKey: "isPeanut") as! Bool, isSoy: data.value(forKey: "isSoy") as! Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as! Bool, isVegan: data.value(forKey: "isVegan") as! Bool, isFavorited: data.value(forKey: "isFavorited") as! Bool
+                                                        //                    , isDairy: data.value(forKey: "isDairy") as! Bool, isEgg: data.value(forKey: "isEgg") as! Bool, isGluten: data.value(forKey: "isGluten") as! Bool, isPeanut: data.value(forKey: "isPeanut") as! Bool, isSoy: data.value(forKey: "isSoy") as! Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as! Bool, isVegan: data.value(forKey: "isVegan") as! Bool, isFavorited: data.value(forKey: "isFavorited") as! Bool
                 ))
             }
         } catch let error as NSError {
@@ -201,11 +216,48 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
     }
     
+    func activityIndicator(_ title: String) {
+        
+        strLabel.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
+        effectView.removeFromSuperview()
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
+        strLabel.text = title
+        strLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
+        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        effectView.layer.cornerRadius = 15
+        effectView.layer.masksToBounds = true
+        activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+        activityIndicator.startAnimating()
+        effectView.contentView.addSubview(activityIndicator)
+        effectView.contentView.addSubview(strLabel)
+        view.addSubview(effectView)
+    }
+    
     // MARK:- IBAction
     @IBAction func clickInfoButton(_ sender: Any) {
         
         showInformation()
     }
+    
+    @IBAction func clickSubstituteButton(_ sender: UIButton) {
+        
+        print(amountTextField.text)
+        print(substituteIngredientName)
+        self.delegate?.substituteIngredientData(amount: amountTextField.text ?? "", ingredientName: substituteIngredientName)
+        activityIndicator("Substituting...")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.effectView.removeFromSuperview()
+            let storyboard = UIStoryboard(name: "Result", bundle: nil)
+            
+            let vc = storyboard.instantiateViewController(withIdentifier: "resultViewController") as! ResultViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+    }
+    
 }
 
 // MARK:- Extension
