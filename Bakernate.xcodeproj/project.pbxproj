@@ -17,6 +17,7 @@
 		B51A6733266E6B6F008E42E0 /* SubstitutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A6732266E6B6F008E42E0 /* SubstitutionViewController.swift */; };
 		B51A6735266E6B99008E42E0 /* Substitution.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51A6734266E6B99008E42E0 /* Substitution.storyboard */; };
 		B55F8B902675197A00074452 /* BakernateColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55F8B8F2675197A00074452 /* BakernateColor.swift */; };
+		B55F8B922675E63D00074452 /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55F8B912675E63D00074452 /* Ingredients.swift */; };
 		B5EE748C267204DC0010A680 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EE7488267204DC0010A680 /* PresentationController.swift */; };
 		B5EE748D267204DC0010A680 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EE7489267204DC0010A680 /* InformationView.swift */; };
 		B5EE748E267204DC0010A680 /* InformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5EE748B267204DC0010A680 /* InformationView.xib */; };
@@ -45,6 +46,7 @@
 		B51A6732266E6B6F008E42E0 /* SubstitutionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstitutionViewController.swift; sourceTree = "<group>"; };
 		B51A6734266E6B99008E42E0 /* Substitution.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Substitution.storyboard; sourceTree = "<group>"; };
 		B55F8B8F2675197A00074452 /* BakernateColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BakernateColor.swift; path = Bakernate/Themes/Colors/BakernateColor.swift; sourceTree = SOURCE_ROOT; };
+		B55F8B912675E63D00074452 /* Ingredients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
 		B5EE7488267204DC0010A680 /* PresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		B5EE7489267204DC0010A680 /* InformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		B5EE748B267204DC0010A680 /* InformationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationView.xib; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				B51A6717266E61D1008E42E0 /* Bakernate.xcdatamodeld */,
+				B55F8B912675E63D00074452 /* Ingredients.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55F8B922675E63D00074452 /* Ingredients.swift in Sources */,
 				B5EE748D267204DC0010A680 /* InformationView.swift in Sources */,
 				B55F8B902675197A00074452 /* BakernateColor.swift in Sources */,
 				E6EF93C426722D47007D667D /* FavoritesViewController.swift in Sources */,
