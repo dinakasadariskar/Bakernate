@@ -103,9 +103,10 @@
                                     <constraint firstAttribute="height" constant="50" id="vFp-tN-Tgr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="Substitute">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" title="Substitute"/>
+                                <connections>
+                                    <action selector="clickSubstituteButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="a4g-XP-AOW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Uf0-4j-Bcc"/>
