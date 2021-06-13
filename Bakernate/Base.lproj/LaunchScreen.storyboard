@@ -15,20 +15,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gUw-rJ-HWa">
-                                <rect key="frame" x="99.666666666666686" y="327" width="191" height="190"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon substitution-2" translatesAutoresizingMaskIntoConstraints="NO" id="3IC-Pw-zZp">
-                                        <rect key="frame" x="0.0" y="0.0" width="191" height="190"/>
-                                    </imageView>
-                                </subviews>
-                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon substitution-2" translatesAutoresizingMaskIntoConstraints="NO" id="3IC-Pw-zZp">
+                                <rect key="frame" x="95" y="322" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="CP5-od-C6f"/>
+                                    <constraint firstAttribute="width" constant="200" id="ECM-4b-mVq"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.96877211330000002" green="0.98820155860000003" blue="0.98823696370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="gUw-rJ-HWa" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xDG-52-VkZ"/>
-                            <constraint firstItem="gUw-rJ-HWa" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="yWN-Vd-Gr0"/>
+                            <constraint firstItem="3IC-Pw-zZp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ByM-By-C9z"/>
+                            <constraint firstItem="3IC-Pw-zZp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zDK-lx-vRO"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon substitution-2" width="191" height="190"/>
+        <image name="icon substitution-2" width="480" height="480"/>
     </resources>
 </document>
