@@ -28,7 +28,7 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
                 getStarted.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
                 getStarted.backgroundColor = BakernateColor().green100
             } else {
-                getStarted.setTitle("Skip", for: .normal)
+                getStarted.setTitle("Next", for: .normal)
                 getStarted.setTitleColor(BakernateColor().green100, for: .normal)
                 getStarted.titleLabel?.font = UIFont.systemFont(ofSize: 17)
                 getStarted.backgroundColor = UIColor.clear
@@ -56,15 +56,15 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBAction func getStartedBtn(_ sender: Any) {
         if currentPage == slide.count - 1 {
             performSegue(withIdentifier: "substitution", sender: self)
-        } else if (currentPage == slide.count - 3){
-            currentPage += 2
-            let indexPath = IndexPath(item: currentPage, section: 0)
-            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        } else{
-            currentPage += 1
-            let indexPath = IndexPath(item: currentPage, section: 0)
-            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        }
+//        } else if (currentPage == slide.count - 3){
+//            currentPage += 2
+//            let indexPath = IndexPath(item: currentPage, section: 0)
+//            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+//        } else{
+//            currentPage += 1
+//            let indexPath = IndexPath(item: currentPage, section: 0)
+//            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -88,4 +88,17 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
         currentPage = Int(scrollView.contentOffset.x / width)
     }
     
+    @IBAction func btnSkip(_ sender: Any) {
+        if currentPage == slide.count - 1 {
+            performSegue(withIdentifier: "substitution", sender: self)
+        } else if (currentPage == slide.count - 3){
+            currentPage += 2
+            let indexPath = IndexPath(item: currentPage, section: 0)
+            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        } else{
+            currentPage += 1
+            let indexPath = IndexPath(item: currentPage, section: 0)
+            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+    }
 }
