@@ -29,9 +29,9 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     // MARK:- let & var
     
     var cards:[resultIngredient] = []
-    
     var favorite:Bool = false
-    
+    var titleIngredient = ""
+    var initialAmount = ""
         
     // MARK:- function
     override func viewDidLoad() {
@@ -41,6 +41,8 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         self.hideKeyboardWhenTappedAround()
         editInitialAmountTextField.keyboardType = .decimalPad
+        editInitialAmountTextField.text = initialAmount
+        ingredientNameLabel.text = titleIngredient
 
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()

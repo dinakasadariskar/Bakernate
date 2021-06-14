@@ -52,12 +52,13 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     func setupInitialDataToCoreData() {
         
+        retrieveData()
+        
         if ingredientCollection.count == 0 {
             
             createData()
         }
         
-        retrieveData()
         ingredientName()
     }
     
@@ -228,7 +229,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
-        activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+        activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
         activityIndicator.startAnimating()
         effectView.contentView.addSubview(activityIndicator)
@@ -244,15 +245,14 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     @IBAction func clickSubstituteButton(_ sender: UIButton) {
         
-        print(amountTextField.text)
-        print(substituteIngredientName)
-        self.delegate?.substituteIngredientData(amount: amountTextField.text ?? "", ingredientName: substituteIngredientName)
         activityIndicator("Substituting...")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.effectView.removeFromSuperview()
             let storyboard = UIStoryboard(name: "Result", bundle: nil)
             
             let vc = storyboard.instantiateViewController(withIdentifier: "resultViewController") as! ResultViewController
+            vc.initialAmount = self.amountTextField.text!
+            vc.titleIngredient = self.substituteIngredientName
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
