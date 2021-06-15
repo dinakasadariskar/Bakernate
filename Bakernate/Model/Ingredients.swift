@@ -8,17 +8,16 @@
 import Foundation
 
 struct Ingredients {
-    
-    var ingredientId = ""
-    var ingredientName = ""
-    var ingredientDesc = ""
-    var ingredientImage = ""
-    var isDairy = false
-    var isEgg = false
-    var isGluten = false
-    var isPeanut = false
-    var isSoy = false
-    var isTreeNuts = false
-    var isVegan = false
-    var isFavorited = false
+    let ingredientId: String?
+    let ingredientName: String?
+    let ingredientDesc: String?
+    let ingredientImage: String?
+    let isDairy: Bool?
+    let isEggs: Bool?
+    let isGluten: Bool?
+    let isPeanut: Bool?
+    let isSoy: Bool?
+    let isTreeNuts: Bool?
+    let isVegan: Bool?
+    var isFavorited: Bool?
 }
