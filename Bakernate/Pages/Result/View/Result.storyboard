@@ -200,6 +200,13 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
+                                            <outlet property="isDairyImage" destination="RiW-v6-CqT" id="yXm-yW-Zud"/>
+                                            <outlet property="isEggImage" destination="ebH-QT-bjx" id="Olu-lD-Qst"/>
+                                            <outlet property="isGlutenImage" destination="y6l-nk-Y7o" id="yxg-MJ-I2J"/>
+                                            <outlet property="isPeanutImage" destination="b6p-VS-821" id="DS3-Fr-fE3"/>
+                                            <outlet property="isSoyImage" destination="oXg-F1-ZUo" id="DDp-d8-RHg"/>
+                                            <outlet property="isTreeNutsImage" destination="fYc-jV-mET" id="JKa-iu-dBo"/>
+                                            <outlet property="isVeganImage" destination="FkH-wg-cgq" id="U2C-OH-kBL"/>
                                             <outlet property="resultAmountLabel" destination="yYf-Pn-FYF" id="rbu-Oe-a20"/>
                                             <outlet property="resultCardView" destination="ChB-rt-u2H" id="oCx-RP-kX9"/>
                                             <outlet property="resultImage" destination="ig4-yd-HC2" id="U4P-4Y-S1q"/>
