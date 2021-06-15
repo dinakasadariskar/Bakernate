@@ -38,12 +38,10 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     var ingredientFavoritedStatus = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
     var ingredientId = ["A1", "A1", "A2", "A3, A4", "A3, A4", "A3, A4", "A5", "A5", "A5", "A5", "A6, A7", "A6", "A6", "A6, A7", "A8", "A8", "A8", "A8", "A9", "A9", "A7", "A7", "A7", "A6, A7", "A6, A7", "A4", "A4", "A4", "A10", "A10", "A10"]
     var ingredientImageArray = ["Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test"]
-    
     var unitArray = ["Cup", "Gram", "Kilogram", "Liter", "Mililiter", "Oz", "Tablespoon", "Teaspoon"]
     
     // MARK:- Function
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         self.hideKeyboardWhenTappedAround()
@@ -55,10 +53,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func setupInitialDataToCoreData() {
-
-        
         if ingredientCollection.count == 0 {
-            
             createData()
         }
         
@@ -67,7 +62,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func checkAmout() {
-        
         substituteButton.layer.cornerRadius = 10
         substituteButton.backgroundColor = #colorLiteral(red: 0.6, green: 0.6784313725, blue: 0.6745098039, alpha: 1)
         substituteButton.tintColor = #colorLiteral(red: 0.4156862745, green: 0.4549019608, blue: 0.4705882353, alpha: 1)
@@ -76,11 +70,8 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     @objc func editingChanged(_ textField: UITextField) {
-        
         guard let amount = amountTextField.text, !amount.isEmpty
-        
         else {
-            
             substituteButton.backgroundColor = #colorLiteral(red: 0.6, green: 0.6784313725, blue: 0.6745098039, alpha: 1)
             substituteButton.isEnabled = false
             
@@ -93,7 +84,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func picker() {
-        
         ingredientPickerView.delegate = self
         ingredientPickerView.delegate?.pickerView?(ingredientPickerView, didSelectRow: 0, inComponent: 0)
         ingredientPickerView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
@@ -103,11 +93,9 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         unitPickerView.delegate?.pickerView?(unitPickerView, didSelectRow: 0, inComponent: 0)
         unitPickerView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
         unitTextField.inputView = unitPickerView
-        
     }
     
     func createToolbar() {
-        
         let toolbar = UIToolbar()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -122,53 +110,39 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     @objc func donePressed() {
-        
         view.endEditing(true)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
         if pickerView == ingredientPickerView {
-            
             return ingredientArr.count
         } else {
             return unitArray.count
         }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         if pickerView == ingredientPickerView {
-            
             return ("\(ingredientArr[row])")
         } else {
-            
             return unitArray[row]
         }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         if pickerView == ingredientPickerView {
-            
             substituteIngredientName = ("\(ingredientArr[row])")
             ingredientTextField.text = substituteIngredientName
         } else {
-            
             unitTextField.text =  unitArray[row]
         }
-        
     }
     
     @objc func showInformation() {
-        
         let slideVC = InformationView()
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
@@ -177,12 +151,11 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     // MARK:- CoreData
     func createData() {
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let manageContext = appDelegate.persistentContainer.viewContext
         guard let ingredientEntity = NSEntityDescription.entity(forEntityName: "Ingredient", in: manageContext) else { return }
+        
         for i in 1...ingredientNameArray.count {
-            
             let ingredient = NSManagedObject(entity: ingredientEntity, insertInto: manageContext)
             ingredient.setValue(ingredientNameArray[i-1], forKey: "name")
             ingredient.setValue(ingredientDescArray[i-1], forKey: "descriptions")
@@ -200,7 +173,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func retrieveData() {
-        
         ingredientCollection.removeAll()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -208,14 +180,12 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Ingredient")
         fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "name", ascending: true)]
         do {
-            
             let result = try manageContext.fetch(fetchRequest)
             for data in result as! [NSManagedObject] {
                 ingredientCollection.append(Ingredients(ingredientId: data.value(forKey: "id") as? String , ingredientName: data.value(forKey: "name") as? String , ingredientDesc: data.value(forKey: "descriptions") as? String , ingredientImage: data.value(forKey: "image") as? String , isDairy: data.value(forKey: "isDairy") as? Bool, isEggs: data.value(forKey: "isEggs") as? Bool, isGluten: data.value(forKey: "isGluten") as? Bool, isPeanut: data.value(forKey: "isPeanut") as? Bool, isSoy: data.value(forKey: "isSoy") as? Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as? Bool, isVegan: data.value(forKey: "isVegan") as? Bool, isFavorited: data.value(forKey: "isFavorited") as? Bool
                 ))
             }
         } catch let error as NSError {
-            
             print("Error due to : \(error.localizedDescription)")
         }
     }
@@ -262,7 +232,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
 //    }
     
     func ingredientName() {
-        
         for ingredient in ingredientCollection {
 
             guard let name = ingredient.ingredientName, name != "" else { return }
@@ -271,7 +240,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func activityIndicator(_ title: String) {
-        
         strLabel.removeFromSuperview()
         activityIndicator.removeFromSuperview()
         effectView.removeFromSuperview()
@@ -292,12 +260,10 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     // MARK:- IBAction
     @IBAction func clickInfoButton(_ sender: Any) {
-        
         showInformation()
     }
     
     @IBAction func clickSubstituteButton(_ sender: UIButton) {
-        
         activityIndicator("Substituting...")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.effectView.removeFromSuperview()
@@ -317,16 +283,15 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
 extension UIViewController {
     
     func hideKeyboardWhenTappedAround() {
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
     @objc func dismissKeyboard() {
-        
         view.endEditing(true)
     }
+    
 }
 
 extension SubstitutionViewController: UIViewControllerTransitioningDelegate {
@@ -334,4 +299,5 @@ extension SubstitutionViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         PresentationController(presentedViewController: presented, presenting: presenting)
     }
+    
 }

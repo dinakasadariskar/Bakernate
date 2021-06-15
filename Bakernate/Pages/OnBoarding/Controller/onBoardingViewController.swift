@@ -78,12 +78,7 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBAction func getStartedBtn(_ sender: Any) {
         if currentPage == slide.count - 1 {
             performSegue(withIdentifier: "substitution", sender: self)
-        }
-//        else if (currentPage == slide.count - 3){
-//            currentPage += 2
-//            let indexPath = IndexPath(item: currentPage, section: 0)
-//            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)}
-        else{
+        } else{
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
             onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -91,19 +86,6 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     @IBAction func btnSkip(_ sender: Any) {
-        if currentPage == slide.count - 1 {
-            skip.isHidden = true
-            
-        } else if (currentPage == slide.count - 3){
-            currentPage += 2
-            skip.isHidden = false
-            let indexPath = IndexPath(item: currentPage, section: 0)
-            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        } else {
-            currentPage += 1
-            skip.isHidden = false
-            let indexPath = IndexPath(item: currentPage, section: 0)
-            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        }
+        performSegue(withIdentifier: "substitution", sender: self)
     }
 }
