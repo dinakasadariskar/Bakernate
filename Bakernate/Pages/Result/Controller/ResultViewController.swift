@@ -35,9 +35,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     // MARK:- function
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-    
         
         self.hideKeyboardWhenTappedAround()
         editInitialAmountTextField.keyboardType = .decimalPad
@@ -55,11 +53,9 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         resultCardsCollectionView?.dataSource = self
         resultCardsCollectionView?.delegate = self
         resultCardsCollectionView?.showsHorizontalScrollIndicator = false
-        
     }
     
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
-        
         if favorite {
             favoriteButton.image = UIImage(systemName: "heart")
             favorite = false
@@ -69,7 +65,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             favorite = true
             print(favorite)
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

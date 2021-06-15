@@ -11,6 +11,7 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
     
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var imagesPageControl: UIPageControl!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     var imagesArr = ["maple_syrup_1", "maple_syrup_2", "maple_syrup_3"]
     var currentPage = 0 {
@@ -21,7 +22,11 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
+        navBar.isTranslucent = true
+        
         imagesCollectionView.delegate = self
         imagesCollectionView.dataSource = self
     }
