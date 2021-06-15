@@ -53,20 +53,6 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
         getStarted.clipsToBounds = true
     }
     
-    @IBAction func getStartedBtn(_ sender: Any) {
-        if currentPage == slide.count - 1 {
-            performSegue(withIdentifier: "substitution", sender: self)
-//        } else if (currentPage == slide.count - 3){
-//            currentPage += 2
-//            let indexPath = IndexPath(item: currentPage, section: 0)
-//            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//        } else{
-//            currentPage += 1
-//            let indexPath = IndexPath(item: currentPage, section: 0)
-//            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return slide.count
     }
@@ -88,6 +74,21 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
         currentPage = Int(scrollView.contentOffset.x / width)
     }
     
+    @IBAction func getStartedBtn(_ sender: Any) {
+        if currentPage == slide.count - 1 {
+            performSegue(withIdentifier: "substitution", sender: self)
+        }
+//        else if (currentPage == slide.count - 3){
+//            currentPage += 2
+//            let indexPath = IndexPath(item: currentPage, section: 0)
+//            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+//        } else{
+//            currentPage += 1
+//            let indexPath = IndexPath(item: currentPage, section: 0)
+//            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+//        }
+    }
+    
     @IBAction func btnSkip(_ sender: Any) {
         if currentPage == slide.count - 1 {
             performSegue(withIdentifier: "substitution", sender: self)
@@ -95,7 +96,7 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
             currentPage += 2
             let indexPath = IndexPath(item: currentPage, section: 0)
             onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        } else{
+        } else {
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
             onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
