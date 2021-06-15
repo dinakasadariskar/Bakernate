@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="String"/>
         <attribute name="descriptions" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="String" customClassName="[String]"/>
+        <attribute name="initialUnit" optional="YES" attributeType="String"/>
         <attribute name="isDairy" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isEggs" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -13,8 +15,9 @@
         <attribute name="isTreeNuts" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isVegan" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="substituteUnit" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Ingredient" positionX="-63" positionY="-18" width="128" height="209"/>
+        <element name="Ingredient" positionX="-63" positionY="-18" width="128" height="254"/>
     </elements>
 </model>

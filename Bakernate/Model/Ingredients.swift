@@ -20,4 +20,8 @@ struct Ingredients {
     let isTreeNuts: Bool?
     let isVegan: Bool?
     var isFavorited: Bool?
+    var ingredientAmount: String?
+    var initialUnit: String?
+    var substituteUnit: String?
+    
 }
