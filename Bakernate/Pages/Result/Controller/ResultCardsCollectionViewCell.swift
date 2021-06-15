@@ -24,15 +24,64 @@ class ResultCardsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var isDairyImage: UIImageView!
     
     
-    func set(_ card: resultIngredient) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    func set(card: Ingredients) {
         
-        resultImage.image = card.resultImage
-        resultNameLabel.text = card.resultName
-        resultAmountLabel.text = card.resultAmount
+        resultImage.image = UIImage(named: card.ingredientImage!)
+        resultNameLabel.text = card.ingredientName
+        resultAmountLabel.text = card.ingredientAmount
+        
+        if card.isVegan! {
+            isVeganImage.image = UIImage(named: "Enabled")
+        } else {
+            isVeganImage.image = UIImage(named: "Disabled")
+        }
+        
+        if card.isEggs! {
+            isEggImage.image = UIImage(named: "Enabled Egg")
+        } else {
+            isEggImage.image = UIImage(named: "Disabled Egg")
+        }
+        
+        if card.isSoy! {
+            isSoyImage.image = UIImage(named: "Chip Enable Soy")
+        } else {
+            isSoyImage.image = UIImage(named: "Chip Disabled Soy")
+        }
+        
+        if card.isTreeNuts! {
+            isTreeNutsImage.image = UIImage(named: "Chip Enable Tree Nuts")
+        } else {
+            isTreeNutsImage.image = UIImage(named: "Chip Disabled Tree Nuts")
+        }
+        
+        if card.isPeanut! {
+            isPeanutImage.image = UIImage(named: "Chip Enable Peanut")
+        } else {
+            isPeanutImage.image = UIImage(named: "Chip Disabled Peanut")
+        }
+        
+        if card.isGluten! {
+            isGlutenImage.image = UIImage(named: "Chip Enable Gluten")
+        } else {
+            isGlutenImage.image = UIImage(named: "Chip Disabled Gluten")
+        }
+        
+        if card.isDairy! {
+            isDairyImage.image = UIImage(named: "Chip Enable Dairy")
+        } else {
+            isDairyImage.image = UIImage(named: "Chip Disabled Dairy")
+        }
+        
         
         
         resultCardView.backgroundColor = .white
         resultCardView.layer.cornerRadius = 20
+        
+        resultImage.layer.cornerRadius = 20
         
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 1.0)
