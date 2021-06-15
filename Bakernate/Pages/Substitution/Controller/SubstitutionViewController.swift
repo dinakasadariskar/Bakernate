@@ -52,12 +52,13 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     func setupInitialDataToCoreData() {
         
-        retrieveData()
         
         if ingredientCollection.count == 0 {
             
             createData()
         }
+        
+        retrieveData()
         
         ingredientName()
     }
