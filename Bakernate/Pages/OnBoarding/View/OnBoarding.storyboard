@@ -92,12 +92,13 @@
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okf-sX-tkM">
                                 <rect key="frame" x="20" y="716.33333333333337" width="350" height="45"/>
+                                <color key="backgroundColor" red="0.23626565930000001" green="0.34497568010000002" blue="0.3490221798" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Ph4-cR-h7a"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Next">
-                                    <color key="titleColor" red="0.20392156859999999" green="0.35686274509999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="getStartedBtn:" destination="G0N-eB-oyF" eventType="touchUpInside" id="KtS-Mf-nQ4"/>
@@ -136,6 +137,7 @@
                         <outlet property="getStarted" destination="okf-sX-tkM" id="oZk-lm-gia"/>
                         <outlet property="onBoardingCV" destination="Tsa-4c-SSq" id="qAy-nF-cM5"/>
                         <outlet property="pageControl" destination="rhf-KY-Q3g" id="0Wf-na-JMA"/>
+                        <outlet property="skip" destination="aUE-Jm-kt7" id="EQ9-na-mup"/>
                         <segue destination="7zx-ph-QeC" kind="show" identifier="substitution" id="Ajn-xJ-7H6"/>
                     </connections>
                 </viewController>

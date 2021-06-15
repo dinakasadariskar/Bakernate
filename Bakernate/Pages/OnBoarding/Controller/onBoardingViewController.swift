@@ -18,6 +18,7 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var onBoardingCV: UICollectionView!
     @IBOutlet weak var getStarted: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var skip: UIButton!
     
     var currentPage = 0 {
         didSet{
@@ -29,9 +30,9 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
                 getStarted.backgroundColor = BakernateColor().green100
             } else {
                 getStarted.setTitle("Next", for: .normal)
-                getStarted.setTitleColor(BakernateColor().green100, for: .normal)
-                getStarted.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-                getStarted.backgroundColor = UIColor.clear
+                getStarted.setTitleColor(BakernateColor().white, for: .normal)
+                getStarted.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+                getStarted.backgroundColor = BakernateColor().green100
             }
         }
     }
@@ -81,23 +82,26 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
 //        else if (currentPage == slide.count - 3){
 //            currentPage += 2
 //            let indexPath = IndexPath(item: currentPage, section: 0)
-//            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//        } else{
-//            currentPage += 1
-//            let indexPath = IndexPath(item: currentPage, section: 0)
-//            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//        }
+//            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)}
+        else{
+            currentPage += 1
+            let indexPath = IndexPath(item: currentPage, section: 0)
+            onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
     }
     
     @IBAction func btnSkip(_ sender: Any) {
         if currentPage == slide.count - 1 {
-            performSegue(withIdentifier: "substitution", sender: self)
+            skip.isHidden = true
+            
         } else if (currentPage == slide.count - 3){
             currentPage += 2
+            skip.isHidden = false
             let indexPath = IndexPath(item: currentPage, section: 0)
             onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         } else {
             currentPage += 1
+            skip.isHidden = false
             let indexPath = IndexPath(item: currentPage, section: 0)
             onBoardingCV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
