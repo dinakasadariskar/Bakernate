@@ -19,6 +19,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     // MARK:- let & var
     var amount = ""
     var substituteIngredientName = ""
+    var selectedIndex = 0
     var activityIndicator = UIActivityIndicatorView()
     var strLabel = UILabel()
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
@@ -37,6 +38,9 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     var ingredientTreeNutsStatus = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
     var ingredientFavoritedStatus = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
     var ingredientId = ["A1", "A1", "A2", "A3, A4", "A3, A4", "A3, A4", "A5", "A5", "A5", "A5", "A6, A7", "A6", "A6", "A6, A7", "A8", "A8", "A8", "A8", "A9", "A9", "A7", "A7", "A7", "A6, A7", "A6, A7", "A4", "A4", "A4", "A10", "A10", "A10"]
+    var ingredientAmountArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var ingredientInitialUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var ingredientSubstituteUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientImageArray = ["Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test"]
     
     var unitArray = ["Cup", "Gram", "Kilogram", "Liter", "Mililiter", "Oz", "Tablespoon", "Teaspoon"]
@@ -196,6 +200,9 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             ingredient.setValue(ingredientFavoritedStatus[i-1], forKey: "isFavorited")
             ingredient.setValue(ingredientImageArray[i-1], forKey: "image")
             ingredient.setValue(ingredientId[i-1], forKey: "id")
+            ingredient.setValue(ingredientAmountArray[i-1], forKey: "amount")
+            ingredient.setValue(ingredientInitialUnitArray[i-1], forKey: "initialUnit")
+            ingredient.setValue(ingredientSubstituteUnitArray[i-1], forKey: "substituteUnit")
         }
     }
     
@@ -211,7 +218,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             
             let result = try manageContext.fetch(fetchRequest)
             for data in result as! [NSManagedObject] {
-                ingredientCollection.append(Ingredients(ingredientId: data.value(forKey: "id") as? String , ingredientName: data.value(forKey: "name") as? String , ingredientDesc: data.value(forKey: "descriptions") as? String , ingredientImage: data.value(forKey: "image") as? String , isDairy: data.value(forKey: "isDairy") as? Bool, isEggs: data.value(forKey: "isEggs") as? Bool, isGluten: data.value(forKey: "isGluten") as? Bool, isPeanut: data.value(forKey: "isPeanut") as? Bool, isSoy: data.value(forKey: "isSoy") as? Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as? Bool, isVegan: data.value(forKey: "isVegan") as? Bool, isFavorited: data.value(forKey: "isFavorited") as? Bool
+                ingredientCollection.append(Ingredients(ingredientId: data.value(forKey: "id") as? String , ingredientName: data.value(forKey: "name") as? String , ingredientDesc: data.value(forKey: "descriptions") as? String , ingredientImage: data.value(forKey: "image") as? String , isDairy: data.value(forKey: "isDairy") as? Bool, isEggs: data.value(forKey: "isEggs") as? Bool, isGluten: data.value(forKey: "isGluten") as? Bool, isPeanut: data.value(forKey: "isPeanut") as? Bool, isSoy: data.value(forKey: "isSoy") as? Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as? Bool, isVegan: data.value(forKey: "isVegan") as? Bool, isFavorited: data.value(forKey: "isFavorited") as? Bool, ingredientAmount: data.value(forKey: "amount") as? String, initialUnit: data.value(forKey: "initialUnit") as? String, substituteUnit: data.value(forKey: "substituteUnit") as? String
                 ))
             }
         } catch let error as NSError {
@@ -220,46 +227,106 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
     }
     
-//    func updateCoreData() {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//
-//        let manageContext = appDelegate.persistentContainer.viewContext
-//
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
-//
-//        for i in 1...ingredientNameArray.count {
-//
-//            fetchRequest.predicate = NSPredicate(format: "name = %@", ingredientNameArray[i-1])
-//
-//            do {
-//                let object = try manageContext.fetch(fetchRequest)
-//
-//                let objectToUpdate = object[i] as! NSManagedObject
-//
-//                objectToUpdate.setValue(ingredientNameArray[i-1], forKey: "name")
-//                objectToUpdate.setValue(ingredientDescArray[i-1], forKey: "descriptions")
-//                objectToUpdate.setValue(ingredientVeganStatus[i-1], forKey: "isVegan")
-//                objectToUpdate.setValue(ingredientDairyStatus[i-1], forKey: "isDairy")
-//                objectToUpdate.setValue(ingredientEggsStatus[i-1], forKey: "isEggs")
-//                objectToUpdate.setValue(ingredientGlutenStatus[i-1], forKey: "isGluten")
-//                objectToUpdate.setValue(ingredientPeanutStatus[i-1], forKey: "isPeanut")
-//                objectToUpdate.setValue(ingredientSoyStatus[i-1], forKey: "isSoy")
-//                objectToUpdate.setValue(ingredientTreeNutsStatus[i-1], forKey: "isTreeNuts")
-//                objectToUpdate.setValue(ingredientFavoritedStatus[i-1], forKey: "isFavorited")
-//                objectToUpdate.setValue(ingredientImageArray[i-1], forKey: "image")
-//                objectToUpdate.setValue(ingredientId[i-1], forKey: "id")
-//
-//                do {
-//                    try manageContext.save()
-//                } catch {
-//                    print(error)
-//                }
-//            } catch let error as NSError {
-//                print(error)
-//            }
-//        }
-//
-//    }
+    func updateFavoriteCoreData(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        // 3. Prepare fetch dari entity coredata nya
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientCollection[selectedIndex].isFavorited, forKey: "isFavorited")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateAmountCoreData(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientCollection[selectedIndex].ingredientAmount, forKey: "amount")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateInitialUnit(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientCollection[selectedIndex].initialUnit, forKey: "initialUnit")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateSubstituteUnit(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientCollection[selectedIndex].substituteUnit, forKey: "substituteUnit")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
     
     func ingredientName() {
         
