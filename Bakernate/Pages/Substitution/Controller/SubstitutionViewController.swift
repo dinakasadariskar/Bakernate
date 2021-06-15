@@ -19,6 +19,8 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     // MARK:- let & var
     var amount = ""
     var substituteIngredientName = ""
+    var unitRow = 0
+    
     var selectedIndex = 0
     var activityIndicator = UIActivityIndicatorView()
     var strLabel = UILabel()
@@ -143,6 +145,8 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             ingredientTextField.text = substituteIngredientName
         } else {
             unitTextField.text =  unitArray[row]
+            unitRow = row
+            
         }
     }
     
@@ -339,6 +343,8 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             let vc = storyboard.instantiateViewController(withIdentifier: "resultViewController") as! ResultViewController
             vc.initialAmount = self.amountTextField.text!
             vc.titleIngredient = self.substituteIngredientName
+            vc.initialUnit = self.unitTextField.text!
+            vc.unitRow = self.unitRow
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
