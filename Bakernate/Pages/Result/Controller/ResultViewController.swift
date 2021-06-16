@@ -38,6 +38,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     var initialUnit = ""
     var showUnit = ""
     var showAmount = 0.0
+    var showCardAmount = 0.0
     
     var selectedIndex = 0
     var unitRow = 0
@@ -130,6 +131,141 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             showAmount = result
         }
         
+    }
+    
+    func ingredientConversions(initialIngredient: String, showIngredientSubstitution: String) {
+        var ingredientName: IngredientName?
+        if initialIngredient == "Baking Soda" {
+            ingredientName = IngredientName.bakingsoda
+        } else if initialIngredient == "Baking Powder" {
+            ingredientName = IngredientName.bakingpowder
+        } else if initialIngredient == "Buttermilk" {
+            ingredientName = IngredientName.buttermilk
+        } else if initialIngredient == "Honey" {
+            ingredientName = IngredientName.honey
+        } else if initialIngredient == "Molasses" {
+            ingredientName = IngredientName.molasses
+        } else if initialIngredient == "Maple Syrup" {
+            ingredientName = IngredientName.maplesyrup
+        } else if initialIngredient == "Lemon Juice" {
+            ingredientName = IngredientName.lemonjuice
+        } else if initialIngredient == "Lime Juice" {
+            ingredientName = IngredientName.limejuice
+        } else if initialIngredient == "Vinegar" {
+            ingredientName = IngredientName.vinegar
+        } else if initialIngredient == "White Wine" {
+            ingredientName = IngredientName.whitewine
+        } else if initialIngredient == "Sour Cream" {
+            ingredientName = IngredientName.sourcream
+        } else if initialIngredient == "Mayonnaise" {
+            ingredientName = IngredientName.mayonnaise
+        } else if initialIngredient == "Coconut Milk" {
+            ingredientName = IngredientName.coconutmilk
+        } else if initialIngredient == "Yogurt" {
+            ingredientName = IngredientName.yogurt
+        } else if initialIngredient == "Egg" {
+            ingredientName = IngredientName.egg
+        } else if initialIngredient == "Mashed Banana" {
+            ingredientName = IngredientName.mashedbanana
+        } else if initialIngredient == "Chia Seed" {
+            ingredientName = IngredientName.chiaseed
+        } else if initialIngredient == "Agar-agar" {
+            ingredientName = IngredientName.agaragar
+        } else if initialIngredient == "Unsalted Butter" {
+            ingredientName = IngredientName.unsaltedbutter
+        } else if initialIngredient == "Vegetable Oil" {
+            ingredientName = IngredientName.vegetableoil
+        } else if initialIngredient == "Heavy Cream" {
+            ingredientName = IngredientName.heavycream
+        } else if initialIngredient == "Coconut Cream" {
+            ingredientName = IngredientName.coconutcream
+        } else if initialIngredient == "Cream Cheese" {
+            ingredientName = IngredientName.creamcheese
+        } else if initialIngredient == "Mascarpone" {
+            ingredientName = IngredientName.mascarpone
+        } else if initialIngredient == "Brown Sugar" {
+            ingredientName = IngredientName.brownsugar
+        } else if initialIngredient == "Coconut Sugar" {
+            ingredientName = IngredientName.coconutsugar
+        } else if initialIngredient == "White Sugar" {
+            ingredientName = IngredientName.whitesugar
+        } else if initialIngredient == "Cornstarch" {
+            ingredientName = IngredientName.cornstarch
+        } else if initialIngredient == "All Purpose Flour" {
+            ingredientName = IngredientName.allpurposeflour
+        } else if initialIngredient == "Tapioca" {
+            ingredientName = IngredientName.tapioca
+        }
+        
+        var ingredientShowName: IngredientName?
+        if showIngredientSubstitution == "Baking Soda" {
+            ingredientShowName = IngredientName.bakingsoda
+        } else if showIngredientSubstitution == "Baking Powder" {
+            ingredientShowName = IngredientName.bakingpowder
+        } else if showIngredientSubstitution == "Buttermilk" {
+            ingredientShowName = IngredientName.buttermilk
+        } else if showIngredientSubstitution == "Honey" {
+            ingredientShowName = IngredientName.honey
+        } else if showIngredientSubstitution == "Molasses" {
+            ingredientShowName = IngredientName.molasses
+        } else if showIngredientSubstitution == "Maple Syrup" {
+            ingredientShowName = IngredientName.maplesyrup
+        } else if showIngredientSubstitution == "Lemon Juice" {
+            ingredientShowName = IngredientName.lemonjuice
+        } else if showIngredientSubstitution == "Lime Juice" {
+            ingredientShowName = IngredientName.limejuice
+        } else if showIngredientSubstitution == "Vinegar" {
+            ingredientShowName = IngredientName.vinegar
+        } else if showIngredientSubstitution == "White Wine" {
+            ingredientShowName = IngredientName.whitewine
+        } else if showIngredientSubstitution == "Sour Cream" {
+            ingredientShowName = IngredientName.sourcream
+        } else if showIngredientSubstitution == "Mayonnaise" {
+            ingredientShowName = IngredientName.mayonnaise
+        } else if showIngredientSubstitution == "Coconut Milk" {
+            ingredientShowName = IngredientName.coconutmilk
+        } else if showIngredientSubstitution == "Yogurt" {
+            ingredientShowName = IngredientName.yogurt
+        } else if showIngredientSubstitution == "Egg" {
+            ingredientShowName = IngredientName.egg
+        } else if showIngredientSubstitution == "Mashed Banana" {
+            ingredientShowName = IngredientName.mashedbanana
+        } else if showIngredientSubstitution == "Chia Seed" {
+            ingredientShowName = IngredientName.chiaseed
+        } else if showIngredientSubstitution == "Agar-agar" {
+            ingredientShowName = IngredientName.agaragar
+        } else if showIngredientSubstitution == "Unsalted Butter" {
+            ingredientShowName = IngredientName.unsaltedbutter
+        } else if showIngredientSubstitution == "Vegetable Oil" {
+            ingredientShowName = IngredientName.vegetableoil
+        } else if showIngredientSubstitution == "Heavy Cream" {
+            ingredientShowName = IngredientName.heavycream
+        } else if showIngredientSubstitution == "Coconut Cream" {
+            ingredientShowName = IngredientName.coconutcream
+        } else if showIngredientSubstitution == "Cream Cheese" {
+            ingredientShowName = IngredientName.creamcheese
+        } else if showIngredientSubstitution == "Mascarpone" {
+            ingredientShowName = IngredientName.mascarpone
+        } else if showIngredientSubstitution == "Brown Sugar" {
+            ingredientShowName = IngredientName.brownsugar
+        } else if showIngredientSubstitution == "Coconut Sugar" {
+            ingredientShowName = IngredientName.coconutsugar
+        } else if showIngredientSubstitution == "White Sugar" {
+            ingredientShowName = IngredientName.whitesugar
+        } else if showIngredientSubstitution == "Cornstarch" {
+            ingredientShowName = IngredientName.cornstarch
+        } else if showIngredientSubstitution == "All Purpose Flour" {
+            ingredientShowName = IngredientName.allpurposeflour
+        } else if showIngredientSubstitution == "Tapioca" {
+            ingredientShowName = IngredientName.tapioca
+        }
+        
+        
+            let amount = IngredientConversions(initialIngredientName: ingredientName!, value: showAmount)
+            let result = amount.convert(initialIngredientName: ingredientShowName!)
+            //            let roundedResult = Double(round(10000 * result) / 10000)
+            print("RESULT: \(result)")
+        showCardAmount = result
     }
     
     func hideKeyboardWhenTappedAround() {
@@ -411,7 +547,9 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let card = ingredientCollection[indexPath.item]
         
-        cell.set(card: card, amount: String(format: "%.1f", showAmount), unit: showUnit)
+        ingredientConversions(initialIngredient: ingredientTitle[selectedIndex].ingredientName!, showIngredientSubstitution: ingredientCollection[indexPath.item].ingredientName!)
+        
+        cell.set(card: card, amount: String(format: "%.1f", showCardAmount), unit: showUnit)
         
         return cell
     }
