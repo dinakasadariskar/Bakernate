@@ -11,41 +11,57 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        if UserDefaults.standard.bool(forKey: "isOnboardingDone") == true {
-            // Skip onboarding
-            // Unwrap scene, so that usable to generate window
-            guard let windowScene = scene as? UIWindowScene else { return }
-            // Instantiate window with scene
-            let window = UIWindow(windowScene: windowScene)
-            // Instantiate view controller from story board and provide our apps root view controller
-            window.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "viewController")
-            // assign attribute window in the scene delegate
-            self.window = window
-            // Show window in the front
-            window.makeKeyAndVisible()
-        } else {
-            // Show onboarding screens
-            // Unwrap scene, so that usable to generate window
-            guard let windowScene = scene as? UIWindowScene else { return }
-            // Instantiate window with scene
-            let window = UIWindow(windowScene: windowScene)
-            // Instantiate view controller from story board and provide our apps root view controller
-            window.rootViewController = UIStoryboard(name: "OnBoarding", bundle: nil).instantiateViewController(withIdentifier: "onBoardingViewController")
-            // assign attribute window in the scene delegate
-            self.window = window
-            // Show window in the front
-            window.makeKeyAndVisible()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        var ingredientCollection = [Ingredient]()
+        
+        do {
+            ingredientCollection = try context.fetch(Ingredient.fetchRequest())
+        } catch {
             
-            UserDefaults.standard.set(true, forKey: "isOnboardingDone")
+        }
+        
+        if ingredientCollection.count == 0 {
+            let substitutionController = SubstitutionViewController()
+            
+            substitutionController.createData()
+        }
+        // Unwrap scene, so that usable to generate window
+        guard let windowScene = scene as? UIWindowScene else { return }
+        // Instantiate window with scene
+        let window = UIWindow(windowScene: windowScene)
+        
+        if UserDefaults.standard.bool(forKey: "isOnboardingDone") == true {
+            skipOnboarding(window: window)
+        } else {
+            showOnboarding(window: window)
         }
     }
 
+    func skipOnboarding(window: UIWindow) {
+        // Instantiate view controller from story board and provide our apps root view controller
+        window.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "viewController")
+        // assign attribute window in the scene delegate
+        self.window = window
+        // Show window in the front
+        window.makeKeyAndVisible()
+    }
+    
+    func showOnboarding(window: UIWindow) {
+        // Instantiate view controller from story board and provide our apps root view controller
+        window.rootViewController = UIStoryboard(name: "OnBoarding", bundle: nil).instantiateViewController(withIdentifier: "onBoardingViewController")
+        // assign attribute window in the scene delegate
+        self.window = window
+        // Show window in the front
+        window.makeKeyAndVisible()
+        
+        UserDefaults.standard.set(true, forKey: "isOnboardingDone")
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -76,7 +92,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
 
 }
 
