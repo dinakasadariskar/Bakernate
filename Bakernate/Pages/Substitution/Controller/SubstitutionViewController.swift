@@ -17,9 +17,11 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var substituteButton: UIButton!
     
     // MARK:- let & var
+    
     var amount = ""
     var substituteIngredientName = ""
     var unitRow = 0
+    var type:[String] = []
     
     var selectedIndex = 0
     var activityIndicator = UIActivityIndicatorView()
@@ -39,7 +41,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     var ingredientSoyStatus = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
     var ingredientTreeNutsStatus = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
     var ingredientFavoritedStatus = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-    var ingredientId = ["A1", "A1", "A2", "A3, A4", "A3, A4", "A3, A4", "A5", "A5", "A5", "A5", "A6, A7", "A6", "A6", "A6, A7", "A8", "A8", "A8", "A8", "A9", "A9", "A7", "A7", "A7", "A6, A7", "A6, A7", "A4", "A4", "A4", "A10", "A10", "A10"]
+    var ingredientId = [["A1"], ["A1"], ["A6"], ["A3","A4"], ["A3", "A4"], ["A3", "A4"], ["A5"], ["A5"], ["A5"], ["A5"], ["A6", "A7"], ["A6"], ["A6"], ["A6", "A7"], ["A8"], ["A8"], ["A8"], ["A8"], ["A9"], ["A9"], ["A7"], ["A7"], ["A7"], ["A6", "A7"], ["A4"], ["A4"], ["A4"], ["B1"], ["B1"], ["B1"]]
     var ingredientAmountArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientInitialUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientSubstituteUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
@@ -52,6 +54,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         
         self.hideKeyboardWhenTappedAround()
         amountTextField.keyboardType = .decimalPad
+        
         setupInitialDataToCoreData()
         picker()
         createToolbar()
@@ -59,11 +62,12 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func setupInitialDataToCoreData() {
+        retrieveData()
         if ingredientCollection.count == 0 {
             createData()
         }
         
-        retrieveData()
+        
         ingredientName()
     }
     
@@ -125,7 +129,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == ingredientPickerView {
-            return ingredientArr.count
+            return ingredientCollection.count
         } else {
             return unitArray.count
         }
@@ -133,7 +137,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == ingredientPickerView {
-            return ("\(ingredientArr[row])")
+            return ingredientCollection[row].ingredientName
         } else {
             return unitArray[row]
         }
@@ -141,8 +145,16 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == ingredientPickerView {
-            substituteIngredientName = ("\(ingredientArr[row])")
+            substituteIngredientName = ingredientCollection[row].ingredientName!
             ingredientTextField.text = substituteIngredientName
+            
+            type = ingredientCollection[row].ingredientId!
+            
+//            guard type == [ingredientCollection[row].ingredientId!]
+//            else{
+//                return
+//            }
+            
         } else {
             unitTextField.text =  unitArray[row]
             unitRow = row
@@ -158,7 +170,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     // MARK:- CoreData
-    func createData() {
+    public func createData() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let manageContext = appDelegate.persistentContainer.viewContext
         guard let ingredientEntity = NSEntityDescription.entity(forEntityName: "Ingredient", in: manageContext) else { return }
@@ -193,7 +205,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         do {
             let result = try manageContext.fetch(fetchRequest)
             for data in result as! [NSManagedObject] {
-                ingredientCollection.append(Ingredients(ingredientId: data.value(forKey: "id") as? String , ingredientName: data.value(forKey: "name") as? String , ingredientDesc: data.value(forKey: "descriptions") as? String , ingredientImage: data.value(forKey: "image") as? String , isDairy: data.value(forKey: "isDairy") as? Bool, isEggs: data.value(forKey: "isEggs") as? Bool, isGluten: data.value(forKey: "isGluten") as? Bool, isPeanut: data.value(forKey: "isPeanut") as? Bool, isSoy: data.value(forKey: "isSoy") as? Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as? Bool, isVegan: data.value(forKey: "isVegan") as? Bool, isFavorited: data.value(forKey: "isFavorited") as? Bool, ingredientAmount: data.value(forKey: "amount") as? String, initialUnit: data.value(forKey: "initialUnit") as? String, substituteUnit: data.value(forKey: "substituteUnit") as? String
+                ingredientCollection.append(Ingredients(ingredientId: data.value(forKey: "id") as? [String] , ingredientName: data.value(forKey: "name") as? String , ingredientDesc: data.value(forKey: "descriptions") as? String , ingredientImage: data.value(forKey: "image") as? String , isDairy: data.value(forKey: "isDairy") as? Bool, isEggs: data.value(forKey: "isEggs") as? Bool, isGluten: data.value(forKey: "isGluten") as? Bool, isPeanut: data.value(forKey: "isPeanut") as? Bool, isSoy: data.value(forKey: "isSoy") as? Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as? Bool, isVegan: data.value(forKey: "isVegan") as? Bool, isFavorited: data.value(forKey: "isFavorited") as? Bool, ingredientAmount: data.value(forKey: "amount") as? String, initialUnit: data.value(forKey: "initialUnit") as? String, substituteUnit: data.value(forKey: "substituteUnit") as? String
                 ))
             }
         } catch let error as NSError {
@@ -201,31 +213,31 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
     }
     
-    func updateFavoriteCoreData(name: String) {
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let manageContext = appDelegate.persistentContainer.viewContext
-
-        // 3. Prepare fetch dari entity coredata nya
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
-        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
-        
-        do {
-            let object = try manageContext.fetch(fetchRequest)
-            
-            let objectToUpdate = object[0] as! NSManagedObject
-            objectToUpdate.setValue(ingredientCollection[selectedIndex].isFavorited, forKey: "isFavorited")
-            
-            do {
-                try manageContext.save()
-            } catch {
-                print(error)
-            }
-        } catch let error as NSError {
-            print(error)
-        }
-    }
+//    func updateFavoriteCoreData(name: String) {
+//        
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+//        
+//        let manageContext = appDelegate.persistentContainer.viewContext
+//
+//        // 3. Prepare fetch dari entity coredata nya
+//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+//        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+//        
+//        do {
+//            let object = try manageContext.fetch(fetchRequest)
+//            
+//            let objectToUpdate = object[0] as! NSManagedObject
+//            objectToUpdate.setValue(ingredientCollection[selectedIndex].isFavorited, forKey: "isFavorited")
+//            
+//            do {
+//                try manageContext.save()
+//            } catch {
+//                print(error)
+//            }
+//        } catch let error as NSError {
+//            print(error)
+//        }
+//    }
     
     func updateAmountCoreData(name: String) {
         
@@ -345,6 +357,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             vc.titleIngredient = self.substituteIngredientName
             vc.initialUnit = self.unitTextField.text!
             vc.unitRow = self.unitRow
+            vc.type = self.type
             self.navigationController?.pushViewController(vc, animated: true)
             
         }

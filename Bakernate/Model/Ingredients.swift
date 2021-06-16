@@ -8,7 +8,7 @@
 import Foundation
 
 struct Ingredients {
-    let ingredientId: String?
+    let ingredientId: [String]?
     let ingredientName: String?
     let ingredientDesc: String?
     let ingredientImage: String?
