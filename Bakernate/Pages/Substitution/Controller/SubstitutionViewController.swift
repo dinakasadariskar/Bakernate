@@ -151,6 +151,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         if pickerView == ingredientPickerView {
             substituteIngredientName = ingredientCollection[row].ingredientName!
             ingredientTextField.text = substituteIngredientName
+            ingredientRow = row
             
             type = ingredientCollection[row].ingredientId!
             
@@ -162,8 +163,20 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         } else {
             unitTextField.text =  unitArray[row]
             unitRow = row
+            ingredientCollection[ingredientRow].initialUnit = self.selectedUnit
+            updateInitialUnit(name: substituteIngredientName)
             
         }
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func showInformation() {
@@ -218,21 +231,21 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
 //    func updateFavoriteCoreData(name: String) {
-//        
+//
 //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//        
+//
 //        let manageContext = appDelegate.persistentContainer.viewContext
 //
 //        // 3. Prepare fetch dari entity coredata nya
 //        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
 //        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
-//        
+//
 //        do {
 //            let object = try manageContext.fetch(fetchRequest)
-//            
+//
 //            let objectToUpdate = object[0] as! NSManagedObject
 //            objectToUpdate.setValue(ingredientCollection[selectedIndex].isFavorited, forKey: "isFavorited")
-//            
+//
 //            do {
 //                try manageContext.save()
 //            } catch {
@@ -281,7 +294,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             let object = try manageContext.fetch(fetchRequest)
             
             let objectToUpdate = object[0] as! NSManagedObject
-            objectToUpdate.setValue(ingredientCollection[selectedIndex].initialUnit, forKey: "initialUnit")
+            objectToUpdate.setValue(ingredientCollection[0].initialUnit, forKey: "initialUnit")
             
             do {
                 try manageContext.save()
@@ -370,19 +383,19 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
 }
 
 // MARK:- Extension
-extension UIViewController {
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-}
+//extension UIViewController {
+//
+//    func hideKeyboardWhenTappedAround() {
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+//        tap.cancelsTouchesInView = false
+//        view.addGestureRecognizer(tap)
+//    }
+//
+//    @objc func dismissKeyboard() {
+//        view.endEditing(true)
+//    }
+//
+//}
 
 extension SubstitutionViewController: UIViewControllerTransitioningDelegate {
     
