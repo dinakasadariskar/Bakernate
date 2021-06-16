@@ -84,7 +84,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             return
         }
         
-        substituteButton.backgroundColor = #colorLiteral(red: 0.2039215686, green: 0.3568627451, blue: 0.3529411765, alpha: 1)
+        substituteButton.backgroundColor = BakernateColor.green100
         substituteButton.tintColor = .white
         substituteButton.isEnabled = true
     }
@@ -92,12 +92,12 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     func picker() {
         ingredientPickerView.delegate = self
         ingredientPickerView.delegate?.pickerView?(ingredientPickerView, didSelectRow: 0, inComponent: 0)
-        ingredientPickerView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
+        ingredientPickerView.backgroundColor = BakernateColor.backgroundGreen
         ingredientTextField.inputView = ingredientPickerView
         
         unitPickerView.delegate = self
         unitPickerView.delegate?.pickerView?(unitPickerView, didSelectRow: 0, inComponent: 0)
-        unitPickerView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
+        unitPickerView.backgroundColor = BakernateColor.backgroundGreen
         unitTextField.inputView = unitPickerView
     }
     
@@ -109,7 +109,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         toolbar.sizeToFit()
         toolbar.setItems([flexibleSpace, doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
-        toolbar.backgroundColor = #colorLiteral(red: 0.8745098039, green: 0.9254901961, blue: 0.9254901961, alpha: 1)
+        toolbar.backgroundColor = BakernateColor.green10
         
         ingredientTextField.inputAccessoryView = toolbar
         unitTextField.inputAccessoryView = toolbar

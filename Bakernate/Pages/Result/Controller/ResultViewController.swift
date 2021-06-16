@@ -29,7 +29,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     
     // MARK:- let & var
-    
     var ingredientCollection:[Ingredients] = []
     var favorite:Bool = false
     var titleIngredient = ""
@@ -69,8 +68,8 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(handleFavoriteButton))
         
-        self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
-        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
+        self.navigationItem.leftBarButtonItem?.tintColor = BakernateColor.green100
+        self.navigationItem.rightBarButtonItem?.tintColor = BakernateColor.green100
         
         
 //        cards = [
@@ -161,75 +160,62 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     // MARK:- Picker
-    
     func picker() {
-
         showUnitPickerView.delegate = self
         showUnitPickerView.delegate?.pickerView?(showUnitPickerView, didSelectRow: 0, inComponent: 0)
-        showUnitPickerView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
+        showUnitPickerView.backgroundColor = BakernateColor.backgroundGreen
         showUnitPickerView.selectRow(unitRow, inComponent: 0, animated: true)
 
         showUnitPicker.inputView = showUnitPickerView
             
         editUnitPickerView.delegate = self
         editUnitPickerView.delegate?.pickerView?(editUnitPickerView, didSelectRow: 0, inComponent: 0)
-        editUnitPickerView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
+        editUnitPickerView.backgroundColor = BakernateColor.backgroundGreen
         editUnitPickerView.selectRow(unitRow, inComponent: 0, animated: true)
         
         initialUnitPicker.inputView = editUnitPickerView
-
     }
 
-        func createToolbar() {
+    func createToolbar() {
+        let toolbar = UIToolbar()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-            let toolbar = UIToolbar()
-            let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.sizeToFit()
+        toolbar.setItems([flexibleSpace, doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        toolbar.backgroundColor = BakernateColor.green10
 
-            toolbar.sizeToFit()
-            toolbar.setItems([flexibleSpace, doneButton], animated: false)
-            toolbar.isUserInteractionEnabled = true
-            toolbar.backgroundColor = #colorLiteral(red: 0.8745098039, green: 0.9254901961, blue: 0.9254901961, alpha: 1)
+        initialUnitPicker.inputAccessoryView = toolbar
+        showUnitPicker.inputAccessoryView = toolbar
+    }
 
-            initialUnitPicker.inputAccessoryView = toolbar
-            showUnitPicker.inputAccessoryView = toolbar
+    @objc func donePressed() {
+        view.endEditing(true)
+    }
+
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return unitArray.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return unitArray[row]
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == showUnitPickerView {
+            showUnitPicker.text = unitArray[row]
+        } else {
+            initialUnitPicker.text =  unitArray[row]
         }
 
-        @objc func donePressed() {
-
-            view.endEditing(true)
-        }
-
-
-        func numberOfComponents(in pickerView: UIPickerView) -> Int {
-
-            return 1
-        }
-
-        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-
-            return unitArray.count
-
-        }
-
-        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-
-            return unitArray[row]
-
-        }
-
-        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
-            if pickerView == showUnitPickerView {
-                showUnitPicker.text = unitArray[row]
-            } else {
-                initialUnitPicker.text =  unitArray[row]
-            }
-
-
-    //        showUnitPicker.text = unitArray[row]
-    //        initialUnitPicker.text =  unitArray[row]
-            
-        }
+//        showUnitPicker.text = unitArray[row]
+//        initialUnitPicker.text =  unitArray[row]
+    }
     
 }

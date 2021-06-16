@@ -25,14 +25,14 @@ class OnBoardingViewController: UIViewController, UICollectionViewDelegate, UICo
             pageControl.currentPage = currentPage
             if currentPage == slide.count - 1 {
                 getStarted.setTitle("Get Started", for: .normal)
-                getStarted.setTitleColor(BakernateColor().white, for: .normal)
+                getStarted.setTitleColor(BakernateColor.white, for: .normal)
                 getStarted.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-                getStarted.backgroundColor = BakernateColor().green100
+                getStarted.backgroundColor = BakernateColor.green100
             } else {
                 getStarted.setTitle("Next", for: .normal)
-                getStarted.setTitleColor(BakernateColor().white, for: .normal)
+                getStarted.setTitleColor(BakernateColor.white, for: .normal)
                 getStarted.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-                getStarted.backgroundColor = BakernateColor().green100
+                getStarted.backgroundColor = BakernateColor.green100
             }
         }
     }
