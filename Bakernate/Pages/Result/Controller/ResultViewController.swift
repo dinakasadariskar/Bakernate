@@ -132,6 +132,12 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+//        view.addGestureRecognizer(tap)
+    }
+    
     // MARK:- CoreData
     
     func retrieveDataTitle(name: String) {
@@ -248,7 +254,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let manageContext = appDelegate.persistentContainer.viewContext
 
-        // 3. Prepare fetch dari entity coredata nya
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
         fetchRequest.predicate = NSPredicate(format: "name = %@", name)
         
@@ -257,6 +262,81 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             
             let objectToUpdate = object[0] as! NSManagedObject
             objectToUpdate.setValue(ingredientTitle[0].isFavorited, forKey: "isFavorited")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateAmountCoreData(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientTitle[0].ingredientAmount, forKey: "amount")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateInitialUnit(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientTitle[0].initialUnit, forKey: "initialUnit")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateSubstituteUnit(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientTitle[0].substituteUnit, forKey: "substituteUnit")
             
             do {
                 try manageContext.save()
@@ -305,6 +385,16 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
 //            print(favorite)
 //        }
         
+    }
+    
+    @objc func dismissKeyboard() {
+        initialAmount = editInitialAmountTextField.text!
+        ingredientTitle[selectedIndex].ingredientAmount = initialAmount
+        updateAmountCoreData(name: titleIngredient)
+        
+        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+        resultCardsCollectionView.reloadData()
+//        view.endEditing(true)
     }
     
     // MARK:- Collection View
@@ -378,6 +468,11 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
 
     @objc func donePressed() {
+        ingredientTitle[selectedIndex].substituteUnit = showUnit
+        ingredientTitle[selectedIndex].initialUnit = initialUnit
+        
+        updateInitialUnit(name: titleIngredient)
+        updateSubstituteUnit(name: titleIngredient)
         
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
         resultCardsCollectionView.reloadData()
@@ -407,9 +502,11 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         if pickerView == showUnitPickerView {
             showUnitPicker.text = unitArray[row]
             showUnit = unitArray[row]
+            
         } else {
             initialUnitPicker.text =  unitArray[row]
             initialUnit = unitArray[row]
+            
         }
         
         
