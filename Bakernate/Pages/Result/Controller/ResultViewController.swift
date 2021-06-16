@@ -69,7 +69,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         picker()
         createToolbar()
         
-        self.hideKeyboardWhenTappedAround()
+//        self.hideKeyboardWhenTappedAround()
         editInitialAmountTextField.keyboardType = .decimalPad
         
         editInitialAmountTextField.text = initialAmount
@@ -80,7 +80,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         showUnit = unitArray[unitRow]
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
 
-        navBar.setBackgroundImage(UIImage(), for: .default)
+//        navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         navBar.isTranslucent = true
         
@@ -268,11 +268,11 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         showCardAmount = result
     }
     
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-//        view.addGestureRecognizer(tap)
-    }
+//    func hideKeyboardWhenTappedAround() {
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        tap.cancelsTouchesInView = false
+////        view.addGestureRecognizer(tap)
+//    }
     
     // MARK:- CoreData
     
@@ -523,15 +523,15 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
-    @objc func dismissKeyboard() {
-        initialAmount = editInitialAmountTextField.text!
-        ingredientTitle[selectedIndex].ingredientAmount = initialAmount
-        updateAmountCoreData(name: titleIngredient)
-        
-        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
-        resultCardsCollectionView.reloadData()
+//    @objc func dismissKeyboard() {
+//        initialAmount = editInitialAmountTextField.text!
+//        ingredientTitle[selectedIndex].ingredientAmount = initialAmount
+//        updateAmountCoreData(name: titleIngredient)
+//
+//        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+//        resultCardsCollectionView.reloadData()
 //        view.endEditing(true)
-    }
+//    }
     
     // MARK:- Collection View
     
@@ -603,6 +603,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
 
         initialUnitPicker.inputAccessoryView = toolbar
         showUnitPicker.inputAccessoryView = toolbar
+        editInitialAmountTextField.inputAccessoryView = toolbar
     }
 
     @objc func donePressed() {
@@ -611,6 +612,10 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         updateInitialUnit(name: titleIngredient)
         updateSubstituteUnit(name: titleIngredient)
+        
+        initialAmount = editInitialAmountTextField.text!
+        ingredientTitle[selectedIndex].ingredientAmount = initialAmount
+        updateAmountCoreData(name: titleIngredient)
         
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
         resultCardsCollectionView.reloadData()
