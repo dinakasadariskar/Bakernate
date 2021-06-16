@@ -6,20 +6,29 @@
 //
 
 import UIKit
+import CoreData
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 
+    // MARK:- IBOutlets
     @IBOutlet weak var favoriteTableView: UITableView!
     @IBOutlet var emptyView: UIView!
     
-    //dummy
-    var ingredientNames = ["Buttermilk", "Corn Syrup", "Egg", "Honey", "Maple Syrup", "Molasses"]
-//    var ingredientNames = [String]()
-    var amount = ["100 grams", "1 cup","100 grams", "1 cup","100 grams", "1 cup"]
     
+//    //dummy
+//    var ingredientNames = ["Buttermilk", "Corn Syrup", "Egg", "Honey", "Maple Syrup", "Molasses"]
+////    var ingredientNames = [String]()
+//    var amount = ["100 grams", "1 cup","100 grams", "1 cup","100 grams", "1 cup"]
+    
+    // MARK:- let & var
+    var ingredientCollection:[Ingredients] = []
+    
+    // MARK:- functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        retrieveData()
         
         favoriteTableView.dataSource = self
         favoriteTableView.delegate = self
@@ -37,19 +46,21 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if ingredientNames.isEmpty {
+        if ingredientCollection.isEmpty {
             print("empty")
             favoriteTableView.backgroundView = emptyView
         }
         
-        return ingredientNames.count
+        return ingredientCollection.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as? FavoriteTableViewCell
         
-        cell?.commonInit(ingredientNames[indexPath.row], amount[indexPath.row])
+        let line = ingredientCollection[indexPath.row]
+        
+        cell?.commonInit(line: line)
         cell?.selectionStyle = .none
         
         
@@ -57,14 +68,21 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
         
         if let cell = tableView.cellForRow(at: indexPath) as? FavoriteTableViewCell {
-            cell.favoriteCellView.backgroundColor = .systemGray5
+//            cell.favoriteCellView.backgroundColor = .systemGray5
+            let storyboard = UIStoryboard(name: "Result", bundle: nil)
+            
+            let vc = storyboard.instantiateViewController(withIdentifier: "resultViewController") as! ResultViewController
+            
+            
+            vc.titleIngredient = cell.ingredientLabel.text!
+            vc.initialAmount = cell.amountLabel.text!
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
-//        favoriteTableView.reloadRows(at: [indexPath], with: .automatic)
-        print(ingredientNames[indexPath.row])
+        print(ingredientCollection[indexPath.row])
         
     }
     
@@ -73,6 +91,28 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.favoriteCellView.backgroundColor = .white
         }
     }
+    
+    
+    // MARK:- core data
+    func retrieveData() {
+        ingredientCollection.removeAll()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let manageContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Ingredient")
+        fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "name", ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "isFavorited = true")
+        do {
+            let result = try manageContext.fetch(fetchRequest)
+            for data in result as! [NSManagedObject] {
+                ingredientCollection.append(Ingredients(ingredientId: data.value(forKey: "id") as? [String] , ingredientName: data.value(forKey: "name") as? String , ingredientDesc: data.value(forKey: "descriptions") as? String , ingredientImage: data.value(forKey: "image") as? String , isDairy: data.value(forKey: "isDairy") as? Bool, isEggs: data.value(forKey: "isEggs") as? Bool, isGluten: data.value(forKey: "isGluten") as? Bool, isPeanut: data.value(forKey: "isPeanut") as? Bool, isSoy: data.value(forKey: "isSoy") as? Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as? Bool, isVegan: data.value(forKey: "isVegan") as? Bool, isFavorited: data.value(forKey: "isFavorited") as? Bool, ingredientAmount: data.value(forKey: "amount") as? String, initialUnit: data.value(forKey: "initialUnit") as? String, substituteUnit: data.value(forKey: "substituteUnit") as? String
+                ))
+            }
+        } catch let error as NSError {
+            print("Error due to : \(error.localizedDescription)")
+        }
+    }
+    
     
 
 }

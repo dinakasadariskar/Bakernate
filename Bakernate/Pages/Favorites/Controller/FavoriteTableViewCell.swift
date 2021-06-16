@@ -29,9 +29,9 @@ class FavoriteTableViewCell: UITableViewCell {
 
     }
     
-    func commonInit(_ ingredientName:String, _ amount:String) {
-        ingredientLabel.text = ingredientName
-        amountLabel.text = amount
+    func commonInit(line: Ingredients) {
+        ingredientLabel.text = line.ingredientName
+        amountLabel.text = line.ingredientAmount
     }
     
     

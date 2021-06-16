@@ -16,6 +16,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        var ingredientCollection = [Ingredient]()
+        
+        do {
+            ingredientCollection = try context.fetch(Ingredient.fetchRequest())
+        } catch {
+            
+        }
+        
+        if ingredientCollection.count == 0 {
+            let substitutionController = SubstitutionViewController()
+            
+            substitutionController.createData()
+        }
         // Unwrap scene, so that usable to generate window
         guard let windowScene = scene as? UIWindowScene else { return }
         // Instantiate window with scene
