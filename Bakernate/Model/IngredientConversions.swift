@@ -64,7 +64,9 @@ struct IngredientConversions {
                 output = value * 0.25
             }
         case .buttermilk:
-            if to == .yogurt || to == .sourcream {
+            if to == .yogurt || to == .sourcream || to == .coconutmilk {
+                output = value * 1
+            } else {
                 output = value * 1
             }
         case .honey:
