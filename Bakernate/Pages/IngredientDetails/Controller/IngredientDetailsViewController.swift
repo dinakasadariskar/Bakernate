@@ -12,6 +12,25 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var imagesPageControl: UIPageControl!
     @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var isVeganImage: UIImageView!
+    @IBOutlet weak var isEggImage: UIImageView!
+    @IBOutlet weak var isSoyImage: UIImageView!
+    @IBOutlet weak var isTreeNutsImage: UIImageView!
+    @IBOutlet weak var isPeanutImage: UIImageView!
+    @IBOutlet weak var isGlutenImage: UIImageView!
+    @IBOutlet weak var isDairyImage: UIImageView!
+    @IBOutlet weak var productDescription: UILabel!
+    
+    var selectedProductName: String = ""
+    var selectedProductIsVegan: Bool = false
+    var selectedProductIsEgg: Bool = false
+    var selectedProductIsSoy: Bool = false
+    var selectedProductIsTreeNuts: Bool = false
+    var selectedProductIsPeanut: Bool = false
+    var selectedProductIsGluten: Bool = false
+    var selectedProductIsDairy: Bool = false
+    var selectedProductDescriptions: String = ""
     
     var imagesArr = ["Agar-Agar 1", "Agar-Agar 2", "Agar-Agar 3"]
     var currentPage = 0 {
@@ -26,11 +45,63 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
         imagesCollectionView.delegate = self
         imagesCollectionView.dataSource = self
         
+        prepareUI()
+    }
+    
+    func prepareUI() {
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         navBar.isTranslucent = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
         self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
+        
+        productName.text = selectedProductName
+        setupChip()
+        productDescription.text = selectedProductDescriptions
+    }
+    
+    func setupChip() {
+        if selectedProductIsVegan {
+            isVeganImage.image = UIImage(named: "Enabled Vegan")
+        } else {
+            isVeganImage.image = UIImage(named: "Disabled Vegan")
+        }
+        
+        if selectedProductIsEgg {
+            isEggImage.image = UIImage(named: "Enabled Egg")
+        } else {
+            isEggImage.image = UIImage(named: "Disabled Egg")
+        }
+        
+        if selectedProductIsSoy {
+            isSoyImage.image = UIImage(named: "Enabled Soy")
+        } else {
+            isSoyImage.image = UIImage(named: "Disabled Soy")
+        }
+        
+        if selectedProductIsTreeNuts {
+            isTreeNutsImage.image = UIImage(named: "Enabled Tree Nuts")
+        } else {
+            isTreeNutsImage.image = UIImage(named: "Disabled Tree Nuts")
+        }
+        
+        if selectedProductIsPeanut {
+            isPeanutImage.image = UIImage(named: "Enabled Peanut")
+        } else {
+            isPeanutImage.image = UIImage(named: "Disabled Peanut")
+        }
+        
+        if selectedProductIsGluten {
+            isGlutenImage.image = UIImage(named: "Enabled Gluten")
+        } else {
+            isGlutenImage.image = UIImage(named: "Disabled Gluten")
+        }
+        
+        if selectedProductIsDairy {
+            isDairyImage.image = UIImage(named: "Enabled Dairy")
+        } else {
+            isDairyImage.image = UIImage(named: "Disabled Dairy")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

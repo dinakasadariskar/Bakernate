@@ -39,6 +39,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     var showUnit = ""
     var showAmount = 0.0
     
+    var selectedDetails = 0
     var selectedIndex = 0
     var unitRow = 0
     var type:[String] = []
@@ -56,7 +57,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         retrieveData()
         retrieveDataTitle(name: titleIngredient)
         
-        print(ingredientTitle)
+//        print(ingredientTitle)
         
         if ingredientTitle[selectedIndex].isFavorited! {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(handleFavoriteButton))
@@ -126,7 +127,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             let amount = Conversions(unit: unit!, value: value)
             let result = amount.convert(unit: show!)
             //            let roundedResult = Double(round(10000 * result) / 10000)
-            print("RESULT: \(result)")
+//            print("RESULT: \(result)")
             showAmount = result
         }
         
@@ -170,7 +171,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             result = try manageContext.fetch(Ingredient.fetchRequest())
             var isNameDouble: Bool = false
             for ingr in result {
-                print("\(ingr.name) \(ingr.id)")
+//                print("\(ingr.name) \(ingr.id)")
                 for id in ingr.id! {
                     for tipe in type {
                         if id == tipe {
@@ -287,12 +288,12 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
             ingredientTitle[selectedIndex].isFavorited = false
             updateFavoriteCoreData(name: titleIngredient)
-            print(ingredientTitle[selectedIndex])
+//            print(ingredientTitle[selectedIndex])
         } else {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
             ingredientTitle[selectedIndex].isFavorited = true
             updateFavoriteCoreData(name: titleIngredient)
-            print(ingredientTitle[selectedIndex])
+//            print(ingredientTitle[selectedIndex])
         }
         
 //        if favorite {
@@ -310,9 +311,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     // MARK:- Collection View
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        print(ingredientCollection.count)
-        
         return ingredientCollection.count
     }
     
@@ -329,19 +327,30 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ResultCardsCollectionViewCell {
             cell.resultCardView.backgroundColor = .systemGray5
-            let storyboard = UIStoryboard(name: "IngredientDetails", bundle: nil)
-            
-            let vc = storyboard.instantiateViewController(withIdentifier: "ingredientDetails") as! IngredientDetailsViewController
-            self.navigationController?.pushViewController(vc, animated: true)
             cell.resultCardView.backgroundColor = .white
+            selectedDetails = indexPath.item
+            navigateToIngredientDetail()
         }
-        
-        print(ingredientCollection[indexPath.item])
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as? ResultCardsCollectionViewCell
         cell?.resultCardView.backgroundColor = .white
+    }
+    
+    func navigateToIngredientDetail() {
+        let ingredientDetails = ingredientCollection[selectedDetails]
+        let detailsVC: UIStoryboard = UIStoryboard(name: "IngredientDetails", bundle: nil)
+        let details = detailsVC.instantiateViewController(identifier: "ingredientDetails") as? IngredientDetailsViewController
+        details?.selectedProductName = ingredientDetails.ingredientName ?? ""
+        details?.selectedProductIsEgg = ingredientDetails.isEggs ?? false
+        details?.selectedProductIsSoy = ingredientDetails.isSoy ?? false
+        details?.selectedProductIsTreeNuts = ingredientDetails.isTreeNuts ?? false
+        details?.selectedProductIsPeanut = ingredientDetails.isPeanut ?? false
+        details?.selectedProductIsGluten = ingredientDetails.isGluten ?? false
+        details?.selectedProductIsDairy = ingredientDetails.isDairy ?? false
+        details?.selectedProductDescriptions = ingredientDetails.ingredientDesc ?? ""
+        self.navigationController?.pushViewController(details!, animated: true)
     }
     
     // MARK:- Picker

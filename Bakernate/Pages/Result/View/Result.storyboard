@@ -239,6 +239,16 @@
             </objects>
             <point key="canvasLocation" x="2749.2307692307691" y="68.957345971563981"/>
         </scene>
+        <!--IngredientDetails-->
+        <scene sceneID="yt9-xO-cuz">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ingredientDetails" storyboardName="IngredientDetails" id="4Bl-r3-L1A" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="EgQ-0y-jn6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d3q-jx-q8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3536" y="69"/>
+        </scene>
         <!--Result-->
         <scene sceneID="cEz-CU-9zN">
             <objects>
