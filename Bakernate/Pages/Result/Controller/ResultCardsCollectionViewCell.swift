@@ -35,9 +35,9 @@ class ResultCardsCollectionViewCell: UICollectionViewCell {
         resultAmountLabel.text = "\(amount) \(unit)"
         
         if card.isVegan! {
-            isVeganImage.image = UIImage(named: "Enabled")
+            isVeganImage.image = UIImage(named: "Enabled Vegan")
         } else {
-            isVeganImage.image = UIImage(named: "Disabled")
+            isVeganImage.image = UIImage(named: "Disabled Vegan")
         }
         
         if card.isEggs! {
@@ -47,36 +47,34 @@ class ResultCardsCollectionViewCell: UICollectionViewCell {
         }
         
         if card.isSoy! {
-            isSoyImage.image = UIImage(named: "Chip Enable Soy")
+            isSoyImage.image = UIImage(named: "Enabled Soy")
         } else {
-            isSoyImage.image = UIImage(named: "Chip Disabled Soy")
+            isSoyImage.image = UIImage(named: "Disabled Soy")
         }
         
         if card.isTreeNuts! {
-            isTreeNutsImage.image = UIImage(named: "Chip Enable Tree Nuts")
+            isTreeNutsImage.image = UIImage(named: "Enabled Tree Nuts")
         } else {
-            isTreeNutsImage.image = UIImage(named: "Chip Disabled Tree Nuts")
+            isTreeNutsImage.image = UIImage(named: "Disabled Tree Nuts")
         }
         
         if card.isPeanut! {
-            isPeanutImage.image = UIImage(named: "Chip Enable Peanut")
+            isPeanutImage.image = UIImage(named: "Enabled Peanut")
         } else {
-            isPeanutImage.image = UIImage(named: "Chip Disabled Peanut")
+            isPeanutImage.image = UIImage(named: "Disabled Peanut")
         }
         
         if card.isGluten! {
-            isGlutenImage.image = UIImage(named: "Chip Enable Gluten")
+            isGlutenImage.image = UIImage(named: "Enabled Gluten")
         } else {
-            isGlutenImage.image = UIImage(named: "Chip Disabled Gluten")
+            isGlutenImage.image = UIImage(named: "Disabled Gluten")
         }
         
         if card.isDairy! {
-            isDairyImage.image = UIImage(named: "Chip Enable Dairy")
+            isDairyImage.image = UIImage(named: "Enabled Dairy")
         } else {
-            isDairyImage.image = UIImage(named: "Chip Disabled Dairy")
+            isDairyImage.image = UIImage(named: "Disabled Dairy")
         }
-        
-        
         
         resultCardView.backgroundColor = .white
         resultCardView.layer.cornerRadius = 20
