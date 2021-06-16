@@ -38,6 +38,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     var initialUnit = ""
     var showUnit = ""
     var showAmount = 0.0
+    var showCardAmount = 0.0
     
     var selectedDetails = 0
     var selectedIndex = 0
@@ -69,7 +70,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         picker()
         createToolbar()
         
-        self.hideKeyboardWhenTappedAround()
+//        self.hideKeyboardWhenTappedAround()
         editInitialAmountTextField.keyboardType = .decimalPad
         
         editInitialAmountTextField.text = initialAmount
@@ -80,7 +81,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         showUnit = unitArray[unitRow]
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
 
-        navBar.setBackgroundImage(UIImage(), for: .default)
+//        navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         navBar.isTranslucent = true
         
@@ -132,6 +133,147 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         
     }
+    
+    func ingredientConversions(initialIngredient: String, showIngredientSubstitution: String) {
+        var ingredientName: IngredientName?
+        if initialIngredient == "Baking Soda" {
+            ingredientName = IngredientName.bakingsoda
+        } else if initialIngredient == "Baking Powder" {
+            ingredientName = IngredientName.bakingpowder
+        } else if initialIngredient == "Buttermilk" {
+            ingredientName = IngredientName.buttermilk
+        } else if initialIngredient == "Honey" {
+            ingredientName = IngredientName.honey
+        } else if initialIngredient == "Molasses" {
+            ingredientName = IngredientName.molasses
+        } else if initialIngredient == "Maple Syrup" {
+            ingredientName = IngredientName.maplesyrup
+        } else if initialIngredient == "Lemon Juice" {
+            ingredientName = IngredientName.lemonjuice
+        } else if initialIngredient == "Lime Juice" {
+            ingredientName = IngredientName.limejuice
+        } else if initialIngredient == "Vinegar" {
+            ingredientName = IngredientName.vinegar
+        } else if initialIngredient == "White Wine" {
+            ingredientName = IngredientName.whitewine
+        } else if initialIngredient == "Sour Cream" {
+            ingredientName = IngredientName.sourcream
+        } else if initialIngredient == "Mayonnaise" {
+            ingredientName = IngredientName.mayonnaise
+        } else if initialIngredient == "Coconut Milk" {
+            ingredientName = IngredientName.coconutmilk
+        } else if initialIngredient == "Yogurt" {
+            ingredientName = IngredientName.yogurt
+        } else if initialIngredient == "Egg" {
+            ingredientName = IngredientName.egg
+        } else if initialIngredient == "Mashed Banana" {
+            ingredientName = IngredientName.mashedbanana
+        } else if initialIngredient == "Chia Seed" {
+            ingredientName = IngredientName.chiaseed
+        } else if initialIngredient == "Agar-agar" {
+            ingredientName = IngredientName.agaragar
+        } else if initialIngredient == "Unsalted Butter" {
+            ingredientName = IngredientName.unsaltedbutter
+        } else if initialIngredient == "Vegetable Oil" {
+            ingredientName = IngredientName.vegetableoil
+        } else if initialIngredient == "Heavy Cream" {
+            ingredientName = IngredientName.heavycream
+        } else if initialIngredient == "Coconut Cream" {
+            ingredientName = IngredientName.coconutcream
+        } else if initialIngredient == "Cream Cheese" {
+            ingredientName = IngredientName.creamcheese
+        } else if initialIngredient == "Mascarpone" {
+            ingredientName = IngredientName.mascarpone
+        } else if initialIngredient == "Brown Sugar" {
+            ingredientName = IngredientName.brownsugar
+        } else if initialIngredient == "Coconut Sugar" {
+            ingredientName = IngredientName.coconutsugar
+        } else if initialIngredient == "White Sugar" {
+            ingredientName = IngredientName.whitesugar
+        } else if initialIngredient == "Cornstarch" {
+            ingredientName = IngredientName.cornstarch
+        } else if initialIngredient == "All Purpose Flour" {
+            ingredientName = IngredientName.allpurposeflour
+        } else if initialIngredient == "Tapioca" {
+            ingredientName = IngredientName.tapioca
+        }
+        
+        var ingredientShowName: IngredientName?
+        if showIngredientSubstitution == "Baking Soda" {
+            ingredientShowName = IngredientName.bakingsoda
+        } else if showIngredientSubstitution == "Baking Powder" {
+            ingredientShowName = IngredientName.bakingpowder
+        } else if showIngredientSubstitution == "Buttermilk" {
+            ingredientShowName = IngredientName.buttermilk
+        } else if showIngredientSubstitution == "Honey" {
+            ingredientShowName = IngredientName.honey
+        } else if showIngredientSubstitution == "Molasses" {
+            ingredientShowName = IngredientName.molasses
+        } else if showIngredientSubstitution == "Maple Syrup" {
+            ingredientShowName = IngredientName.maplesyrup
+        } else if showIngredientSubstitution == "Lemon Juice" {
+            ingredientShowName = IngredientName.lemonjuice
+        } else if showIngredientSubstitution == "Lime Juice" {
+            ingredientShowName = IngredientName.limejuice
+        } else if showIngredientSubstitution == "Vinegar" {
+            ingredientShowName = IngredientName.vinegar
+        } else if showIngredientSubstitution == "White Wine" {
+            ingredientShowName = IngredientName.whitewine
+        } else if showIngredientSubstitution == "Sour Cream" {
+            ingredientShowName = IngredientName.sourcream
+        } else if showIngredientSubstitution == "Mayonnaise" {
+            ingredientShowName = IngredientName.mayonnaise
+        } else if showIngredientSubstitution == "Coconut Milk" {
+            ingredientShowName = IngredientName.coconutmilk
+        } else if showIngredientSubstitution == "Yogurt" {
+            ingredientShowName = IngredientName.yogurt
+        } else if showIngredientSubstitution == "Egg" {
+            ingredientShowName = IngredientName.egg
+        } else if showIngredientSubstitution == "Mashed Banana" {
+            ingredientShowName = IngredientName.mashedbanana
+        } else if showIngredientSubstitution == "Chia Seed" {
+            ingredientShowName = IngredientName.chiaseed
+        } else if showIngredientSubstitution == "Agar-agar" {
+            ingredientShowName = IngredientName.agaragar
+        } else if showIngredientSubstitution == "Unsalted Butter" {
+            ingredientShowName = IngredientName.unsaltedbutter
+        } else if showIngredientSubstitution == "Vegetable Oil" {
+            ingredientShowName = IngredientName.vegetableoil
+        } else if showIngredientSubstitution == "Heavy Cream" {
+            ingredientShowName = IngredientName.heavycream
+        } else if showIngredientSubstitution == "Coconut Cream" {
+            ingredientShowName = IngredientName.coconutcream
+        } else if showIngredientSubstitution == "Cream Cheese" {
+            ingredientShowName = IngredientName.creamcheese
+        } else if showIngredientSubstitution == "Mascarpone" {
+            ingredientShowName = IngredientName.mascarpone
+        } else if showIngredientSubstitution == "Brown Sugar" {
+            ingredientShowName = IngredientName.brownsugar
+        } else if showIngredientSubstitution == "Coconut Sugar" {
+            ingredientShowName = IngredientName.coconutsugar
+        } else if showIngredientSubstitution == "White Sugar" {
+            ingredientShowName = IngredientName.whitesugar
+        } else if showIngredientSubstitution == "Cornstarch" {
+            ingredientShowName = IngredientName.cornstarch
+        } else if showIngredientSubstitution == "All Purpose Flour" {
+            ingredientShowName = IngredientName.allpurposeflour
+        } else if showIngredientSubstitution == "Tapioca" {
+            ingredientShowName = IngredientName.tapioca
+        }
+        
+        
+            let amount = IngredientConversions(initialIngredientName: ingredientName!, value: showAmount)
+            let result = amount.convert(initialIngredientName: ingredientShowName!)
+            //            let roundedResult = Double(round(10000 * result) / 10000)
+            print("RESULT: \(result)")
+        showCardAmount = result
+    }
+    
+//    func hideKeyboardWhenTappedAround() {
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        tap.cancelsTouchesInView = false
+////        view.addGestureRecognizer(tap)
+//    }
     
     // MARK:- CoreData
     
@@ -249,7 +391,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let manageContext = appDelegate.persistentContainer.viewContext
 
-        // 3. Prepare fetch dari entity coredata nya
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
         fetchRequest.predicate = NSPredicate(format: "name = %@", name)
         
@@ -258,6 +399,81 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             
             let objectToUpdate = object[0] as! NSManagedObject
             objectToUpdate.setValue(ingredientTitle[0].isFavorited, forKey: "isFavorited")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateAmountCoreData(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientTitle[0].ingredientAmount, forKey: "amount")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateInitialUnit(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientTitle[0].initialUnit, forKey: "initialUnit")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateSubstituteUnit(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientTitle[0].substituteUnit, forKey: "substituteUnit")
             
             do {
                 try manageContext.save()
@@ -308,6 +524,16 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
+//    @objc func dismissKeyboard() {
+//        initialAmount = editInitialAmountTextField.text!
+//        ingredientTitle[selectedIndex].ingredientAmount = initialAmount
+//        updateAmountCoreData(name: titleIngredient)
+//
+//        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+//        resultCardsCollectionView.reloadData()
+//        view.endEditing(true)
+//    }
+    
     // MARK:- Collection View
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -319,7 +545,9 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let card = ingredientCollection[indexPath.item]
         
-        cell.set(card: card, amount: String(format: "%.1f", showAmount), unit: showUnit)
+        ingredientConversions(initialIngredient: ingredientTitle[selectedIndex].ingredientName!, showIngredientSubstitution: ingredientCollection[indexPath.item].ingredientName!)
+        
+        cell.set(card: card, amount: String(format: "%.1f", showCardAmount), unit: showUnit)
         
         return cell
     }
@@ -384,9 +612,19 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
 
         initialUnitPicker.inputAccessoryView = toolbar
         showUnitPicker.inputAccessoryView = toolbar
+        editInitialAmountTextField.inputAccessoryView = toolbar
     }
 
     @objc func donePressed() {
+        ingredientTitle[selectedIndex].substituteUnit = showUnit
+        ingredientTitle[selectedIndex].initialUnit = initialUnit
+        
+        updateInitialUnit(name: titleIngredient)
+        updateSubstituteUnit(name: titleIngredient)
+        
+        initialAmount = editInitialAmountTextField.text!
+        ingredientTitle[selectedIndex].ingredientAmount = initialAmount
+        updateAmountCoreData(name: titleIngredient)
         
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
         resultCardsCollectionView.reloadData()
@@ -416,9 +654,11 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         if pickerView == showUnitPickerView {
             showUnitPicker.text = unitArray[row]
             showUnit = unitArray[row]
+            
         } else {
             initialUnitPicker.text =  unitArray[row]
             initialUnit = unitArray[row]
+            
         }
         
         
