@@ -21,6 +21,10 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     var amount = ""
     var substituteIngredientName = ""
     var unitRow = 0
+    var ingredientRow = 0
+    var selectedUnit = ""
+    
+    var indexOf = 0
     var type:[String] = []
     
     var selectedIndex = 0
@@ -46,7 +50,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     var ingredientInitialUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientSubstituteUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientImageArray = ["Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test"]
-    var unitArray = ["Cup", "Gram", "Kilogram", "Liter", "Mililiter", "Oz", "Tablespoon", "Teaspoon"]
+    var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
     
     // MARK:- Function
     override func viewDidLoad() {

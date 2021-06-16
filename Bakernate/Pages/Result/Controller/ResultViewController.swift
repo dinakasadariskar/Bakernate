@@ -36,6 +36,8 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     var titleIngredient = ""
     var initialAmount = ""
     var initialUnit = ""
+    var showUnit = ""
+    var showAmount = 0.0
     
     var selectedIndex = 0
     var unitRow = 0
@@ -44,7 +46,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     var editUnitPickerView = UIPickerView()
     let showUnitPickerView = UIPickerView()
     
-    var unitArray = ["Cup", "Gram", "Kilogram", "Liter", "Mililiter", "Oz", "Tablespoon", "Teaspoon"]
+    var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
         
     // MARK:- function
     override func viewDidLoad() {
@@ -71,8 +73,11 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         editInitialAmountTextField.text = initialAmount
         ingredientNameLabel.text = titleIngredient
-        initialUnitPicker.text = initialUnit
-        showUnitPicker.text = initialUnit
+        initialUnitPicker.text = unitArray[unitRow]
+        showUnitPicker.text = unitArray[unitRow]
+        initialUnit = unitArray[unitRow]
+        showUnit = unitArray[unitRow]
+        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
 
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
@@ -87,6 +92,43 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         resultCardsCollectionView?.dataSource = self
         resultCardsCollectionView?.delegate = self
         resultCardsCollectionView?.showsHorizontalScrollIndicator = false
+        
+    }
+    
+    func convertAmount(initialUnit: String, showUnit: String) {
+        var unit: Unit?
+        if initialUnit == "Cups" {
+            unit = Unit.cups
+        } else if initialUnit == "Tablespoon" {
+            unit = Unit.tablespoon
+        } else if initialUnit == "Teaspoon" {
+            unit = Unit.teaspoon
+        } else if initialUnit == "Ounce" {
+            unit = Unit.ounce
+        } else if initialUnit == "Gram" {
+            unit = Unit.gram
+        }
+        
+        var show: Unit?
+        if showUnit == "Cups" {
+            show = Unit.cups
+        } else if showUnit == "Tablespoon" {
+            show = Unit.tablespoon
+        } else if showUnit == "Teaspoon" {
+            show = Unit.teaspoon
+        } else if showUnit == "Ounce" {
+            show = Unit.ounce
+        } else if showUnit == "Gram" {
+            show = Unit.gram
+        }
+        
+        if let value = Double(initialAmount as String) {
+            let amount = Conversions(unit: unit!, value: value)
+            let result = amount.convert(unit: show!)
+            //            let roundedResult = Double(round(10000 * result) / 10000)
+            print("RESULT: \(result)")
+            showAmount = result
+        }
         
     }
     
@@ -279,7 +321,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let card = ingredientCollection[indexPath.item]
         
-        cell.set(card: card)
+        cell.set(card: card, amount: String(format: "%.1f", showAmount), unit: showUnit)
         
         return cell
     }
@@ -337,6 +379,8 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     @objc func donePressed() {
         
+        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+        resultCardsCollectionView.reloadData()
         view.endEditing(true)
     }
 
@@ -362,8 +406,10 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if pickerView == showUnitPickerView {
             showUnitPicker.text = unitArray[row]
+            showUnit = unitArray[row]
         } else {
             initialUnitPicker.text =  unitArray[row]
+            initialUnit = unitArray[row]
         }
         
         

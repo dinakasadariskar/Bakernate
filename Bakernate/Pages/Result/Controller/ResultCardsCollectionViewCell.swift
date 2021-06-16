@@ -28,11 +28,11 @@ class ResultCardsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func set(card: Ingredients) {
+    func set(card: Ingredients, amount: String, unit: String) {
         
         resultImage.image = UIImage(named: card.ingredientImage!)
         resultNameLabel.text = card.ingredientName
-        resultAmountLabel.text = card.ingredientAmount
+        resultAmountLabel.text = "\(amount) \(unit)"
         
         if card.isVegan! {
             isVeganImage.image = UIImage(named: "Enabled")
