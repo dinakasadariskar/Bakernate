@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B510BC232679F66600D5CAAB /* Conversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B510BC222679F66600D5CAAB /* Conversions.swift */; };
 		B51A670F266E61D1008E42E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A670E266E61D1008E42E0 /* AppDelegate.swift */; };
 		B51A6711266E61D1008E42E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A6710266E61D1008E42E0 /* SceneDelegate.swift */; };
 		B51A6716266E61D1008E42E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51A6714266E61D1008E42E0 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B510BC222679F66600D5CAAB /* Conversions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversions.swift; sourceTree = "<group>"; };
 		B51A670B266E61D1008E42E0 /* Bakernate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bakernate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B51A670E266E61D1008E42E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B51A6710266E61D1008E42E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				B51A6717266E61D1008E42E0 /* Bakernate.xcdatamodeld */,
+				B510BC222679F66600D5CAAB /* Conversions.swift */,
 				B55F8B912675E63D00074452 /* Ingredients.swift */,
 			);
 			path = Model;
@@ -385,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B510BC232679F66600D5CAAB /* Conversions.swift in Sources */,
 				B55F8B922675E63D00074452 /* Ingredients.swift in Sources */,
 				B5EE748D267204DC0010A680 /* InformationView.swift in Sources */,
 				B55F8B902675197A00074452 /* BakernateColor.swift in Sources */,
