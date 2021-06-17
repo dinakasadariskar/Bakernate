@@ -8,12 +8,6 @@
 import UIKit
 import CoreData
 
-struct resultIngredient {
-    var resultName:String
-    var resultAmount:String
-    var resultImage:UIImage?
-}
-
 class ResultViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK:- IBOutlet
@@ -25,7 +19,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var ingredientNameLabel: UILabel!
     
     @IBOutlet weak var resultCardsCollectionView: UICollectionView!
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     
     // MARK:- let & var
@@ -84,7 +77,45 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         navBar.isTranslucent = true
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(handleFavoriteButton))
+        
+        self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
+        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
+        
+        resultCardsCollectionView?.dataSource = self
+        resultCardsCollectionView?.delegate = self
+        resultCardsCollectionView?.showsHorizontalScrollIndicator = false
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        retrieveData()
+        retrieveDataTitle(name: titleIngredient)
+        
+        if ingredientTitle[selectedIndex].isFavorited! {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(handleFavoriteButton))
+        } else {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(handleFavoriteButton))
+        }
+        
+        picker()
+        createToolbar()
+        
+        self.hideKeyboardWhenTappedAround()
+        editInitialAmountTextField.keyboardType = .decimalPad
+        
+        editInitialAmountTextField.text = initialAmount
+        ingredientNameLabel.text = titleIngredient
+        initialUnitPicker.text = unitArray[unitRow]
+        showUnitPicker.text = unitArray[unitRow]
+        initialUnit = unitArray[unitRow]
+        showUnit = unitArray[unitRow]
+        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
+        navBar.isTranslucent = true
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
         
         self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
@@ -198,48 +229,11 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
                         }
                     }
                 }
-//                for ingrd in ingredientCollection{
-//                    print("\(ingrd.ingredientName)")
-//                }
-                
             }
         } catch {
             
         }
         
-//        for ingr in newIngredientCollection {
-//            for id in ingr.ingredientId! {
-//                for tipe in type {
-//                    if id == tipe {
-//                        ingredientCollection.append(ingr)
-//                    }
-//                }
-//            }
-//        }
-        
-//        for tipe in type {
-//            fetchRequest.predicate = NSPredicate(format: "id LIKE '\(tipe)'")
-//            do {
-//                let result = try manageContext.fetch(fetchRequest)
-//                for data in result as! [NSManagedObject] {
-//                    ingredientCollection.append(Ingredients(ingredientId: data.value(forKey: "id") as? [String] , ingredientName: data.value(forKey: "name") as? String , ingredientDesc: data.value(forKey: "descriptions") as? String , ingredientImage: data.value(forKey: "image") as? String , isDairy: data.value(forKey: "isDairy") as? Bool, isEggs: data.value(forKey: "isEggs") as? Bool, isGluten: data.value(forKey: "isGluten") as? Bool, isPeanut: data.value(forKey: "isPeanut") as? Bool, isSoy: data.value(forKey: "isSoy") as? Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as? Bool, isVegan: data.value(forKey: "isVegan") as? Bool, isFavorited: data.value(forKey: "isFavorited") as? Bool, ingredientAmount: data.value(forKey: "amount") as? String, initialUnit: data.value(forKey: "initialUnit") as? String, substituteUnit: data.value(forKey: "substituteUnit") as? String
-//                    ))
-//                }
-//            } catch let error as NSError {
-//                print("Error due to : \(error.localizedDescription)")
-//            }
-//        }
-        
-//        fetchRequest.predicate = NSPredicate(format: "id LIKE '\(type)'")
-//        do {
-//            let result = try manageContext.fetch(fetchRequest)
-//            for data in result as! [NSManagedObject] {
-//                ingredientCollection.append(Ingredients(ingredientId: data.value(forKey: "id") as? [String] , ingredientName: data.value(forKey: "name") as? String , ingredientDesc: data.value(forKey: "descriptions") as? String , ingredientImage: data.value(forKey: "image") as? String , isDairy: data.value(forKey: "isDairy") as? Bool, isEggs: data.value(forKey: "isEggs") as? Bool, isGluten: data.value(forKey: "isGluten") as? Bool, isPeanut: data.value(forKey: "isPeanut") as? Bool, isSoy: data.value(forKey: "isSoy") as? Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as? Bool, isVegan: data.value(forKey: "isVegan") as? Bool, isFavorited: data.value(forKey: "isFavorited") as? Bool, ingredientAmount: data.value(forKey: "amount") as? String, initialUnit: data.value(forKey: "initialUnit") as? String, substituteUnit: data.value(forKey: "substituteUnit") as? String
-//                ))
-//            }
-//        } catch let error as NSError {
-//            print("Error due to : \(error.localizedDescription)")
-//        }
     }
     
     func updateFavoriteCoreData(name: String) {
@@ -282,28 +276,26 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
 //        print(ingredientCollection)
         
+        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
+        
         
         if ingredientTitle[selectedIndex].isFavorited! {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
             ingredientTitle[selectedIndex].isFavorited = false
             updateFavoriteCoreData(name: titleIngredient)
-            print(ingredientTitle[selectedIndex])
+            
+//            vc.unitRow = self.unitRow
+//            vc.initialUnit = self.initialUnit
+//            vc.showAmount = self.showAmount
+//            vc.showUnit = self.showUnit
         } else {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
             ingredientTitle[selectedIndex].isFavorited = true
             updateFavoriteCoreData(name: titleIngredient)
-            print(ingredientTitle[selectedIndex])
+//            print(ingredientTitle[selectedIndex])
         }
         
-//        if favorite {
-//            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
-//            favorite = false
-//            print(favorite)
-//        } else {
-//            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
-//            favorite = true
-//            print(favorite)
-//        }
         
     }
     
@@ -379,8 +371,12 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     @objc func donePressed() {
         
+//        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
+        
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
         resultCardsCollectionView.reloadData()
+        
         view.endEditing(true)
     }
 

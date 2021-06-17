@@ -11,7 +11,7 @@
         <!--Favorites-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="FavoritesViewController" customModule="Bakernate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favoritesViewController" id="Y6W-OH-hqX" customClass="FavoritesViewController" customModule="Bakernate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +48,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="321" height="630"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty icon" translatesAutoresizingMaskIntoConstraints="NO" id="DKj-Zj-4iO">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon substitution-6" translatesAutoresizingMaskIntoConstraints="NO" id="DKj-Zj-4iO">
                             <rect key="frame" x="35.5" y="188" width="250" height="250"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="250" id="BpP-7B-bEH"/>
@@ -98,9 +98,9 @@ favorite items yet</string>
         </scene>
     </scenes>
     <resources>
-        <image name="Background" width="780" height="1688"/>
-        <image name="empty icon" width="304" height="406"/>
+        <image name="Background" width="1560" height="3376"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="icon substitution-6" width="1125" height="1125"/>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

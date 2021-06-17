@@ -49,8 +49,10 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     var ingredientAmountArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientInitialUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientSubstituteUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-    var ingredientImageArray = ["Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test"]
+    var ingredientImageArray = ["Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Mashed Banana 1", "Chia Seed 1", "Agar-Agar 1", "Unsalted Butter 1", "vege oil 1", "heavy cream 1", "coconut cream 1", "Cream Cheese 1", "Mascarpone 1", "brown sugar 1", "coconut sugar 1", "white sugar 1", "Cornstarch 1", "all purpose flour 1", "tapioca 2"]
     var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
+    
+//    launchFrameImageView.animationImages = (1...11).map { UIImage(named: "frame \($0)")! }
     
     // MARK:- Function
     override func viewDidLoad() {
@@ -352,7 +354,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     @IBAction func clickSubstituteButton(_ sender: UIButton) {
         activityIndicator("Substituting...")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
             self.effectView.removeFromSuperview()
             let storyboard = UIStoryboard(name: "Result", bundle: nil)
             
@@ -362,6 +364,13 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             vc.initialUnit = self.unitTextField.text!
             vc.unitRow = self.unitRow
             vc.type = self.type
+            
+//            ingredientCollection[selectedIndex].ingredientAmount = self.amountTextField.text!
+//            ingredientCollection[selectedIndex].initialUnit = self.unitTextField.text!
+            
+            updateAmountCoreData(name: self.amountTextField.text!)
+            updateInitialUnit(name: self.unitTextField.text!)
+            
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
