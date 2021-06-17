@@ -14,16 +14,29 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK:- IBOutlets
     @IBOutlet weak var favoriteTableView: UITableView!
     @IBOutlet var emptyView: UIView!
-    
+
     
     // MARK:- let & var
     var ingredientCollection:[Ingredients] = []
+    
+    var initialUnit = ""
+    var unitRow = 0
+    var showUnit = ""
+    var showAmount = 0.0
+    
+    var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
     
     // MARK:- functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
         retrieveData()
+        
+        if ingredientCollection.count == 0 {
+            favoriteTableView.backgroundView = emptyView
+        } else {
+            favoriteTableView.backgroundView = nil
+        }
         
         favoriteTableView.dataSource = self
         favoriteTableView.delegate = self
@@ -36,14 +49,41 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         let nib = UINib.init(nibName: "FavoriteTableViewCell", bundle: nil)
         favoriteTableView.register(nib, forCellReuseIdentifier: "favoriteCell")
         
+        favoriteTableView.reloadData()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if ingredientCollection.count == 0 {
+            favoriteTableView.backgroundView = emptyView
+        } else {
+            favoriteTableView.backgroundView = nil
+        }
+        
+        retrieveData()
+        favoriteTableView.dataSource = self
+        favoriteTableView.delegate = self
+
+        favoriteTableView.separatorStyle = .none
+        favoriteTableView.showsVerticalScrollIndicator = false
+        
+        // Do any additional setup after loading the view.
+        
+        let nib = UINib.init(nibName: "FavoriteTableViewCell", bundle: nil)
+        favoriteTableView.register(nib, forCellReuseIdentifier: "favoriteCell")
+        
+        favoriteTableView.reloadData()
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if ingredientCollection.isEmpty {
-            print("empty")
+        if ingredientCollection.count == 0 {
             favoriteTableView.backgroundView = emptyView
+        } else {
+            favoriteTableView.backgroundView = nil
         }
         
         return ingredientCollection.count
@@ -53,9 +93,10 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as? FavoriteTableViewCell
         
-        let line = ingredientCollection[indexPath.row]
+        var line = ingredientCollection[indexPath.row]
         
-        cell?.commonInit(line: line)
+        cell?.commonInit(line: line, amount: line.ingredientAmount!, unit: line.initialUnit!)
+        
         cell?.selectionStyle = .none
         
         
@@ -65,16 +106,23 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let cell = tableView.cellForRow(at: indexPath) as? FavoriteTableViewCell {
-//            cell.favoriteCellView.backgroundColor = .systemGray5
+
             let storyboard = UIStoryboard(name: "Result", bundle: nil)
-            
             let vc = storyboard.instantiateViewController(withIdentifier: "resultViewController") as! ResultViewController
             
+            vc.initialAmount = ingredientCollection[indexPath.row].ingredientAmount!
+            vc.titleIngredient = ingredientCollection[indexPath.row].ingredientName!
             
-            vc.titleIngredient = cell.ingredientLabel.text!
-            vc.initialAmount = cell.amountLabel.text!
+//            print("INITIAL UNIT: \(ingredientCollection[indexPath.row].initialUnit!)")
+//            print("SUBSTITUTE UNIT: \(ingredientCollection[indexPath.row].substituteUnit!)")
+            
+            vc.initialUnit = ingredientCollection[indexPath.row].initialUnit!
+            vc.showUnit = unitArray[unitRow]
+            vc.unitRow = self.unitRow
+            vc.type = ingredientCollection[indexPath.row].ingredientId!
             
             self.navigationController?.pushViewController(vc, animated: true)
+            
         }
         
         print(ingredientCollection[indexPath.row])
@@ -111,4 +159,3 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
 
 }
-
