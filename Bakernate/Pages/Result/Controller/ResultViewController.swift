@@ -25,7 +25,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var ingredientNameLabel: UILabel!
     
     @IBOutlet weak var resultCardsCollectionView: UICollectionView!
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     
     // MARK:- let & var
@@ -51,14 +50,10 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
         
     // MARK:- function
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
+    
+    override func viewWillAppear(_ animated: Bool) {
         retrieveData()
         retrieveDataTitle(name: titleIngredient)
-        
-//        print(ingredientTitle)
         
         if ingredientTitle[selectedIndex].isFavorited! {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(handleFavoriteButton))
@@ -66,6 +61,54 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(handleFavoriteButton))
         }
         
+        picker()
+        createToolbar()
+        
+//        self.hideKeyboardWhenTappedAround()
+        editInitialAmountTextField.keyboardType = .decimalPad
+        
+        editInitialAmountTextField.text = initialAmount
+        ingredientNameLabel.text = titleIngredient
+        initialUnitPicker.text = ingredientTitle[selectedIndex].initialUnit
+        
+        if ingredientTitle[selectedIndex].substituteUnit!.count == 0 {
+            showUnitPicker.text = unitArray[unitRow]
+        } else {
+            showUnitPicker.text = ingredientTitle[selectedIndex].substituteUnit!
+            showUnit = ingredientTitle[selectedIndex].substituteUnit!
+        }
+        
+        initialUnit = ingredientTitle[selectedIndex].initialUnit!
+        
+        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+
+//        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
+        navBar.isTranslucent = true
+        
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
+        self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
+        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
+        
+        resultCardsCollectionView?.dataSource = self
+        resultCardsCollectionView?.delegate = self
+        resultCardsCollectionView?.showsHorizontalScrollIndicator = false
+        
+    }
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        retrieveData()
+        retrieveDataTitle(name: titleIngredient)
+        
+        if ingredientTitle[selectedIndex].isFavorited! {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(handleFavoriteButton))
+        } else {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(handleFavoriteButton))
+        }
         
         picker()
         createToolbar()
@@ -77,16 +120,19 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         ingredientNameLabel.text = titleIngredient
         initialUnitPicker.text = unitArray[unitRow]
         showUnitPicker.text = unitArray[unitRow]
+
         initialUnit = unitArray[unitRow]
         showUnit = unitArray[unitRow]
+        
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+        
+        print(showUnit)
 
 //        navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         navBar.isTranslucent = true
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(handleFavoriteButton))
         
         self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
@@ -96,6 +142,10 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         resultCardsCollectionView?.showsHorizontalScrollIndicator = false
         
     }
+    
+    
+    
+    
     
     func convertAmount(initialUnit: String, showUnit: String) {
         var unit: Unit?
@@ -126,6 +176,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if let value = Double(initialAmount as String) {
             let amount = Conversions(unit: unit!, value: value)
+            
             let result = amount.convert(unit: show!)
             //            let roundedResult = Double(round(10000 * result) / 10000)
 //            print("RESULT: \(result)")
@@ -297,9 +348,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func retrieveData() {
-//        ingredientCollection.removeAll()
-        
-//        let newIngredientCollection = ingredientCollection
         ingredientCollection.removeAll()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -334,55 +382,19 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
                                     if (!isNameDouble){
                                         ingredientCollection.append(Ingredients(ingredientId: ingr.id , ingredientName: ingr.name , ingredientDesc: ingr.descriptions , ingredientImage: ingr.image , isDairy: ingr.isDairy, isEggs: ingr.isEggs, isGluten: ingr.isGluten, isPeanut: ingr.isPeanut, isSoy: ingr.isSoy, isTreeNuts: ingr.isTreeNuts, isVegan: ingr.isVegan, isFavorited: ingr.isFavorited, ingredientAmount: ingr.amount, initialUnit: ingr.initialUnit, substituteUnit: ingr.substituteUnit))
                                     }else{
-                                        isNameDouble = false //udah nih
+                                        isNameDouble = false
                                     }
                                 }
                             }
                         }
                     }
                 }
-//                for ingrd in ingredientCollection{
-//                    print("\(ingrd.ingredientName)")
-//                }
                 
             }
         } catch {
             
         }
         
-//        for ingr in newIngredientCollection {
-//            for id in ingr.ingredientId! {
-//                for tipe in type {
-//                    if id == tipe {
-//                        ingredientCollection.append(ingr)
-//                    }
-//                }
-//            }
-//        }
-        
-//        for tipe in type {
-//            fetchRequest.predicate = NSPredicate(format: "id LIKE '\(tipe)'")
-//            do {
-//                let result = try manageContext.fetch(fetchRequest)
-//                for data in result as! [NSManagedObject] {
-//                    ingredientCollection.append(Ingredients(ingredientId: data.value(forKey: "id") as? [String] , ingredientName: data.value(forKey: "name") as? String , ingredientDesc: data.value(forKey: "descriptions") as? String , ingredientImage: data.value(forKey: "image") as? String , isDairy: data.value(forKey: "isDairy") as? Bool, isEggs: data.value(forKey: "isEggs") as? Bool, isGluten: data.value(forKey: "isGluten") as? Bool, isPeanut: data.value(forKey: "isPeanut") as? Bool, isSoy: data.value(forKey: "isSoy") as? Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as? Bool, isVegan: data.value(forKey: "isVegan") as? Bool, isFavorited: data.value(forKey: "isFavorited") as? Bool, ingredientAmount: data.value(forKey: "amount") as? String, initialUnit: data.value(forKey: "initialUnit") as? String, substituteUnit: data.value(forKey: "substituteUnit") as? String
-//                    ))
-//                }
-//            } catch let error as NSError {
-//                print("Error due to : \(error.localizedDescription)")
-//            }
-//        }
-        
-//        fetchRequest.predicate = NSPredicate(format: "id LIKE '\(type)'")
-//        do {
-//            let result = try manageContext.fetch(fetchRequest)
-//            for data in result as! [NSManagedObject] {
-//                ingredientCollection.append(Ingredients(ingredientId: data.value(forKey: "id") as? [String] , ingredientName: data.value(forKey: "name") as? String , ingredientDesc: data.value(forKey: "descriptions") as? String , ingredientImage: data.value(forKey: "image") as? String , isDairy: data.value(forKey: "isDairy") as? Bool, isEggs: data.value(forKey: "isEggs") as? Bool, isGluten: data.value(forKey: "isGluten") as? Bool, isPeanut: data.value(forKey: "isPeanut") as? Bool, isSoy: data.value(forKey: "isSoy") as? Bool, isTreeNuts: data.value(forKey: "isTreeNuts") as? Bool, isVegan: data.value(forKey: "isVegan") as? Bool, isFavorited: data.value(forKey: "isFavorited") as? Bool, ingredientAmount: data.value(forKey: "amount") as? String, initialUnit: data.value(forKey: "initialUnit") as? String, substituteUnit: data.value(forKey: "substituteUnit") as? String
-//                ))
-//            }
-//        } catch let error as NSError {
-//            print("Error due to : \(error.localizedDescription)")
-//        }
     }
     
     func updateFavoriteCoreData(name: String) {
@@ -494,33 +506,29 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @objc func handleFavoriteButton(_ sender: UIBarButtonItem) {
-        
-//        updateFavoriteCoreData(name: titleIngredient)
-        
-//        print(ingredientCollection)
+
+        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
         
         
         if ingredientTitle[selectedIndex].isFavorited! {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
             ingredientTitle[selectedIndex].isFavorited = false
             updateFavoriteCoreData(name: titleIngredient)
+            
+            ingredientTitle[selectedIndex].substituteUnit = initialUnit
+            updateSubstituteUnit(name: titleIngredient)
+            
 //            print(ingredientTitle[selectedIndex])
         } else {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
             ingredientTitle[selectedIndex].isFavorited = true
             updateFavoriteCoreData(name: titleIngredient)
+            
+            vc.unitRow = self.unitRow
+            
 //            print(ingredientTitle[selectedIndex])
         }
-        
-//        if favorite {
-//            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
-//            favorite = false
-//            print(favorite)
-//        } else {
-//            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
-//            favorite = true
-//            print(favorite)
-//        }
         
     }
     
@@ -616,10 +624,10 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
 
     @objc func donePressed() {
-        ingredientTitle[selectedIndex].substituteUnit = showUnit
-        ingredientTitle[selectedIndex].initialUnit = initialUnit
-        
+        ingredientTitle[selectedIndex].initialUnit = initialUnitPicker.text
         updateInitialUnit(name: titleIngredient)
+        
+        ingredientTitle[selectedIndex].substituteUnit = showUnitPicker.text
         updateSubstituteUnit(name: titleIngredient)
         
         initialAmount = editInitialAmountTextField.text!
@@ -627,6 +635,12 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         updateAmountCoreData(name: titleIngredient)
         
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+        
+//        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
+//
+//        vc.unitRow = self.unitRow
+        
         resultCardsCollectionView.reloadData()
         view.endEditing(true)
     }
@@ -654,9 +668,8 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         if pickerView == showUnitPickerView {
             showUnitPicker.text = unitArray[row]
             showUnit = unitArray[row]
-            
         } else {
-            initialUnitPicker.text =  unitArray[row]
+            initialUnitPicker.text = unitArray[row]
             initialUnit = unitArray[row]
             
         }

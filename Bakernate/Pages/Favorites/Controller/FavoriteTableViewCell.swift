@@ -29,9 +29,9 @@ class FavoriteTableViewCell: UITableViewCell {
 
     }
     
-    func commonInit(line: Ingredients) {
+    func commonInit(line: Ingredients, amount: String, unit: String) {
         ingredientLabel.text = line.ingredientName
-        amountLabel.text = line.ingredientAmount
+        amountLabel.text = "\(amount) \(unit)"
     }
     
     
