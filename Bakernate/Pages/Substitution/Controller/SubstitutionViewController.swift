@@ -172,16 +172,11 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             substituteIngredientName = ingredientCollection[row].ingredientName!
             ingredientTextField.text = substituteIngredientName
 //            ingredientRow = row
-            
             type = ingredientCollection[row].ingredientId!
-            
-            print(type)
-            
 //            guard type == [ingredientCollection[row].ingredientId!]
 //            else{
 //                return
 //            }
-            
         } else {
             unitTextField.text = unitArray[row]
             unitRow = row
@@ -253,7 +248,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
 //    func updateFavoriteCoreData(name: String) {
-//
 //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 //
 //        let manageContext = appDelegate.persistentContainer.viewContext

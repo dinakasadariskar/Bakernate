@@ -90,43 +90,29 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as? FavoriteTableViewCell
-        
-        var line = ingredientCollection[indexPath.row]
-        
+        let line = ingredientCollection[indexPath.row]
+
         cell?.commonInit(line: line, amount: line.ingredientAmount!, unit: line.initialUnit!)
-        
         cell?.selectionStyle = .none
-        
         
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if let cell = tableView.cellForRow(at: indexPath) as? FavoriteTableViewCell {
-
             let storyboard = UIStoryboard(name: "Result", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "resultViewController") as! ResultViewController
             
             vc.initialAmount = ingredientCollection[indexPath.row].ingredientAmount!
             vc.titleIngredient = ingredientCollection[indexPath.row].ingredientName!
-            
-//            print("INITIAL UNIT: \(ingredientCollection[indexPath.row].initialUnit!)")
-//            print("SUBSTITUTE UNIT: \(ingredientCollection[indexPath.row].substituteUnit!)")
-            
             vc.initialUnit = ingredientCollection[indexPath.row].initialUnit!
             vc.showUnit = unitArray[unitRow]
             vc.unitRow = self.unitRow
             vc.type = ingredientCollection[indexPath.row].ingredientId!
             
             self.navigationController?.pushViewController(vc, animated: true)
-            
         }
-        
-        print(ingredientCollection[indexPath.row])
-        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

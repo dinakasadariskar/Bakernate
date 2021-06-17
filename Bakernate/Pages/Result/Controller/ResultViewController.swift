@@ -4,7 +4,6 @@
 //
 //  Created by Apriliani Putri Prasetyo on 13/06/21.
 //
-
 import UIKit
 import CoreData
 
@@ -44,7 +43,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
         
     // MARK:- function
-    
     override func viewWillAppear(_ animated: Bool) {
         retrieveData()
         retrieveDataTitle(name: titleIngredient)
@@ -92,7 +90,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         retrieveData()
@@ -119,8 +116,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         showUnit = unitArray[unitRow]
         
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
-        
-        print(showUnit)
 
 //        navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
@@ -134,7 +129,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         resultCardsCollectionView?.dataSource = self
         resultCardsCollectionView?.delegate = self
         resultCardsCollectionView?.showsHorizontalScrollIndicator = false
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -150,7 +144,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         picker()
         createToolbar()
         
-        self.hideKeyboardWhenTappedAround()
+//        self.hideKeyboardWhenTappedAround()
         editInitialAmountTextField.keyboardType = .decimalPad
         
         editInitialAmountTextField.text = initialAmount
@@ -174,12 +168,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         resultCardsCollectionView?.dataSource = self
         resultCardsCollectionView?.delegate = self
         resultCardsCollectionView?.showsHorizontalScrollIndicator = false
-        
     }
-    
-    
-    
-    
     
     func convertAmount(initialUnit: String, showUnit: String) {
         var unit: Unit?
@@ -210,10 +199,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if let value = Double(initialAmount as String) {
             let amount = Conversions(unit: unit!, value: value)
-            
             let result = amount.convert(unit: show!)
-            //            let roundedResult = Double(round(10000 * result) / 10000)
-//            print("RESULT: \(result)")
             showAmount = result
         }
         
@@ -346,11 +332,8 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             ingredientShowName = IngredientName.tapioca
         }
         
-        
-            let amount = IngredientConversions(initialIngredientName: ingredientName!, value: showAmount)
-            let result = amount.convert(initialIngredientName: ingredientShowName!)
-            //            let roundedResult = Double(round(10000 * result) / 10000)
-            print("RESULT: \(result)")
+        let amount = IngredientConversions(initialIngredientName: ingredientName!, value: showAmount)
+        let result = amount.convert(initialIngredientName: ingredientShowName!)
         showCardAmount = result
     }
     
@@ -361,7 +344,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
 //    }
     
     // MARK:- CoreData
-    
     func retrieveDataTitle(name: String) {
         ingredientTitle.removeAll()
         
@@ -395,27 +377,26 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             result = try manageContext.fetch(Ingredient.fetchRequest())
             var isNameDouble: Bool = false
             for ingr in result {
-//                print("\(ingr.name) \(ingr.id)")
                 for id in ingr.id! {
                     for tipe in type {
                         if id == tipe {
                             if ingr.name == titleIngredient {
                                 
-                            }else{
+                            } else {
                                 if ingredientCollection.count == 0 {
                                     ingredientCollection.append(Ingredients(ingredientId: ingr.id , ingredientName: ingr.name , ingredientDesc: ingr.descriptions , ingredientImage: ingr.image , isDairy: ingr.isDairy, isEggs: ingr.isEggs, isGluten: ingr.isGluten, isPeanut: ingr.isPeanut, isSoy: ingr.isSoy, isTreeNuts: ingr.isTreeNuts, isVegan: ingr.isVegan, isFavorited: ingr.isFavorited, ingredientAmount: ingr.amount, initialUnit: ingr.initialUnit, substituteUnit: ingr.substituteUnit))
-                                }else{
+                                } else {
                                     for ingr2 in ingredientCollection{
                                         if ingr2.ingredientName == ingr.name{
                                             isNameDouble = true
                                             break
-                                        }else{
+                                        } else {
                                             
                                         }
                                     }
                                     if (!isNameDouble){
                                         ingredientCollection.append(Ingredients(ingredientId: ingr.id , ingredientName: ingr.name , ingredientDesc: ingr.descriptions , ingredientImage: ingr.image , isDairy: ingr.isDairy, isEggs: ingr.isEggs, isGluten: ingr.isGluten, isPeanut: ingr.isPeanut, isSoy: ingr.isSoy, isTreeNuts: ingr.isTreeNuts, isVegan: ingr.isVegan, isFavorited: ingr.isFavorited, ingredientAmount: ingr.amount, initialUnit: ingr.initialUnit, substituteUnit: ingr.substituteUnit))
-                                    }else{
+                                    } else {
                                         isNameDouble = false
                                     }
                                 }
@@ -425,14 +406,12 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
                 }
 
             }
-        } catch {
-            
+        } catch let error as NSError {
+            print(error)
         }
-        
     }
     
     func updateFavoriteCoreData(name: String) {
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let manageContext = appDelegate.persistentContainer.viewContext
@@ -457,7 +436,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func updateAmountCoreData(name: String) {
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let manageContext = appDelegate.persistentContainer.viewContext
@@ -482,7 +460,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func updateInitialUnit(name: String) {
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let manageContext = appDelegate.persistentContainer.viewContext
@@ -507,7 +484,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func updateSubstituteUnit(name: String) {
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let manageContext = appDelegate.persistentContainer.viewContext
@@ -532,47 +508,27 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     // MARK:- objc
-    
     @objc func handleBackButton(_ sender: UIBarButtonItem) {
-        
         _ = navigationController?.popViewController(animated: true)
-        
     }
     
     @objc func handleFavoriteButton(_ sender: UIBarButtonItem) {
-
         let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
-        
-        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
-        
         
         if ingredientTitle[selectedIndex].isFavorited! {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
             ingredientTitle[selectedIndex].isFavorited = false
             updateFavoriteCoreData(name: titleIngredient)
             
-
             ingredientTitle[selectedIndex].substituteUnit = initialUnit
             updateSubstituteUnit(name: titleIngredient)
-            
-
         } else {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
             ingredientTitle[selectedIndex].isFavorited = true
             updateFavoriteCoreData(name: titleIngredient)
-
-//            print(ingredientTitle[selectedIndex])
-        }
-        
-        
-            
             vc.unitRow = self.unitRow
-            
-//            print(ingredientTitle[selectedIndex])
         }
-        
     }
     
 //    @objc func dismissKeyboard() {
@@ -586,7 +542,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
 //    }
     
     // MARK:- Collection View
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ingredientCollection.count
     }
@@ -651,7 +606,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
 
     func createToolbar() {
-        
         let toolbar = UIToolbar()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -677,9 +631,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         ingredientTitle[selectedIndex].ingredientAmount = initialAmount
         updateAmountCoreData(name: titleIngredient)
         
-//        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
-        
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
         
 //        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
@@ -688,43 +639,30 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
 //        vc.unitRow = self.unitRow
         
         resultCardsCollectionView.reloadData()
-        
         view.endEditing(true)
     }
 
-
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        
         return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
         return unitArray.count
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         return unitArray[row]
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         if pickerView == showUnitPickerView {
             showUnitPicker.text = unitArray[row]
             showUnit = unitArray[row]
         } else {
             initialUnitPicker.text = unitArray[row]
             initialUnit = unitArray[row]
-            
         }
-        
-        
         //        showUnitPicker.text = unitArray[row]
         //        initialUnitPicker.text =  unitArray[row]
-        
     }
-    
 }
