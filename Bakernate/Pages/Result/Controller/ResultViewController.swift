@@ -584,6 +584,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         details?.selectedProductIsGluten = ingredientDetails.isGluten ?? false
         details?.selectedProductIsDairy = ingredientDetails.isDairy ?? false
         details?.selectedProductDescriptions = ingredientDetails.ingredientDesc ?? ""
+        details?.selectedProductImages = ingredientDetails.ingredientImage ?? ""
         self.navigationController?.pushViewController(details!, animated: true)
     }
     
