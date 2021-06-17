@@ -23,14 +23,12 @@ class ResultCardsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var isGlutenImage: UIImageView!
     @IBOutlet weak var isDairyImage: UIImageView!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func set(card: Ingredients, amount: String, unit: String) {
-        
-        resultImage.image = UIImage(named: card.ingredientImage!)
+        resultImage.image = UIImage(named: "\(card.ingredientImage!) 1")
         resultNameLabel.text = card.ingredientName
         resultAmountLabel.text = "\(amount) \(unit)"
         
@@ -88,11 +86,4 @@ class ResultCardsCollectionViewCell: UICollectionViewCell {
         self.layer.masksToBounds = false
     }
     
-    
 }
-
-
-
-
-
-

@@ -31,8 +31,7 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
     var selectedProductIsGluten: Bool = false
     var selectedProductIsDairy: Bool = false
     var selectedProductDescriptions: String = ""
-    
-    var imagesArr = ["Agar-Agar 1", "Agar-Agar 2", "Agar-Agar 3"]
+    var selectedProductImages: String = ""
     var currentPage = 0 {
         didSet {
             imagesPageControl.currentPage = currentPage
@@ -105,12 +104,12 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagesArr.count
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! IngredientDetailsCollectionViewCell
-        cell.ingredientImage.image = UIImage(named: "\(imagesArr[indexPath.row])")
+        cell.ingredientImage.image = UIImage(named: "\(selectedProductImages) \(indexPath.row + 1)")
             
         return cell
     }

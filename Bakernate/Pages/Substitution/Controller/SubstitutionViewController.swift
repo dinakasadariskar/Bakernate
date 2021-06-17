@@ -49,9 +49,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     var ingredientAmountArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientInitialUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientSubstituteUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-
-    var ingredientImageArray = ["baking soda 2", "baking powder 3", "buttermilk 1", "honey 1", "molasses 1", "maple syrup 1", "lemon 2", "lime 1", "vinegar 1", "white wine 1", "sour cream 1", "mayo 1", "coconut milk 1", "yoghurt 1", "egg 2", "Mashed Banana 1", "Chia Seed 1", "Agar-Agar 1", "Unsalted Butter 1", "vege oil 1", "heavy cream 1", "coconut cream 1", "Cream Cheese 1", "Mascarpone 1", "brown sugar 1", "coconut sugar 1", "white sugar 1", "Cornstarch 1", "all purpose flour 1", "tapioca 2"]
-
+    var ingredientImageArray = ["baking soda", "baking powder", "buttermilk", "honey", "molasses", "maple syrup", "lemon", "lime", "vinegar", "white wine", "sour cream", "mayo", "coconut milk", "yoghurt", "egg", "mashed banana", "chia seed", "agar-agar", "unsalted butter", "vege oil", "heavy cream", "coconut cream", "cream cheese", "mascarpone", "brown sugar", "coconut sugar", "white sugar", "cornstarch", "all purpose flour", "tapioca"]
     var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
     
 //    launchFrameImageView.animationImages = (1...11).map { UIImage(named: "frame \($0)")! }

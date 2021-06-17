@@ -86,7 +86,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         resultCardsCollectionView?.dataSource = self
         resultCardsCollectionView?.delegate = self
         resultCardsCollectionView?.showsHorizontalScrollIndicator = false
-        
     }
     
     override func viewDidLoad() {
@@ -577,6 +576,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         let detailsVC: UIStoryboard = UIStoryboard(name: "IngredientDetails", bundle: nil)
         let details = detailsVC.instantiateViewController(identifier: "ingredientDetails") as? IngredientDetailsViewController
         details?.selectedProductName = ingredientDetails.ingredientName ?? ""
+        details?.selectedProductIsVegan = ingredientDetails.isVegan ?? false
         details?.selectedProductIsEgg = ingredientDetails.isEggs ?? false
         details?.selectedProductIsSoy = ingredientDetails.isSoy ?? false
         details?.selectedProductIsTreeNuts = ingredientDetails.isTreeNuts ?? false
@@ -584,6 +584,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         details?.selectedProductIsGluten = ingredientDetails.isGluten ?? false
         details?.selectedProductIsDairy = ingredientDetails.isDairy ?? false
         details?.selectedProductDescriptions = ingredientDetails.ingredientDesc ?? ""
+        details?.selectedProductImages = ingredientDetails.ingredientImage ?? ""
         self.navigationController?.pushViewController(details!, animated: true)
     }
     

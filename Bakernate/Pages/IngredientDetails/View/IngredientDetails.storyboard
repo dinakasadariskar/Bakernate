@@ -53,7 +53,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="390" height="240"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maple_syrup_2" translatesAutoresizingMaskIntoConstraints="NO" id="2Q8-5i-Qoc">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maple syrup 1" translatesAutoresizingMaskIntoConstraints="NO" id="2Q8-5i-Qoc">
                                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="240"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="390" id="P43-Eo-kuE"/>
@@ -87,12 +87,12 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZm-MC-Xl4">
                                                 <rect key="frame" x="20" y="392" width="350" height="345"/>
-                                                <mutableString key="text">Baking soda is a leavening agent used in baked goods like cakes, muffins, and cookies. Baking soda becomes activated when it’s combined with both an acidic ingredient and a liquid. Upon activation, carbon dioxide is produced, which allows baked goods to rise and become light and fluffy. This is why recipes that include baking soda will also list an acidic ingredient, such as lemon juice or buttermilk.", "Baking powder is a mixture of sodium bicarbonate and cream of tartar. It basically takes the place of yeast in dishes and helps the pastry to rise quickly. This ingredient is able to help a recipe rise slightly because it reacts with the liquid and sugar put into the dough. The acid creates a bubbling form which helps the leavening of it. This in return can help the pastry to have a flaky crust and soft texture.</mutableString>
+                                                <string key="text">Baking soda is a leavening agent used in baked goods like cakes, muffins, and cookies. Baking soda becomes activated when it’s combined with both an acidic ingredient and a liquid. Upon activation, carbon dioxide is produced, which allows baked goods to rise and become light and fluffy. This is why recipes that include baking soda will also list an acidic ingredient, such as lemon juice or buttermilk.", "Baking powder is a mixture of sodium bicarbonate and cream of tartar. It basically takes the place of yeast in dishes and helps the pastry to rise quickly. This ingredient is able to help a recipe rise slightly because it reacts with the liquid and sugar put into the dough. The acid creates a bubbling form which helps the leavening of it. This in return can help the pastry to have a flaky crust and soft texture.</string>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Enabled" translatesAutoresizingMaskIntoConstraints="NO" id="NSa-7q-CdD" userLabel="Is Vegan Image">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Enabled Vegan" translatesAutoresizingMaskIntoConstraints="NO" id="NSa-7q-CdD" userLabel="Is Vegan Image">
                                                 <rect key="frame" x="20" y="306" width="78" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="TuC-TI-Laa"/>
@@ -101,7 +101,7 @@
                                                     <constraint firstAttribute="width" constant="78" id="k5l-Eo-QGR"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chip Enable Peanut" translatesAutoresizingMaskIntoConstraints="NO" id="4gD-CB-JCK">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Enabled Peanut" translatesAutoresizingMaskIntoConstraints="NO" id="4gD-CB-JCK">
                                                 <rect key="frame" x="20" y="340" width="84" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="8yD-cx-kUs"/>
@@ -110,7 +110,7 @@
                                                     <constraint firstAttribute="width" constant="84" id="lCg-4D-wfM"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chip Disabled Gluten" translatesAutoresizingMaskIntoConstraints="NO" id="C3y-jG-uVs">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Disabled Gluten" translatesAutoresizingMaskIntoConstraints="NO" id="C3y-jG-uVs">
                                                 <rect key="frame" x="110" y="340" width="80" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="1lv-EW-nLh"/>
@@ -128,7 +128,7 @@
                                                     <constraint firstAttribute="width" constant="63" id="laT-hK-ETQ"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chip Enable Tree Nuts" translatesAutoresizingMaskIntoConstraints="NO" id="Swu-es-N42">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Enabled Tree Nuts" translatesAutoresizingMaskIntoConstraints="NO" id="Swu-es-N42">
                                                 <rect key="frame" x="252" y="306" width="101" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="101" id="6Un-Bl-p6B"/>
@@ -137,7 +137,7 @@
                                                     <constraint firstAttribute="height" constant="28" id="c9a-vt-Dhy"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chip Enable Soy" translatesAutoresizingMaskIntoConstraints="NO" id="Svq-Nc-jZP">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Enabled Soy" translatesAutoresizingMaskIntoConstraints="NO" id="Svq-Nc-jZP">
                                                 <rect key="frame" x="173" y="306" width="73" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="73" id="EeK-e7-OOA"/>
@@ -146,7 +146,7 @@
                                                     <constraint firstAttribute="height" constant="28" id="gzl-8o-akG"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chip Disabled Dairy" translatesAutoresizingMaskIntoConstraints="NO" id="hGu-ZG-wjz">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Disabled Dairy" translatesAutoresizingMaskIntoConstraints="NO" id="hGu-ZG-wjz">
                                                 <rect key="frame" x="196" y="340" width="80" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="EUV-dY-NpZ"/>
@@ -263,14 +263,14 @@
     </scenes>
     <resources>
         <image name="Background" width="1560" height="3376"/>
-        <image name="Chip Disabled Dairy" width="640" height="224"/>
-        <image name="Chip Disabled Gluten" width="640" height="224"/>
-        <image name="Chip Enable Peanut" width="680" height="224"/>
-        <image name="Chip Enable Soy" width="584" height="224"/>
-        <image name="Chip Enable Tree Nuts" width="808" height="224"/>
+        <image name="Disabled Dairy" width="640" height="224"/>
         <image name="Disabled Egg" width="504" height="224"/>
-        <image name="Enabled" width="632" height="224"/>
-        <image name="maple_syrup_2" width="690" height="512"/>
+        <image name="Disabled Gluten" width="640" height="224"/>
+        <image name="Enabled Peanut" width="680" height="224"/>
+        <image name="Enabled Soy" width="584" height="224"/>
+        <image name="Enabled Tree Nuts" width="808" height="224"/>
+        <image name="Enabled Vegan" width="632" height="224"/>
+        <image name="maple syrup 1" width="600" height="600"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
