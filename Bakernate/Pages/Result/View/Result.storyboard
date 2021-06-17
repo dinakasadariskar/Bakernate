@@ -24,6 +24,7 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ul5-Vo-Fgb">
                                 <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                     <color key="textColor" red="0.20392156859999999" green="0.35686274509999999" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -238,6 +239,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2749.2307692307691" y="68.957345971563981"/>
+        </scene>
+        <!--IngredientDetails-->
+        <scene sceneID="yt9-xO-cuz">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ingredientDetails" storyboardName="IngredientDetails" id="4Bl-r3-L1A" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="EgQ-0y-jn6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d3q-jx-q8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3536" y="69"/>
         </scene>
         <!--Result-->
         <scene sceneID="cEz-CU-9zN">

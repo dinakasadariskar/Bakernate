@@ -31,7 +31,9 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     var initialUnit = ""
     var showUnit = ""
     var showAmount = 0.0
+    var showCardAmount = 0.0
     
+    var selectedDetails = 0
     var selectedIndex = 0
     var unitRow = 0
     var type:[String] = []
@@ -42,14 +44,10 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
         
     // MARK:- function
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
+    
+    override func viewWillAppear(_ animated: Bool) {
         retrieveData()
         retrieveDataTitle(name: titleIngredient)
-        
-        print(ingredientTitle)
         
         if ingredientTitle[selectedIndex].isFavorited! {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(handleFavoriteButton))
@@ -57,22 +55,74 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(handleFavoriteButton))
         }
         
+        picker()
+        createToolbar()
+        
+//        self.hideKeyboardWhenTappedAround()
+        editInitialAmountTextField.keyboardType = .decimalPad
+        
+        editInitialAmountTextField.text = initialAmount
+        ingredientNameLabel.text = titleIngredient
+        initialUnitPicker.text = ingredientTitle[selectedIndex].initialUnit
+        
+        if ingredientTitle[selectedIndex].substituteUnit!.count == 0 {
+            showUnitPicker.text = unitArray[unitRow]
+        } else {
+            showUnitPicker.text = ingredientTitle[selectedIndex].substituteUnit!
+            showUnit = ingredientTitle[selectedIndex].substituteUnit!
+        }
+        
+        initialUnit = ingredientTitle[selectedIndex].initialUnit!
+        
+        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+
+//        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
+        navBar.isTranslucent = true
+        
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
+        self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
+        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
+        
+        resultCardsCollectionView?.dataSource = self
+        resultCardsCollectionView?.delegate = self
+        resultCardsCollectionView?.showsHorizontalScrollIndicator = false
+        
+    }
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        retrieveData()
+        retrieveDataTitle(name: titleIngredient)
+        
+        if ingredientTitle[selectedIndex].isFavorited! {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(handleFavoriteButton))
+        } else {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(handleFavoriteButton))
+        }
         
         picker()
         createToolbar()
         
-        self.hideKeyboardWhenTappedAround()
+//        self.hideKeyboardWhenTappedAround()
         editInitialAmountTextField.keyboardType = .decimalPad
         
         editInitialAmountTextField.text = initialAmount
         ingredientNameLabel.text = titleIngredient
         initialUnitPicker.text = unitArray[unitRow]
         showUnitPicker.text = unitArray[unitRow]
+
         initialUnit = unitArray[unitRow]
         showUnit = unitArray[unitRow]
+        
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+        
+        print(showUnit)
 
-        navBar.setBackgroundImage(UIImage(), for: .default)
+//        navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         navBar.isTranslucent = true
         
@@ -116,6 +166,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         navBar.isTranslucent = true
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
+
         
         self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
@@ -125,6 +176,10 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         resultCardsCollectionView?.showsHorizontalScrollIndicator = false
         
     }
+    
+    
+    
+    
     
     func convertAmount(initialUnit: String, showUnit: String) {
         var unit: Unit?
@@ -155,13 +210,155 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if let value = Double(initialAmount as String) {
             let amount = Conversions(unit: unit!, value: value)
+            
             let result = amount.convert(unit: show!)
             //            let roundedResult = Double(round(10000 * result) / 10000)
-            print("RESULT: \(result)")
+//            print("RESULT: \(result)")
             showAmount = result
         }
         
     }
+    
+    func ingredientConversions(initialIngredient: String, showIngredientSubstitution: String) {
+        var ingredientName: IngredientName?
+        if initialIngredient == "Baking Soda" {
+            ingredientName = IngredientName.bakingsoda
+        } else if initialIngredient == "Baking Powder" {
+            ingredientName = IngredientName.bakingpowder
+        } else if initialIngredient == "Buttermilk" {
+            ingredientName = IngredientName.buttermilk
+        } else if initialIngredient == "Honey" {
+            ingredientName = IngredientName.honey
+        } else if initialIngredient == "Molasses" {
+            ingredientName = IngredientName.molasses
+        } else if initialIngredient == "Maple Syrup" {
+            ingredientName = IngredientName.maplesyrup
+        } else if initialIngredient == "Lemon Juice" {
+            ingredientName = IngredientName.lemonjuice
+        } else if initialIngredient == "Lime Juice" {
+            ingredientName = IngredientName.limejuice
+        } else if initialIngredient == "Vinegar" {
+            ingredientName = IngredientName.vinegar
+        } else if initialIngredient == "White Wine" {
+            ingredientName = IngredientName.whitewine
+        } else if initialIngredient == "Sour Cream" {
+            ingredientName = IngredientName.sourcream
+        } else if initialIngredient == "Mayonnaise" {
+            ingredientName = IngredientName.mayonnaise
+        } else if initialIngredient == "Coconut Milk" {
+            ingredientName = IngredientName.coconutmilk
+        } else if initialIngredient == "Yogurt" {
+            ingredientName = IngredientName.yogurt
+        } else if initialIngredient == "Egg" {
+            ingredientName = IngredientName.egg
+        } else if initialIngredient == "Mashed Banana" {
+            ingredientName = IngredientName.mashedbanana
+        } else if initialIngredient == "Chia Seed" {
+            ingredientName = IngredientName.chiaseed
+        } else if initialIngredient == "Agar-agar" {
+            ingredientName = IngredientName.agaragar
+        } else if initialIngredient == "Unsalted Butter" {
+            ingredientName = IngredientName.unsaltedbutter
+        } else if initialIngredient == "Vegetable Oil" {
+            ingredientName = IngredientName.vegetableoil
+        } else if initialIngredient == "Heavy Cream" {
+            ingredientName = IngredientName.heavycream
+        } else if initialIngredient == "Coconut Cream" {
+            ingredientName = IngredientName.coconutcream
+        } else if initialIngredient == "Cream Cheese" {
+            ingredientName = IngredientName.creamcheese
+        } else if initialIngredient == "Mascarpone" {
+            ingredientName = IngredientName.mascarpone
+        } else if initialIngredient == "Brown Sugar" {
+            ingredientName = IngredientName.brownsugar
+        } else if initialIngredient == "Coconut Sugar" {
+            ingredientName = IngredientName.coconutsugar
+        } else if initialIngredient == "White Sugar" {
+            ingredientName = IngredientName.whitesugar
+        } else if initialIngredient == "Cornstarch" {
+            ingredientName = IngredientName.cornstarch
+        } else if initialIngredient == "All Purpose Flour" {
+            ingredientName = IngredientName.allpurposeflour
+        } else if initialIngredient == "Tapioca" {
+            ingredientName = IngredientName.tapioca
+        }
+        
+        var ingredientShowName: IngredientName?
+        if showIngredientSubstitution == "Baking Soda" {
+            ingredientShowName = IngredientName.bakingsoda
+        } else if showIngredientSubstitution == "Baking Powder" {
+            ingredientShowName = IngredientName.bakingpowder
+        } else if showIngredientSubstitution == "Buttermilk" {
+            ingredientShowName = IngredientName.buttermilk
+        } else if showIngredientSubstitution == "Honey" {
+            ingredientShowName = IngredientName.honey
+        } else if showIngredientSubstitution == "Molasses" {
+            ingredientShowName = IngredientName.molasses
+        } else if showIngredientSubstitution == "Maple Syrup" {
+            ingredientShowName = IngredientName.maplesyrup
+        } else if showIngredientSubstitution == "Lemon Juice" {
+            ingredientShowName = IngredientName.lemonjuice
+        } else if showIngredientSubstitution == "Lime Juice" {
+            ingredientShowName = IngredientName.limejuice
+        } else if showIngredientSubstitution == "Vinegar" {
+            ingredientShowName = IngredientName.vinegar
+        } else if showIngredientSubstitution == "White Wine" {
+            ingredientShowName = IngredientName.whitewine
+        } else if showIngredientSubstitution == "Sour Cream" {
+            ingredientShowName = IngredientName.sourcream
+        } else if showIngredientSubstitution == "Mayonnaise" {
+            ingredientShowName = IngredientName.mayonnaise
+        } else if showIngredientSubstitution == "Coconut Milk" {
+            ingredientShowName = IngredientName.coconutmilk
+        } else if showIngredientSubstitution == "Yogurt" {
+            ingredientShowName = IngredientName.yogurt
+        } else if showIngredientSubstitution == "Egg" {
+            ingredientShowName = IngredientName.egg
+        } else if showIngredientSubstitution == "Mashed Banana" {
+            ingredientShowName = IngredientName.mashedbanana
+        } else if showIngredientSubstitution == "Chia Seed" {
+            ingredientShowName = IngredientName.chiaseed
+        } else if showIngredientSubstitution == "Agar-agar" {
+            ingredientShowName = IngredientName.agaragar
+        } else if showIngredientSubstitution == "Unsalted Butter" {
+            ingredientShowName = IngredientName.unsaltedbutter
+        } else if showIngredientSubstitution == "Vegetable Oil" {
+            ingredientShowName = IngredientName.vegetableoil
+        } else if showIngredientSubstitution == "Heavy Cream" {
+            ingredientShowName = IngredientName.heavycream
+        } else if showIngredientSubstitution == "Coconut Cream" {
+            ingredientShowName = IngredientName.coconutcream
+        } else if showIngredientSubstitution == "Cream Cheese" {
+            ingredientShowName = IngredientName.creamcheese
+        } else if showIngredientSubstitution == "Mascarpone" {
+            ingredientShowName = IngredientName.mascarpone
+        } else if showIngredientSubstitution == "Brown Sugar" {
+            ingredientShowName = IngredientName.brownsugar
+        } else if showIngredientSubstitution == "Coconut Sugar" {
+            ingredientShowName = IngredientName.coconutsugar
+        } else if showIngredientSubstitution == "White Sugar" {
+            ingredientShowName = IngredientName.whitesugar
+        } else if showIngredientSubstitution == "Cornstarch" {
+            ingredientShowName = IngredientName.cornstarch
+        } else if showIngredientSubstitution == "All Purpose Flour" {
+            ingredientShowName = IngredientName.allpurposeflour
+        } else if showIngredientSubstitution == "Tapioca" {
+            ingredientShowName = IngredientName.tapioca
+        }
+        
+        
+            let amount = IngredientConversions(initialIngredientName: ingredientName!, value: showAmount)
+            let result = amount.convert(initialIngredientName: ingredientShowName!)
+            //            let roundedResult = Double(round(10000 * result) / 10000)
+            print("RESULT: \(result)")
+        showCardAmount = result
+    }
+    
+//    func hideKeyboardWhenTappedAround() {
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        tap.cancelsTouchesInView = false
+////        view.addGestureRecognizer(tap)
+//    }
     
     // MARK:- CoreData
     
@@ -185,9 +382,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func retrieveData() {
-//        ingredientCollection.removeAll()
-        
-//        let newIngredientCollection = ingredientCollection
         ingredientCollection.removeAll()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -201,7 +395,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             result = try manageContext.fetch(Ingredient.fetchRequest())
             var isNameDouble: Bool = false
             for ingr in result {
-                print("\(ingr.name) \(ingr.id)")
+//                print("\(ingr.name) \(ingr.id)")
                 for id in ingr.id! {
                     for tipe in type {
                         if id == tipe {
@@ -222,13 +416,14 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
                                     if (!isNameDouble){
                                         ingredientCollection.append(Ingredients(ingredientId: ingr.id , ingredientName: ingr.name , ingredientDesc: ingr.descriptions , ingredientImage: ingr.image , isDairy: ingr.isDairy, isEggs: ingr.isEggs, isGluten: ingr.isGluten, isPeanut: ingr.isPeanut, isSoy: ingr.isSoy, isTreeNuts: ingr.isTreeNuts, isVegan: ingr.isVegan, isFavorited: ingr.isFavorited, ingredientAmount: ingr.amount, initialUnit: ingr.initialUnit, substituteUnit: ingr.substituteUnit))
                                     }else{
-                                        isNameDouble = false //udah nih
+                                        isNameDouble = false
                                     }
                                 }
                             }
                         }
                     }
                 }
+
             }
         } catch {
             
@@ -242,7 +437,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let manageContext = appDelegate.persistentContainer.viewContext
 
-        // 3. Prepare fetch dari entity coredata nya
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
         fetchRequest.predicate = NSPredicate(format: "name = %@", name)
         
@@ -251,6 +445,81 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             
             let objectToUpdate = object[0] as! NSManagedObject
             objectToUpdate.setValue(ingredientTitle[0].isFavorited, forKey: "isFavorited")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateAmountCoreData(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientTitle[0].ingredientAmount, forKey: "amount")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateInitialUnit(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientTitle[0].initialUnit, forKey: "initialUnit")
+            
+            do {
+                try manageContext.save()
+            } catch {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func updateSubstituteUnit(name: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let object = try manageContext.fetch(fetchRequest)
+            
+            let objectToUpdate = object[0] as! NSManagedObject
+            objectToUpdate.setValue(ingredientTitle[0].substituteUnit, forKey: "substituteUnit")
             
             do {
                 try manageContext.save()
@@ -271,10 +540,9 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @objc func handleFavoriteButton(_ sender: UIBarButtonItem) {
-        
-//        updateFavoriteCoreData(name: titleIngredient)
-        
-//        print(ingredientCollection)
+
+        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
         
         let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
@@ -285,26 +553,41 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             ingredientTitle[selectedIndex].isFavorited = false
             updateFavoriteCoreData(name: titleIngredient)
             
-//            vc.unitRow = self.unitRow
-//            vc.initialUnit = self.initialUnit
-//            vc.showAmount = self.showAmount
-//            vc.showUnit = self.showUnit
+
+            ingredientTitle[selectedIndex].substituteUnit = initialUnit
+            updateSubstituteUnit(name: titleIngredient)
+            
+
         } else {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
             ingredientTitle[selectedIndex].isFavorited = true
             updateFavoriteCoreData(name: titleIngredient)
+
 //            print(ingredientTitle[selectedIndex])
         }
         
         
+            
+            vc.unitRow = self.unitRow
+            
+//            print(ingredientTitle[selectedIndex])
+        }
+        
     }
+    
+//    @objc func dismissKeyboard() {
+//        initialAmount = editInitialAmountTextField.text!
+//        ingredientTitle[selectedIndex].ingredientAmount = initialAmount
+//        updateAmountCoreData(name: titleIngredient)
+//
+//        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+//        resultCardsCollectionView.reloadData()
+//        view.endEditing(true)
+//    }
     
     // MARK:- Collection View
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        print(ingredientCollection.count)
-        
         return ingredientCollection.count
     }
     
@@ -313,7 +596,9 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let card = ingredientCollection[indexPath.item]
         
-        cell.set(card: card, amount: String(format: "%.1f", showAmount), unit: showUnit)
+        ingredientConversions(initialIngredient: ingredientTitle[selectedIndex].ingredientName!, showIngredientSubstitution: ingredientCollection[indexPath.item].ingredientName!)
+        
+        cell.set(card: card, amount: String(format: "%.1f", showCardAmount), unit: showUnit)
         
         return cell
     }
@@ -321,19 +606,30 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ResultCardsCollectionViewCell {
             cell.resultCardView.backgroundColor = .systemGray5
-            let storyboard = UIStoryboard(name: "IngredientDetails", bundle: nil)
-            
-            let vc = storyboard.instantiateViewController(withIdentifier: "ingredientDetails") as! IngredientDetailsViewController
-            self.navigationController?.pushViewController(vc, animated: true)
             cell.resultCardView.backgroundColor = .white
+            selectedDetails = indexPath.item
+            navigateToIngredientDetail()
         }
-        
-        print(ingredientCollection[indexPath.item])
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as? ResultCardsCollectionViewCell
         cell?.resultCardView.backgroundColor = .white
+    }
+    
+    func navigateToIngredientDetail() {
+        let ingredientDetails = ingredientCollection[selectedDetails]
+        let detailsVC: UIStoryboard = UIStoryboard(name: "IngredientDetails", bundle: nil)
+        let details = detailsVC.instantiateViewController(identifier: "ingredientDetails") as? IngredientDetailsViewController
+        details?.selectedProductName = ingredientDetails.ingredientName ?? ""
+        details?.selectedProductIsEgg = ingredientDetails.isEggs ?? false
+        details?.selectedProductIsSoy = ingredientDetails.isSoy ?? false
+        details?.selectedProductIsTreeNuts = ingredientDetails.isTreeNuts ?? false
+        details?.selectedProductIsPeanut = ingredientDetails.isPeanut ?? false
+        details?.selectedProductIsGluten = ingredientDetails.isGluten ?? false
+        details?.selectedProductIsDairy = ingredientDetails.isDairy ?? false
+        details?.selectedProductDescriptions = ingredientDetails.ingredientDesc ?? ""
+        self.navigationController?.pushViewController(details!, animated: true)
     }
     
     // MARK:- Picker
@@ -367,14 +663,30 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
 
         initialUnitPicker.inputAccessoryView = toolbar
         showUnitPicker.inputAccessoryView = toolbar
+        editInitialAmountTextField.inputAccessoryView = toolbar
     }
 
     @objc func donePressed() {
+        ingredientTitle[selectedIndex].initialUnit = initialUnitPicker.text
+        updateInitialUnit(name: titleIngredient)
+        
+        ingredientTitle[selectedIndex].substituteUnit = showUnitPicker.text
+        updateSubstituteUnit(name: titleIngredient)
+        
+        initialAmount = editInitialAmountTextField.text!
+        ingredientTitle[selectedIndex].ingredientAmount = initialAmount
+        updateAmountCoreData(name: titleIngredient)
         
 //        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
 //        let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
         
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+        
+//        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
+//
+//        vc.unitRow = self.unitRow
+        
         resultCardsCollectionView.reloadData()
         
         view.endEditing(true)
@@ -404,8 +716,9 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             showUnitPicker.text = unitArray[row]
             showUnit = unitArray[row]
         } else {
-            initialUnitPicker.text =  unitArray[row]
+            initialUnitPicker.text = unitArray[row]
             initialUnit = unitArray[row]
+            
         }
         
         

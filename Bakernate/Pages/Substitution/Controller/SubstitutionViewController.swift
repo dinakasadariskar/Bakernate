@@ -49,7 +49,9 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     var ingredientAmountArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientInitialUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientSubstituteUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-    var ingredientImageArray = ["Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Mashed Banana 1", "Chia Seed 1", "Agar-Agar 1", "Unsalted Butter 1", "vege oil 1", "heavy cream 1", "coconut cream 1", "Cream Cheese 1", "Mascarpone 1", "brown sugar 1", "coconut sugar 1", "white sugar 1", "Cornstarch 1", "all purpose flour 1", "tapioca 2"]
+
+    var ingredientImageArray = ["baking soda 2", "baking powder 3", "buttermilk 1", "honey 1", "molasses 1", "maple syrup 1", "lemon 2", "lime 1", "vinegar 1", "white wine 1", "sour cream 1", "mayo 1", "coconut milk 1", "yoghurt 1", "egg 2", "Mashed Banana 1", "Chia Seed 1", "Agar-Agar 1", "Unsalted Butter 1", "vege oil 1", "heavy cream 1", "coconut cream 1", "Cream Cheese 1", "Mascarpone 1", "brown sugar 1", "coconut sugar 1", "white sugar 1", "Cornstarch 1", "all purpose flour 1", "tapioca 2"]
+
     var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
     
 //    launchFrameImageView.animationImages = (1...11).map { UIImage(named: "frame \($0)")! }
@@ -64,7 +66,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         setupInitialDataToCoreData()
         picker()
         createToolbar()
-        checkAmout()
+        checkAmount()
     }
     
     func setupInitialDataToCoreData() {
@@ -77,7 +79,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         ingredientName()
     }
     
-    func checkAmout() {
+    func checkAmount() {
         substituteButton.layer.cornerRadius = 10
         substituteButton.backgroundColor = #colorLiteral(red: 0.6, green: 0.6784313725, blue: 0.6745098039, alpha: 1)
         substituteButton.tintColor = #colorLiteral(red: 0.4156862745, green: 0.4549019608, blue: 0.4705882353, alpha: 1)
@@ -126,6 +128,22 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     @objc func donePressed() {
+        ingredientCollection[selectedIndex].initialUnit = unitTextField.text
+        
+        updateInitialUnit(name: ingredientTextField.text!)
+        
+        amount = amountTextField.text!
+        ingredientCollection[selectedIndex].ingredientAmount = amount
+        updateAmountCoreData(name: ingredientTextField.text!)
+        
+//        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+        
+        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
+        
+        vc.unitRow = self.unitRow
+        
+//        resultCardsCollectionView.reloadData()
         view.endEditing(true)
     }
     
@@ -153,8 +171,11 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         if pickerView == ingredientPickerView {
             substituteIngredientName = ingredientCollection[row].ingredientName!
             ingredientTextField.text = substituteIngredientName
+//            ingredientRow = row
             
             type = ingredientCollection[row].ingredientId!
+            
+            print(type)
             
 //            guard type == [ingredientCollection[row].ingredientId!]
 //            else{
@@ -162,10 +183,22 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
 //            }
             
         } else {
-            unitTextField.text =  unitArray[row]
+            unitTextField.text = unitArray[row]
             unitRow = row
+            ingredientCollection[ingredientRow].initialUnit = self.selectedUnit
+            updateInitialUnit(name: substituteIngredientName)
             
         }
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func showInformation() {
@@ -220,21 +253,21 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
 //    func updateFavoriteCoreData(name: String) {
-//        
+//
 //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//        
+//
 //        let manageContext = appDelegate.persistentContainer.viewContext
 //
 //        // 3. Prepare fetch dari entity coredata nya
 //        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
 //        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
-//        
+//
 //        do {
 //            let object = try manageContext.fetch(fetchRequest)
-//            
+//
 //            let objectToUpdate = object[0] as! NSManagedObject
 //            objectToUpdate.setValue(ingredientCollection[selectedIndex].isFavorited, forKey: "isFavorited")
-//            
+//
 //            do {
 //                try manageContext.save()
 //            } catch {
@@ -283,7 +316,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             let object = try manageContext.fetch(fetchRequest)
             
             let objectToUpdate = object[0] as! NSManagedObject
-            objectToUpdate.setValue(ingredientCollection[selectedIndex].initialUnit, forKey: "initialUnit")
+            objectToUpdate.setValue(ingredientCollection[0].initialUnit, forKey: "initialUnit")
             
             do {
                 try manageContext.save()
@@ -308,7 +341,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             let object = try manageContext.fetch(fetchRequest)
             
             let objectToUpdate = object[0] as! NSManagedObject
-            objectToUpdate.setValue(ingredientCollection[selectedIndex].substituteUnit, forKey: "substituteUnit")
+            objectToUpdate.setValue(ingredientCollection[0].substituteUnit, forKey: "substituteUnit")
             
             do {
                 try manageContext.save()
@@ -356,22 +389,38 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         activityIndicator("Substituting...")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
             self.effectView.removeFromSuperview()
-            let storyboard = UIStoryboard(name: "Result", bundle: nil)
             
-            let vc = storyboard.instantiateViewController(withIdentifier: "resultViewController") as! ResultViewController
-            vc.initialAmount = self.amountTextField.text!
-            vc.titleIngredient = self.substituteIngredientName
-            vc.initialUnit = self.unitTextField.text!
-            vc.unitRow = self.unitRow
-            vc.type = self.type
+
+
+            self.donePressed()
             
-//            ingredientCollection[selectedIndex].ingredientAmount = self.amountTextField.text!
-//            ingredientCollection[selectedIndex].initialUnit = self.unitTextField.text!
             
-            updateAmountCoreData(name: self.amountTextField.text!)
-            updateInitialUnit(name: self.unitTextField.text!)
             
-            self.navigationController?.pushViewController(vc, animated: true)
+//            self.ingredientCollection[self.selectedIndex].initialUnit = self.unitTextField.text!
+//            self.updateInitialUnit(name: self.ingredientTextField.text!)
+//            
+//            self.amount = self.amountTextField.text!
+//            self.ingredientCollection[self.selectedIndex].ingredientAmount! = self.amount
+//            self.updateAmountCoreData(name: self.ingredientTextField.text!)
+//            
+//    //        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
+//            
+//            let fStoryboard = UIStoryboard(name: "Favorites", bundle: nil)
+//            let fVc = fStoryboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
+//            
+//            fVc.unitRow = self.unitRow
+            
+            let rStoryboard = UIStoryboard(name: "Result", bundle: nil)
+            
+            let rVc = rStoryboard.instantiateViewController(withIdentifier: "resultViewController") as! ResultViewController
+            
+            rVc.initialAmount = self.ingredientCollection[self.selectedIndex].ingredientAmount!
+            rVc.titleIngredient = self.ingredientTextField.text!
+            rVc.initialUnit = self.ingredientCollection[self.selectedIndex].initialUnit!
+            rVc.unitRow = self.unitRow
+            rVc.type = self.type
+            
+            self.navigationController?.pushViewController(rVc, animated: true)
             
         }
     }
@@ -379,19 +428,19 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
 }
 
 // MARK:- Extension
-extension UIViewController {
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-}
+//extension UIViewController {
+//
+//    func hideKeyboardWhenTappedAround() {
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+//        tap.cancelsTouchesInView = false
+//        view.addGestureRecognizer(tap)
+//    }
+//
+//    @objc func dismissKeyboard() {
+//        view.endEditing(true)
+//    }
+//
+//}
 
 extension SubstitutionViewController: UIViewControllerTransitioningDelegate {
     

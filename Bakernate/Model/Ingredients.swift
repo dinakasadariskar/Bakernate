@@ -23,5 +23,4 @@ struct Ingredients {
     var ingredientAmount: String?
     var initialUnit: String?
     var substituteUnit: String?
-    
 }
