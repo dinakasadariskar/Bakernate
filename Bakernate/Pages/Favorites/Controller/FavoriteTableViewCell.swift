@@ -19,7 +19,6 @@ class FavoriteTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.favoriteCellView.layer.cornerRadius = 10
-//        self.favoriteCellView.layer.masksToBounds = true
         
         self.favoriteCellView.layer.shadowOffset = CGSize(width: 0, height: 1)
         self.favoriteCellView.layer.shadowColor = UIColor.black.cgColor
