@@ -11,7 +11,6 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
     
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var imagesPageControl: UIPageControl!
-    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var isVeganImage: UIImageView!
     @IBOutlet weak var isEggImage: UIImageView!
@@ -48,9 +47,6 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
     }
     
     func prepareUI() {
-        navBar.setBackgroundImage(UIImage(), for: .default)
-        navBar.shadowImage = UIImage()
-        navBar.isTranslucent = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
         self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
         

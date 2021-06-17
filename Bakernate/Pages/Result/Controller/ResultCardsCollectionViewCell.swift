@@ -10,11 +10,9 @@ import UIKit
 class ResultCardsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var resultCardView: UIView!
-    
     @IBOutlet weak var resultImage: UIImageView!
     @IBOutlet weak var resultNameLabel: UILabel!
     @IBOutlet weak var resultAmountLabel: UILabel!
-    
     @IBOutlet weak var isVeganImage: UIImageView!
     @IBOutlet weak var isEggImage: UIImageView!
     @IBOutlet weak var isSoyImage: UIImageView!
