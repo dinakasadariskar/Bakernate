@@ -29,7 +29,6 @@ class ResultCardsCollectionViewCell: UICollectionViewCell {
     }
     
     func set(card: Ingredients, amount: String, unit: String) {
-        
         resultImage.image = UIImage(named: card.ingredientImage!)
         resultNameLabel.text = card.ingredientName
         resultAmountLabel.text = "\(amount) \(unit)"
@@ -88,11 +87,4 @@ class ResultCardsCollectionViewCell: UICollectionViewCell {
         self.layer.masksToBounds = false
     }
     
-    
 }
-
-
-
-
-
-

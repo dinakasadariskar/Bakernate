@@ -120,21 +120,21 @@
                                                 <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChB-rt-u2H">
                                                     <rect key="frame" x="0.0" y="0.0" width="236" height="400"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maple_syrup_1" translatesAutoresizingMaskIntoConstraints="NO" id="ig4-yd-HC2">
-                                                            <rect key="frame" x="43" y="8" width="150" height="150"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maple syrup 1" translatesAutoresizingMaskIntoConstraints="NO" id="ig4-yd-HC2">
+                                                            <rect key="frame" x="16" y="16" width="204" height="150"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="150" id="LLK-Ad-5hv"/>
+                                                                <constraint firstAttribute="width" constant="204" id="LLK-Ad-5hv"/>
                                                                 <constraint firstAttribute="height" constant="150" id="u3g-78-HPH"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maple Syrup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRc-te-Do1">
-                                                            <rect key="frame" x="16" y="166" width="132" height="27"/>
+                                                            <rect key="frame" x="16" y="178" width="132" height="27"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Cup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYf-Pn-FYF">
-                                                            <rect key="frame" x="16" y="195" width="47" height="21"/>
+                                                            <rect key="frame" x="16" y="207" width="47" height="21"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                                             <color key="textColor" red="0.2401846051" green="0.35288435219999997" blue="0.35294324160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
@@ -149,43 +149,43 @@
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="semibold"/>
                                                             </state>
                                                         </button>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Enabled" translatesAutoresizingMaskIntoConstraints="NO" id="FkH-wg-cgq">
-                                                            <rect key="frame" x="16" y="224" width="79" height="28"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Enabled Vegan" translatesAutoresizingMaskIntoConstraints="NO" id="FkH-wg-cgq">
+                                                            <rect key="frame" x="16" y="236" width="79" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Disabled Egg" translatesAutoresizingMaskIntoConstraints="NO" id="ebH-QT-bjx">
-                                                            <rect key="frame" x="103" y="224" width="63" height="28"/>
+                                                            <rect key="frame" x="103" y="236" width="63" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Chip Enable Soy" translatesAutoresizingMaskIntoConstraints="NO" id="oXg-F1-ZUo">
-                                                            <rect key="frame" x="16" y="260" width="73" height="28"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Enabled Soy" translatesAutoresizingMaskIntoConstraints="NO" id="oXg-F1-ZUo">
+                                                            <rect key="frame" x="16" y="272" width="73" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Chip Enable Tree Nuts" translatesAutoresizingMaskIntoConstraints="NO" id="fYc-jV-mET">
-                                                            <rect key="frame" x="97" y="260" width="101" height="28"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Enabled Tree Nuts" translatesAutoresizingMaskIntoConstraints="NO" id="fYc-jV-mET">
+                                                            <rect key="frame" x="97" y="272" width="101" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Chip Enable Peanut" translatesAutoresizingMaskIntoConstraints="NO" id="b6p-VS-821">
-                                                            <rect key="frame" x="16" y="296" width="84" height="28"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Enabled Peanut" translatesAutoresizingMaskIntoConstraints="NO" id="b6p-VS-821">
+                                                            <rect key="frame" x="16" y="308" width="84" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Chip Disabled Dairy" translatesAutoresizingMaskIntoConstraints="NO" id="RiW-v6-CqT">
-                                                            <rect key="frame" x="16" y="332" width="80" height="28"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Disabled Dairy" translatesAutoresizingMaskIntoConstraints="NO" id="RiW-v6-CqT">
+                                                            <rect key="frame" x="16" y="344" width="80" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Chip Disabled Gluten" translatesAutoresizingMaskIntoConstraints="NO" id="y6l-nk-Y7o">
-                                                            <rect key="frame" x="108" y="296" width="80" height="28"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Disabled Gluten" translatesAutoresizingMaskIntoConstraints="NO" id="y6l-nk-Y7o">
+                                                            <rect key="frame" x="108" y="308" width="80" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                     <constraints>
                                                         <constraint firstItem="iRc-te-Do1" firstAttribute="leading" secondItem="ChB-rt-u2H" secondAttribute="leading" constant="16" id="3Fy-jA-Cvo"/>
-                                                        <constraint firstItem="ig4-yd-HC2" firstAttribute="top" secondItem="ChB-rt-u2H" secondAttribute="top" constant="8" id="EgK-5E-cim"/>
+                                                        <constraint firstItem="ig4-yd-HC2" firstAttribute="top" secondItem="ChB-rt-u2H" secondAttribute="top" constant="16" id="EgK-5E-cim"/>
                                                         <constraint firstAttribute="trailing" secondItem="Ob8-Gg-e4o" secondAttribute="trailing" constant="16" id="KXq-44-JBb"/>
                                                         <constraint firstItem="yYf-Pn-FYF" firstAttribute="leading" secondItem="iRc-te-Do1" secondAttribute="leading" id="QNi-SQ-eqx"/>
                                                         <constraint firstAttribute="bottom" secondItem="Ob8-Gg-e4o" secondAttribute="bottom" constant="13" id="SOu-AX-gUv"/>
-                                                        <constraint firstItem="iRc-te-Do1" firstAttribute="top" secondItem="ig4-yd-HC2" secondAttribute="bottom" constant="8" id="TGV-wa-ybR"/>
+                                                        <constraint firstItem="iRc-te-Do1" firstAttribute="top" secondItem="ig4-yd-HC2" secondAttribute="bottom" constant="12" id="TGV-wa-ybR"/>
                                                         <constraint firstAttribute="width" constant="236" id="VZf-eD-fgG"/>
                                                         <constraint firstItem="yYf-Pn-FYF" firstAttribute="top" secondItem="iRc-te-Do1" secondAttribute="bottom" constant="2" id="nU8-lm-FyI"/>
                                                         <constraint firstAttribute="height" constant="400" id="nt0-0i-a40"/>
@@ -240,16 +240,6 @@
             </objects>
             <point key="canvasLocation" x="2749.2307692307691" y="68.957345971563981"/>
         </scene>
-        <!--IngredientDetails-->
-        <scene sceneID="yt9-xO-cuz">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="ingredientDetails" storyboardName="IngredientDetails" id="4Bl-r3-L1A" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="EgQ-0y-jn6"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="d3q-jx-q8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3536" y="69"/>
-        </scene>
         <!--Result-->
         <scene sceneID="cEz-CU-9zN">
             <objects>
@@ -271,15 +261,15 @@
     </scenes>
     <resources>
         <image name="Background" width="1560" height="3376"/>
-        <image name="Chip Disabled Dairy" width="640" height="224"/>
-        <image name="Chip Disabled Gluten" width="640" height="224"/>
-        <image name="Chip Enable Peanut" width="680" height="224"/>
-        <image name="Chip Enable Soy" width="584" height="224"/>
-        <image name="Chip Enable Tree Nuts" width="808" height="224"/>
+        <image name="Disabled Dairy" width="640" height="224"/>
         <image name="Disabled Egg" width="504" height="224"/>
-        <image name="Enabled" width="632" height="224"/>
+        <image name="Disabled Gluten" width="640" height="224"/>
+        <image name="Enabled Peanut" width="680" height="224"/>
+        <image name="Enabled Soy" width="584" height="224"/>
+        <image name="Enabled Tree Nuts" width="808" height="224"/>
+        <image name="Enabled Vegan" width="632" height="224"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
-        <image name="maple_syrup_1" width="700" height="700"/>
+        <image name="maple syrup 1" width="600" height="600"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
