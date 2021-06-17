@@ -16,11 +16,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var emptyView: UIView!
     
     
-//    //dummy
-//    var ingredientNames = ["Buttermilk", "Corn Syrup", "Egg", "Honey", "Maple Syrup", "Molasses"]
-////    var ingredientNames = [String]()
-//    var amount = ["100 grams", "1 cup","100 grams", "1 cup","100 grams", "1 cup"]
-    
     // MARK:- let & var
     var ingredientCollection:[Ingredients] = []
     
