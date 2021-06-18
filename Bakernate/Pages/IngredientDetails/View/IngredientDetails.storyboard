@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0QL-nm-JX6">
-                                <rect key="frame" x="0.0" y="96.666666666666686" width="390" height="747.33333333333326"/>
+                                <rect key="frame" x="0.0" y="96.666666666666686" width="390" height="664.33333333333326"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0W-bx-yvZ">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="495.66666666666669"/>
@@ -241,7 +241,7 @@
                         <constraints>
                             <constraint firstItem="0QL-nm-JX6" firstAttribute="trailing" secondItem="EOe-S1-w0o" secondAttribute="trailing" id="5Pl-nt-JrT"/>
                             <constraint firstItem="1eg-ba-oP4" firstAttribute="top" secondItem="YLX-DD-fNQ" secondAttribute="top" id="MEZ-6Y-eGX"/>
-                            <constraint firstAttribute="bottom" secondItem="0QL-nm-JX6" secondAttribute="bottom" id="MS0-vK-Hs6"/>
+                            <constraint firstAttribute="bottom" secondItem="0QL-nm-JX6" secondAttribute="bottom" constant="83" id="MS0-vK-Hs6"/>
                             <constraint firstItem="1eg-ba-oP4" firstAttribute="trailing" secondItem="EOe-S1-w0o" secondAttribute="trailing" id="RHf-yN-jII"/>
                             <constraint firstItem="0QL-nm-JX6" firstAttribute="leading" secondItem="EOe-S1-w0o" secondAttribute="leading" id="UNW-kW-vbc"/>
                             <constraint firstItem="EOe-S1-w0o" firstAttribute="trailing" secondItem="Aro-AG-lH6" secondAttribute="trailing" constant="20" id="f3V-8o-XZE"/>
@@ -265,6 +265,7 @@
                         <outlet property="isVeganImage" destination="egZ-Ni-4ei" id="o5E-bx-evv"/>
                         <outlet property="productDescription" destination="07U-ur-COK" id="3xB-QZ-Gwl"/>
                         <outlet property="productName" destination="9bi-Kb-Dot" id="MNs-yR-Y40"/>
+                        <outlet property="productScrollView" destination="0QL-nm-JX6" id="EvQ-Vk-Ajv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="68j-hw-c4y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

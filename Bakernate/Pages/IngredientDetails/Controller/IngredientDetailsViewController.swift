@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IngredientDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class IngredientDetailsViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var imagesPageControl: UIPageControl!
@@ -20,6 +20,7 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet weak var isGlutenImage: UIImageView!
     @IBOutlet weak var isDairyImage: UIImageView!
     @IBOutlet weak var productDescription: UILabel!
+    @IBOutlet weak var productScrollView: UIScrollView!
     
     var selectedProductName: String = ""
     var selectedProductIsVegan: Bool = false
@@ -42,6 +43,7 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
         
         imagesCollectionView.delegate = self
         imagesCollectionView.dataSource = self
+        productScrollView.delegate = self
         
         prepareUI()
     }
@@ -97,6 +99,10 @@ class IngredientDetailsViewController: UIViewController, UICollectionViewDelegat
         } else {
             isDairyImage.image = UIImage(named: "Disabled Dairy")
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        productScrollView.contentInset = UIEdgeInsets(top: -46, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
