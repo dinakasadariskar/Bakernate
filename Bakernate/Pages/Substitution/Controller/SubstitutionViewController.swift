@@ -23,7 +23,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     var ingredientRow = 0
     var selectedUnit = ""
     var indexOf = 0
-    var type:[String] = []
+    var type: [String] = []
     var selectedIndex = 0
     var activityIndicator = UIActivityIndicatorView()
     var strLabel = UILabel()
@@ -48,8 +48,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
     var ingredientSubstituteUnitArray = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     var ingredientImageArray = ["baking soda", "baking powder", "buttermilk", "honey", "molasses", "maple syrup", "lemon", "lime", "vinegar", "white wine", "sour cream", "mayo", "coconut milk", "yoghurt", "egg", "mashed banana", "chia seed", "agar-agar", "unsalted butter", "vege oil", "heavy cream", "coconut cream", "evaporated milk", "cream cheese", "mascarpone", "brown sugar", "coconut sugar", "white sugar", "cornstarch", "all purpose flour", "tapioca"]
     var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
-    
-//    launchFrameImageView.animationImages = (1...11).map { UIImage(named: "frame \($0)")! }
     
     // MARK:- Function
     override func viewDidLoad() {
@@ -130,14 +128,11 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         ingredientCollection[selectedIndex].ingredientAmount = amount
         updateAmountCoreData(name: ingredientTextField.text!)
         
-//        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
-        
         let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
         
         vc.unitRow = self.unitRow
         
-//        resultCardsCollectionView.reloadData()
         view.endEditing(true)
     }
     
@@ -165,18 +160,12 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         if pickerView == ingredientPickerView {
             substituteIngredientName = ingredientCollection[row].ingredientName!
             ingredientTextField.text = substituteIngredientName
-//            ingredientRow = row
             type = ingredientCollection[row].ingredientId!
-//            guard type == [ingredientCollection[row].ingredientId!]
-//            else{
-//                return
-//            }
         } else {
             unitTextField.text = unitArray[row]
             unitRow = row
             ingredientCollection[ingredientRow].initialUnit = self.selectedUnit
             updateInitialUnit(name: substituteIngredientName)
-            
         }
     }
     
@@ -240,31 +229,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
             print("Error due to : \(error.localizedDescription)")
         }
     }
-    
-//    func updateFavoriteCoreData(name: String) {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//
-//        let manageContext = appDelegate.persistentContainer.viewContext
-//
-//        // 3. Prepare fetch dari entity coredata nya
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Ingredient")
-//        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
-//
-//        do {
-//            let object = try manageContext.fetch(fetchRequest)
-//
-//            let objectToUpdate = object[0] as! NSManagedObject
-//            objectToUpdate.setValue(ingredientCollection[selectedIndex].isFavorited, forKey: "isFavorited")
-//
-//            do {
-//                try manageContext.save()
-//            } catch {
-//                print(error)
-//            }
-//        } catch let error as NSError {
-//            print(error)
-//        }
-//    }
     
     func updateAmountCoreData(name: String) {
         
@@ -377,26 +341,7 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
         activityIndicator("Substituting...")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
             self.effectView.removeFromSuperview()
-            
-
-
             self.donePressed()
-            
-            
-            
-//            self.ingredientCollection[self.selectedIndex].initialUnit = self.unitTextField.text!
-//            self.updateInitialUnit(name: self.ingredientTextField.text!)
-//            
-//            self.amount = self.amountTextField.text!
-//            self.ingredientCollection[self.selectedIndex].ingredientAmount! = self.amount
-//            self.updateAmountCoreData(name: self.ingredientTextField.text!)
-//            
-//    //        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
-//            
-//            let fStoryboard = UIStoryboard(name: "Favorites", bundle: nil)
-//            let fVc = fStoryboard.instantiateViewController(withIdentifier: "favoritesViewController") as! FavoritesViewController
-//            
-//            fVc.unitRow = self.unitRow
             
             let rStoryboard = UIStoryboard(name: "Result", bundle: nil)
             
@@ -416,19 +361,6 @@ class SubstitutionViewController: UIViewController, UIPickerViewDelegate, UIPick
 }
 
 // MARK:- Extension
-//extension UIViewController {
-//
-//    func hideKeyboardWhenTappedAround() {
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-//        tap.cancelsTouchesInView = false
-//        view.addGestureRecognizer(tap)
-//    }
-//
-//    @objc func dismissKeyboard() {
-//        view.endEditing(true)
-//    }
-//
-//}
 
 extension SubstitutionViewController: UIViewControllerTransitioningDelegate {
     

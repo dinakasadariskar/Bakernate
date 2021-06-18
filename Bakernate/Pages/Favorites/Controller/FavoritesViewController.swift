@@ -44,18 +44,12 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         favoriteTableView.separatorStyle = .none
         favoriteTableView.showsVerticalScrollIndicator = false
         
-        // Do any additional setup after loading the view.
-        
         let nib = UINib.init(nibName: "FavoriteTableViewCell", bundle: nil)
         favoriteTableView.register(nib, forCellReuseIdentifier: "favoriteCell")
-        
         favoriteTableView.reloadData()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         if ingredientCollection.count == 0 {
             favoriteTableView.backgroundView = emptyView
         } else {
@@ -75,11 +69,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         favoriteTableView.register(nib, forCellReuseIdentifier: "favoriteCell")
         
         favoriteTableView.reloadData()
-
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if ingredientCollection.count == 0 {
             favoriteTableView.backgroundView = emptyView
         } else {
@@ -141,7 +133,5 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             print("Error due to : \(error.localizedDescription)")
         }
     }
-    
-    
 
 }
