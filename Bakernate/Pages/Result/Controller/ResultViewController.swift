@@ -10,7 +10,6 @@ import CoreData
 class ResultViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK:- IBOutlet
-    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var editInitialAmountTextField: UITextField!
     @IBOutlet weak var initialUnitPicker: UITextField!
     @IBOutlet weak var showUnitPicker: UITextField!
@@ -36,49 +35,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
     var unitArray = ["Cups", "Tablespoon", "Teaspoon", "Ounce", "Gram"]
         
     // MARK:- function
-    override func viewWillAppear(_ animated: Bool) {
-        retrieveData()
-        retrieveDataTitle(name: titleIngredient)
-        
-        if ingredientTitle[selectedIndex].isFavorited! {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(handleFavoriteButton))
-        } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(handleFavoriteButton))
-        }
-        
-        picker()
-        createToolbar()
-        
-        editInitialAmountTextField.keyboardType = .decimalPad
-        
-        editInitialAmountTextField.text = initialAmount
-        ingredientNameLabel.text = titleIngredient
-        initialUnitPicker.text = ingredientTitle[selectedIndex].initialUnit
-        
-        if ingredientTitle[selectedIndex].substituteUnit!.count == 0 {
-            showUnitPicker.text = ingredientTitle[selectedIndex].initialUnit
-        } else {
-            showUnitPicker.text = ingredientTitle[selectedIndex].substituteUnit!
-            showUnit = ingredientTitle[selectedIndex].substituteUnit!
-        }
-        
-        initialUnit = ingredientTitle[selectedIndex].initialUnit!
-        
-        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
-
-        navBar.shadowImage = UIImage()
-        navBar.isTranslucent = true
-        
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
-        self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
-        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
-        
-        resultCardsCollectionView?.dataSource = self
-        resultCardsCollectionView?.delegate = self
-        resultCardsCollectionView?.showsHorizontalScrollIndicator = false
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,9 +61,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         showUnit = unitArray[unitRow]
         
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
-
-        navBar.shadowImage = UIImage()
-        navBar.isTranslucent = true
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
         
@@ -350,7 +303,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
                         }
                     }
                 }
-
             }
         } catch let error as NSError {
             print(error)
@@ -600,4 +552,5 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             initialUnit = unitArray[row]
         }
     }
+    
 }
