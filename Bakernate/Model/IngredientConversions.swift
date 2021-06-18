@@ -175,23 +175,23 @@ struct IngredientConversions {
                 output = value * 1.1429
             }
         case .heavycream:
-            if to == .coconutcream || to == .yogurt || to == .sourcream || to == .creamcheese || to == .mascarpone {
+            if to == .coconutcream || to == .yogurt || to == .sourcream || to == .creamcheese || to == .mascarpone || to == .evaporatedmilk {
                 output = value * 1
             }
         case .coconutcream:
-            if to == .heavycream || to == .evaporatedmilk || to == .creamcheese || to == .mascarpone {
+            if to == .heavycream || to == .yogurt || to == .sourcream || to == .creamcheese || to == .mascarpone || to == .evaporatedmilk {
                 output = value * 1
             }
         case .evaporatedmilk:
-            if to == .heavycream || to == .coconutcream || to == .creamcheese || to == .mascarpone {
+            if to == .heavycream || to == .yogurt || to == .sourcream || to == .creamcheese || to == .mascarpone || to == .coconutcream {
                 output = value * 1
             }
         case .creamcheese:
-            if to == .heavycream || to == .coconutcream || to == .evaporatedmilk || to == .mascarpone {
+            if to == .heavycream || to == .yogurt || to == .sourcream || to == .evaporatedmilk || to == .mascarpone || to == .coconutcream {
                 output = value * 1
             }
         case .mascarpone:
-            if to == .heavycream || to == .coconutcream || to == .evaporatedmilk || to == .creamcheese {
+            if to == .heavycream || to == .yogurt || to == .sourcream || to == .evaporatedmilk || to == .creamcheese || to == .coconutcream {
                 output = value * 1
             }
         case .brownsugar:
