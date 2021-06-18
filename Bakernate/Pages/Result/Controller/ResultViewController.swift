@@ -62,15 +62,17 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         editInitialAmountTextField.text = initialAmount
         ingredientNameLabel.text = titleIngredient
         initialUnitPicker.text = ingredientTitle[selectedIndex].initialUnit
+//        showUnitPicker.text = ingredientTitle[selectedIndex].initialUnit
         
         if ingredientTitle[selectedIndex].substituteUnit!.count == 0 {
-            showUnitPicker.text = unitArray[unitRow]
+            showUnitPicker.text = ingredientTitle[selectedIndex].initialUnit
         } else {
             showUnitPicker.text = ingredientTitle[selectedIndex].substituteUnit!
             showUnit = ingredientTitle[selectedIndex].substituteUnit!
         }
         
         initialUnit = ingredientTitle[selectedIndex].initialUnit!
+//        showUnit = ingredientTitle[selectedIndex].initialUnit!
         
         convertAmount(initialUnit: initialUnit, showUnit: showUnit)
 
@@ -121,45 +123,6 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
         navBar.isTranslucent = true
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
-        
-        self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
-        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
-        
-        resultCardsCollectionView?.dataSource = self
-        resultCardsCollectionView?.delegate = self
-        resultCardsCollectionView?.showsHorizontalScrollIndicator = false
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        retrieveData()
-        retrieveDataTitle(name: titleIngredient)
-        
-        if ingredientTitle[selectedIndex].isFavorited! {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(handleFavoriteButton))
-        } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(handleFavoriteButton))
-        }
-        
-        picker()
-        createToolbar()
-        
-//        self.hideKeyboardWhenTappedAround()
-        editInitialAmountTextField.keyboardType = .decimalPad
-        
-        editInitialAmountTextField.text = initialAmount
-        ingredientNameLabel.text = titleIngredient
-        initialUnitPicker.text = unitArray[unitRow]
-        showUnitPicker.text = unitArray[unitRow]
-        initialUnit = unitArray[unitRow]
-        showUnit = unitArray[unitRow]
-        convertAmount(initialUnit: initialUnit, showUnit: showUnit)
-
-        navBar.setBackgroundImage(UIImage(), for: .default)
-        navBar.shadowImage = UIImage()
-        navBar.isTranslucent = true
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(handleBackButton))
-
         
         self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2047558129, green: 0.356741339, blue: 0.3546977937, alpha: 1)
@@ -524,7 +487,7 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             ingredientTitle[selectedIndex].isFavorited = false
             updateFavoriteCoreData(name: titleIngredient)
             
-            ingredientTitle[selectedIndex].substituteUnit = initialUnit
+            ingredientTitle[selectedIndex].substituteUnit = ingredientTitle[selectedIndex].initialUnit!
             updateSubstituteUnit(name: titleIngredient)
         } else {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")

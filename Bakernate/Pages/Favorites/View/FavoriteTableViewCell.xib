@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOJ-iy-bSH">
-                        <rect key="frame" x="14" y="10" width="272" height="64"/>
+                        <rect key="frame" x="20" y="10" width="260" height="64"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Molasses" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-sm-xeH">
                                 <rect key="frame" x="14" y="14" width="100" height="27"/>
@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qff-5g-Wfl">
-                                <rect key="frame" x="245" y="21" width="13" height="22"/>
+                                <rect key="frame" x="233" y="21" width="13" height="22"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="chevron.right" catalog="system"/>
                             </button>
@@ -55,8 +55,8 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="MOJ-iy-bSH" secondAttribute="trailing" constant="14" id="4lV-GV-YuM"/>
-                    <constraint firstItem="MOJ-iy-bSH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="Dgo-U9-gVp"/>
+                    <constraint firstAttribute="trailing" secondItem="MOJ-iy-bSH" secondAttribute="trailing" constant="20" id="4lV-GV-YuM"/>
+                    <constraint firstItem="MOJ-iy-bSH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Dgo-U9-gVp"/>
                     <constraint firstAttribute="bottom" secondItem="MOJ-iy-bSH" secondAttribute="bottom" constant="10" id="HGG-Hi-dtF"/>
                     <constraint firstItem="MOJ-iy-bSH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="UR6-CN-eZ4"/>
                 </constraints>
