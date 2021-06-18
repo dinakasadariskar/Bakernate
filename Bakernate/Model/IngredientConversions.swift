@@ -30,6 +30,7 @@ enum IngredientName {
     case vegetableoil
     case heavycream
     case coconutcream
+    case evaporatedmilk
     case creamcheese
     case mascarpone
     case brownsugar
@@ -39,7 +40,7 @@ enum IngredientName {
     case allpurposeflour
     case tapioca
     
-    static let getAllUnits = [bakingsoda, bakingpowder, buttermilk, honey, molasses, maplesyrup, lemonjuice, limejuice, vinegar, whitewine, sourcream, mayonnaise, coconutmilk, yogurt, egg, mashedbanana, chiaseed, agaragar, unsaltedbutter, vegetableoil, heavycream, coconutcream, creamcheese, mascarpone, brownsugar, coconutsugar, whitesugar, cornstarch, allpurposeflour, tapioca]
+    static let getAllUnits = [bakingsoda, bakingpowder, buttermilk, honey, molasses, maplesyrup, lemonjuice, limejuice, vinegar, whitewine, sourcream, mayonnaise, coconutmilk, yogurt, egg, mashedbanana, chiaseed, agaragar, unsaltedbutter, vegetableoil, heavycream, coconutcream, evaporatedmilk, creamcheese, mascarpone, brownsugar, coconutsugar, whitesugar, cornstarch, allpurposeflour, tapioca]
 }
 
 struct IngredientConversions {
@@ -178,15 +179,19 @@ struct IngredientConversions {
                 output = value * 1
             }
         case .coconutcream:
-            if to == .heavycream || to == .yogurt || to == .sourcream || to == .creamcheese || to == .mascarpone {
+            if to == .heavycream || to == .evaporatedmilk || to == .creamcheese || to == .mascarpone {
+                output = value * 1
+            }
+        case .evaporatedmilk:
+            if to == .heavycream || to == .coconutcream || to == .creamcheese || to == .mascarpone {
                 output = value * 1
             }
         case .creamcheese:
-            if to == .heavycream || to == .yogurt || to == .sourcream || to == .coconutcream || to == .mascarpone {
+            if to == .heavycream || to == .coconutcream || to == .evaporatedmilk || to == .mascarpone {
                 output = value * 1
             }
         case .mascarpone:
-            if to == .heavycream || to == .yogurt || to == .sourcream || to == .coconutcream || to == .creamcheese {
+            if to == .heavycream || to == .coconutcream || to == .evaporatedmilk || to == .creamcheese {
                 output = value * 1
             }
         case .brownsugar:

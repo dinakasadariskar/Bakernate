@@ -250,6 +250,8 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             ingredientName = IngredientName.heavycream
         } else if initialIngredient == "Coconut Cream" {
             ingredientName = IngredientName.coconutcream
+        } else if initialIngredient == "Evaporated Milk" {
+            ingredientName = IngredientName.evaporatedmilk
         } else if initialIngredient == "Cream Cheese" {
             ingredientName = IngredientName.creamcheese
         } else if initialIngredient == "Mascarpone" {
@@ -313,6 +315,8 @@ class ResultViewController: UIViewController, UICollectionViewDelegate, UICollec
             ingredientShowName = IngredientName.heavycream
         } else if showIngredientSubstitution == "Coconut Cream" {
             ingredientShowName = IngredientName.coconutcream
+        } else if showIngredientSubstitution == "Evaporated Milk" {
+            ingredientShowName = IngredientName.evaporatedmilk
         } else if showIngredientSubstitution == "Cream Cheese" {
             ingredientShowName = IngredientName.creamcheese
         } else if showIngredientSubstitution == "Mascarpone" {
