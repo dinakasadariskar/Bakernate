@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ul5-Vo-Fgb">
-                                <rect key="frame" x="0.0" y="45" width="390" height="44"/>
+                                <rect key="frame" x="0.0" y="44.666666666666657" width="390" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
@@ -127,7 +127,7 @@
                                                 <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChB-rt-u2H">
                                                     <rect key="frame" x="0.0" y="0.0" width="236" height="400"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maple syrup 1" translatesAutoresizingMaskIntoConstraints="NO" id="ig4-yd-HC2">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maple syrup 1" translatesAutoresizingMaskIntoConstraints="NO" id="ig4-yd-HC2">
                                                             <rect key="frame" x="16" y="16" width="204" height="150"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="204" id="LLK-Ad-5hv"/>
